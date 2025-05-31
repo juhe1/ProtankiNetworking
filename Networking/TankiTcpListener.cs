@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using ProboTankiLibCS.Packets;
-using ProboTankiLibCS.Security;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Packets;
+using ProtankiNetworking.Security;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Networking
+namespace ProtankiNetworking.Networking
 {
     /// <summary>
     /// Handles TCP listener for accepting client connections and processing their packets
@@ -32,19 +32,7 @@ namespace ProboTankiLibCS.Networking
             _protection = protection;
             _cancellationTokenSource = new CancellationTokenSource();
         }
-
-        /// <summary>
-        /// Called when a raw packet is received from a client, including header bytes
-        /// </summary>
-        /// <param name="rawPacket">The complete raw packet data including headers</param>
-        protected abstract Task OnRawPacketReceivedAsync(byte[] rawPacket);
-
-        /// <summary>
-        /// Called when a packet is received from a client
-        /// </summary>
-        /// <param name="packet">The received packet</param>
-        protected abstract Task OnPacketReceivedAsync(AbstractPacket packet);
-
+        
         /// <summary>
         /// Called when an error occurs
         /// </summary>

@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for chat messages
+    /// Codec for chatmessage
     /// </summary>
     public class ChatMessageCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of ChatMessageCodec
+        /// </summary>
+        public static ChatMessageCodec Instance { get; } = new ChatMessageCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -17,27 +25,26 @@ namespace ProboTankiLibCS.Codec.Custom
             "systemMessage",
             "targetStatus",
             "message",
-            "warning"
+            "warning",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(UserStatusCodec),
-            typeof(Primitive.BoolCodec),
-            typeof(UserStatusCodec),
-            typeof(Complex.StringCodec),
-            typeof(Primitive.BoolCodec)
+            UserStatusCodec.Instance,
+            BoolCodec.Instance,
+            UserStatusCodec.Instance,
+            StringCodec.Instance,
+            BoolCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of ChatMessageCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public ChatMessageCodec(EByteArray buffer) : base(buffer)
+        private ChatMessageCodec() : base()
         {
         }
     }
-} 
+}

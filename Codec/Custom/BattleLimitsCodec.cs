@@ -1,37 +1,44 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle limits information
+    /// Codec for battle limits
     /// </summary>
     public class BattleLimitsCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleLimitsCodec
+        /// </summary>
+        public static BattleLimitsCodec Instance { get; } = new BattleLimitsCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
         protected override string[] Attributes => new[]
         {
             "scoreLimit",
-            "timeLimit"
+            "timeLimit",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec)
+            new DoubleIntCodec(IntCodec.Instance),
+            new DoubleIntCodec(IntCodec.Instance),
         };
 
         /// <summary>
         /// Creates a new instance of BattleLimitsCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleLimitsCodec(EByteArray buffer) : base(buffer)
+        private BattleLimitsCodec() : base()
         {
         }
     }
-} 
+}

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using ProboTankiLibCS.Codec;
-using ProboTankiLibCS.Security;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Codec;
+using ProtankiNetworking.Security;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Packets
+namespace ProtankiNetworking.Packets
 {
     /// <summary>
     /// Abstract class for packets. This class is used to define the structure of packets that are sent and received by the server.
@@ -32,7 +32,7 @@ namespace ProboTankiLibCS.Packets
         /// <summary>
         /// List of codecs used to encode/decode packet data
         /// </summary>
-        public static Type[] CodecTypes { get; protected set; } = Array.Empty<Type>();
+        public static ICodec[] CodecObjects { get; protected set; } = Array.Empty<ICodec>();
 
         /// <summary>
         /// List of attribute names for the packet
@@ -52,7 +52,7 @@ namespace ProboTankiLibCS.Packets
         /// <summary>
         /// Dictionary containing the packet data
         /// </summary>
-        public Dictionary<string, object> Object { get; } = new Dictionary<string, object>();
+        public Dictionary<string, object> ObjectByAttributeName { get; } = new Dictionary<string, object>();
 
         /// <summary>
         /// Decodes the binary data into individual objects
@@ -63,10 +63,9 @@ namespace ProboTankiLibCS.Packets
         {
             Objects.Clear();
             
-            foreach (var codecType in CodecTypes)
+            foreach (var codec in CodecObjects)
             {
-                var codec = (BaseCodec<object>)Activator.CreateInstance(codecType, packetData);
-                Objects.Add(codec.Decode());
+                Objects.Add(codec.Decode(packetData));
             }
             
             return Implement();
@@ -94,10 +93,9 @@ namespace ProboTankiLibCS.Packets
             {
                 packetData = new EByteArray();
                 // Encode the objects according to the codecs
-                for (int i = 0; i < CodecTypes.Length; i++)
+                for (int i = 0; i < CodecObjects.Length; i++)
                 {
-                    var codec = (BaseCodec<object>)Activator.CreateInstance(CodecTypes[i], packetData);
-                    dataLen += codec.Encode(Objects[i]);
+                    dataLen += CodecObjects[i].Encode(Objects[i], packetData);
                 }
             }
 
@@ -115,12 +113,12 @@ namespace ProboTankiLibCS.Packets
         /// <returns>Dictionary containing the implemented packet data</returns>
         protected Dictionary<string, object> Implement()
         {
-            Object.Clear();
+            ObjectByAttributeName.Clear();
             for (int i = 0; i < Objects.Count; i++)
             {
-                Object[Attributes[i]] = Objects[i];
+                ObjectByAttributeName[Attributes[i]] = Objects[i];
             }
-            return Object;
+            return ObjectByAttributeName;
         }
 
         /// <summary>
@@ -133,7 +131,7 @@ namespace ProboTankiLibCS.Packets
             Objects.Clear();
             foreach (var attribute in Attributes)
             {
-                Objects.Add((obj ?? Object)[attribute]);
+                Objects.Add((obj ?? ObjectByAttributeName)[attribute]);
             }
             return Objects;
         }
@@ -149,7 +147,7 @@ namespace ProboTankiLibCS.Packets
                 ? $"Unknown Packet - ID: {Id}"
                 : GetType().Name;
             
-            return $"<{(direction ? "IN" : "OUT")}> ({packetName}){(ShouldLog ? "" : " - NoDisp")} | Data: {Object}";
+            return $"<{(direction ? "IN" : "OUT")}> ({packetName}){(ShouldLog ? "" : " - NoDisp")} | Data: {ObjectByAttributeName}";
         }
     }
 } 

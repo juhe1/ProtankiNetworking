@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle user statistics information
+    /// Codec for battleuserstats
     /// </summary>
     public class BattleUserStatsCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleUserStatsCodec
+        /// </summary>
+        public static BattleUserStatsCodec Instance { get; } = new BattleUserStatsCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -16,26 +24,25 @@ namespace ProboTankiLibCS.Codec.Custom
             "deaths",
             "kills",
             "score",
-            "user"
+            "user",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec)
+            IntCodec.Instance,
+            IntCodec.Instance,
+            IntCodec.Instance,
+            StringCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of BattleUserStatsCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleUserStatsCodec(EByteArray buffer) : base(buffer)
+        private BattleUserStatsCodec() : base()
         {
         }
     }
-} 
+}

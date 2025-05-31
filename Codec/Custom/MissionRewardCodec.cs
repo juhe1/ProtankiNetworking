@@ -1,37 +1,44 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for mission reward information
+    /// Codec for missionreward
     /// </summary>
     public class MissionRewardCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of MissionRewardCodec
+        /// </summary>
+        public static MissionRewardCodec Instance { get; } = new MissionRewardCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
         protected override string[] Attributes => new[]
         {
             "amount",
-            "name"
+            "name",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec)
+            IntCodec.Instance,
+            StringCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of MissionRewardCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public MissionRewardCodec(EByteArray buffer) : base(buffer)
+        private MissionRewardCodec() : base()
         {
         }
     }
-} 
+}

@@ -1,61 +1,68 @@
-using ProboTankiLibCS.Utils;
+using System;
+using System.Collections.Generic;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Complex
+namespace ProtankiNetworking.Codec.Complex
 {
     /// <summary>
-    /// Codec for arrays of Vector3D values
+    /// Codec for vector of Vector3D values
     /// </summary>
-    public class VectorVector3DCodec : BaseCodec<Vector3D[]>
+    public class VectorVector3DCodec : BaseCodec
     {
-        private readonly Vector3DCodec _vector3DCodec;
+        /// <summary>
+        /// Gets the singleton instance of VectorVector3DCodec
+        /// </summary>
+        public static VectorVector3DCodec Instance { get; } = new VectorVector3DCodec(Vector3DCodec.Instance);
+
+        private readonly ICodec _vector3DCodec;
 
         /// <summary>
         /// Creates a new instance of VectorVector3DCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public VectorVector3DCodec(EByteArray buffer) : base(buffer)
+        /// <param name="vector3DCodec">The codec to use for Vector3D values</param>
+        public VectorVector3DCodec(ICodec vector3DCodec)
         {
-            _vector3DCodec = new Vector3DCodec(buffer);
+            _vector3DCodec = vector3DCodec;
         }
 
         /// <summary>
-        /// Decodes an array of Vector3D values from the buffer
+        /// Decodes a vector of Vector3D values from the buffer
         /// </summary>
-        /// <returns>The decoded array of Vector3D values</returns>
-        public override Vector3D[] Decode()
+        /// <param name="buffer">The buffer to decode from</param>
+        /// <returns>The decoded vector of Vector3D values</returns>
+        public override object Decode(EByteArray buffer)
         {
-            var length = Buffer.ReadShort();
-            if (length == 0)
-                return Array.Empty<Vector3D>();
-
-            var result = new Vector3D[length];
+            var length = buffer.ReadInt();
+            var result = new List<Vector3D>();
             for (int i = 0; i < length; i++)
             {
-                result[i] = _vector3DCodec.Decode();
+                result.Add((Vector3D)_vector3DCodec.Decode(buffer));
             }
             return result;
         }
 
         /// <summary>
-        /// Encodes an array of Vector3D values to the buffer
+        /// Encodes a vector of Vector3D values to the buffer
         /// </summary>
-        /// <param name="value">The array of Vector3D values to encode</param>
+        /// <param name="value">The vector of Vector3D values to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(Vector3D[] value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            if (value == null || value.Length == 0)
+            if (value is not List<Vector3D> list)
             {
-                Buffer.WriteShort(0);
-                return 2;
+                throw new ArgumentException("Value must be a list of Vector3D", nameof(value));
             }
 
-            Buffer.WriteShort((short)value.Length);
-            var totalBytes = 2;
-            foreach (var vector in value)
+            var bytesWritten = 0;
+            buffer.WriteInt(list.Count);
+            bytesWritten += 4;
+
+            foreach (var vector in list)
             {
-                totalBytes += _vector3DCodec.Encode(vector);
+                bytesWritten += _vector3DCodec.Encode(vector, buffer);
             }
-            return totalBytes;
+            return bytesWritten;
         }
     }
 } 

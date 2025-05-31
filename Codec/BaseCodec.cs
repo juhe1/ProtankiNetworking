@@ -1,13 +1,12 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec
+namespace ProtankiNetworking.Codec
 {
     /// <summary>
     /// Base class for all codecs, whether primitive or complex
     /// </summary>
-    /// <typeparam name="T">The type that this codec handles</typeparam>
-    public abstract class BaseCodec<T>
+    public abstract class BaseCodec : ICodec
     {
         /// <summary>
         /// Gets or sets whether to use shortened boolean encoding
@@ -15,30 +14,25 @@ namespace ProboTankiLibCS.Codec
         public virtual bool BoolShorten { get; set; } = false;
 
         /// <summary>
-        /// Gets the buffer used for encoding/decoding
-        /// </summary>
-        protected EByteArray Buffer { get; }
-
-        /// <summary>
         /// Creates a new instance of BaseCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        protected BaseCodec(EByteArray buffer)
+        protected BaseCodec()
         {
-            Buffer = buffer;
         }
 
         /// <summary>
         /// Decodes a value from the buffer
         /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded value</returns>
-        public abstract T Decode();
+        public abstract object Decode(EByteArray buffer);
 
         /// <summary>
         /// Encodes a value to the buffer
         /// </summary>
         /// <param name="value">The value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public abstract int Encode(T value);
+        public abstract int Encode(object value, EByteArray buffer);
     }
 } 

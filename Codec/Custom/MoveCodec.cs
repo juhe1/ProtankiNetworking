@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for movement information
+    /// Codec for move
     /// </summary>
     public class MoveCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of MoveCodec
+        /// </summary>
+        public static MoveCodec Instance { get; } = new MoveCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -17,27 +25,26 @@ namespace ProboTankiLibCS.Codec.Custom
             "control",
             "linV",
             "orientation",
-            "pos"
+            "pos",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Complex.Vector3DCodec),
-            typeof(Primitive.ByteCodec),
-            typeof(Complex.Vector3DCodec),
-            typeof(Complex.Vector3DCodec),
-            typeof(Complex.Vector3DCodec)
+            Vector3DCodec.Instance,
+            ByteCodec.Instance,
+            Vector3DCodec.Instance,
+            Vector3DCodec.Instance,
+            Vector3DCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of MoveCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public MoveCodec(EByteArray buffer) : base(buffer)
+        private MoveCodec() : base()
         {
         }
     }
-} 
+}

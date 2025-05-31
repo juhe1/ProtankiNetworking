@@ -1,6 +1,6 @@
 using System;
 
-namespace ProboTankiLibCS.Security
+namespace ProtankiNetworking.Security
 {
     /// <summary>
     /// Handles encryption and decryption of packet data using a custom XOR-based scheme

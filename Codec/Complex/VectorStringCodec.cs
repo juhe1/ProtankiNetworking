@@ -1,61 +1,68 @@
-using ProboTankiLibCS.Utils;
+using System;
+using System.Collections.Generic;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Complex
+namespace ProtankiNetworking.Codec.Complex
 {
     /// <summary>
-    /// Codec for arrays of string values
+    /// Codec for vector of strings
     /// </summary>
-    public class VectorStringCodec : BaseCodec<string[]>
+    public class VectorStringCodec : BaseCodec
     {
-        private readonly StringCodec _stringCodec;
+        /// <summary>
+        /// Gets the singleton instance of VectorStringCodec
+        /// </summary>
+        public static VectorStringCodec Instance { get; } = new VectorStringCodec(StringCodec.Instance);
+
+        private readonly ICodec _stringCodec;
 
         /// <summary>
         /// Creates a new instance of VectorStringCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public VectorStringCodec(EByteArray buffer) : base(buffer)
+        /// <param name="stringCodec">The codec to use for string values</param>
+        public VectorStringCodec(ICodec stringCodec)
         {
-            _stringCodec = new StringCodec(buffer);
+            _stringCodec = stringCodec;
         }
 
         /// <summary>
-        /// Decodes an array of string values from the buffer
+        /// Decodes a vector of strings from the buffer
         /// </summary>
-        /// <returns>The decoded array of string values</returns>
-        public override string[] Decode()
+        /// <param name="buffer">The buffer to decode from</param>
+        /// <returns>The decoded vector of strings</returns>
+        public override object Decode(EByteArray buffer)
         {
-            var length = Buffer.ReadShort();
-            if (length == 0)
-                return Array.Empty<string>();
-
-            var result = new string[length];
+            var length = buffer.ReadInt();
+            var result = new List<string>();
             for (int i = 0; i < length; i++)
             {
-                result[i] = _stringCodec.Decode();
+                result.Add((string)_stringCodec.Decode(buffer));
             }
             return result;
         }
 
         /// <summary>
-        /// Encodes an array of string values to the buffer
+        /// Encodes a vector of strings to the buffer
         /// </summary>
-        /// <param name="value">The array of string values to encode</param>
+        /// <param name="value">The vector of strings to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(string[] value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            if (value == null || value.Length == 0)
+            if (value is not List<string> list)
             {
-                Buffer.WriteShort(0);
-                return 2;
+                throw new ArgumentException("Value must be a list of strings", nameof(value));
             }
 
-            Buffer.WriteShort((short)value.Length);
-            var totalBytes = 2;
-            foreach (var str in value)
+            var bytesWritten = 0;
+            buffer.WriteInt(list.Count);
+            bytesWritten += 4;
+
+            foreach (var str in list)
             {
-                totalBytes += _stringCodec.Encode(str);
+                bytesWritten += _stringCodec.Encode(str, buffer);
             }
-            return totalBytes;
+            return bytesWritten;
         }
     }
 } 

@@ -1,37 +1,44 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle notifier information
+    /// Codec for battlenotifier
     /// </summary>
     public class BattleNotifierCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleNotifierCodec
+        /// </summary>
+        public static BattleNotifierCodec Instance { get; } = new BattleNotifierCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
         protected override string[] Attributes => new[]
         {
             "battleInfo",
-            "username"
+            "username",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(BattleInfoCodec),
-            typeof(Complex.StringCodec)
+            BattleInfoCodec.Instance,
+            StringCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of BattleNotifierCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleNotifierCodec(EByteArray buffer) : base(buffer)
+        private BattleNotifierCodec() : base()
         {
         }
     }
-} 
+}

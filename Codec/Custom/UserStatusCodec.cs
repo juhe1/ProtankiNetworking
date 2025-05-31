@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for user status information
+    /// Codec for userstatus
     /// </summary>
     public class UserStatusCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of UserStatusCodec
+        /// </summary>
+        public static UserStatusCodec Instance { get; } = new UserStatusCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -16,31 +24,25 @@ namespace ProboTankiLibCS.Codec.Custom
             "modLevel",
             "ip",
             "rank",
-            "username"
+            "username",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec)
+            IntCodec.Instance,
+            StringCodec.Instance,
+            IntCodec.Instance,
+            StringCodec.Instance,
         };
-
-        /// <summary>
-        /// Gets whether to use boolean short form
-        /// </summary>
-        protected override bool BoolShorten => true;
 
         /// <summary>
         /// Creates a new instance of UserStatusCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public UserStatusCodec(EByteArray buffer) : base(buffer)
+        private UserStatusCodec() : base()
         {
         }
     }
-} 
+}

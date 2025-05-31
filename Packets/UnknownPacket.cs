@@ -1,6 +1,6 @@
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Packets
+namespace ProtankiNetworking.Packets
 {
     /// <summary>
     /// Represents a packet with an unknown type
@@ -21,7 +21,7 @@ namespace ProboTankiLibCS.Packets
         {
             // Set up the packet to store raw data
             Objects.Add(new ByteArray());
-            Object["data"] = Objects[0];
+            ObjectByAttributeName["data"] = Objects[0];
         }
     }
 } 

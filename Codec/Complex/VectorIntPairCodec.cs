@@ -1,7 +1,8 @@
 using System;
-using ProboTankiLibCS.Utils;
+using System.Collections.Generic;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Complex
+namespace ProtankiNetworking.Codec.Complex
 {
     /// <summary>
     /// Represents a pair of integers.
@@ -18,43 +19,62 @@ namespace ProboTankiLibCS.Codec.Complex
     }
 
     /// <summary>
-    /// Codec for arrays of IntPair values
+    /// Codec for vector of integer pairs
     /// </summary>
-    public class VectorIntPairCodec : BaseCodec<IntPair[]>
+    public class VectorIntPairCodec : BaseCodec
     {
-        public VectorIntPairCodec(EByteArray buffer) : base(buffer) { }
+        private readonly ICodec _intCodec;
 
-        public override IntPair[] Decode()
+        /// <summary>
+        /// Creates a new instance of VectorIntPairCodec
+        /// </summary>
+        /// <param name="intCodec">The codec to use for integer values</param>
+        public VectorIntPairCodec(ICodec intCodec)
         {
-            var length = Buffer.ReadShort();
-            if (length == 0)
-                return Array.Empty<IntPair>();
-            var result = new IntPair[length];
+            _intCodec = intCodec;
+        }
+
+        /// <summary>
+        /// Decodes a vector of integer pairs from the buffer
+        /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
+        /// <returns>The decoded vector of integer pairs</returns>
+        public override object Decode(EByteArray buffer)
+        {
+            var length = buffer.ReadInt();
+            var result = new List<Tuple<object, object>>();
             for (int i = 0; i < length; i++)
             {
-                int first = Buffer.ReadInt();
-                int second = Buffer.ReadInt();
-                result[i] = new IntPair(first, second);
+                var first = _intCodec.Decode(buffer);
+                var second = _intCodec.Decode(buffer);
+                result.Add(new Tuple<object, object>(first, second));
             }
             return result;
         }
 
-        public override int Encode(IntPair[] value)
+        /// <summary>
+        /// Encodes a vector of integer pairs to the buffer
+        /// </summary>
+        /// <param name="value">The vector of integer pairs to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
+        /// <returns>The number of bytes written</returns>
+        public override int Encode(object value, EByteArray buffer)
         {
-            if (value == null || value.Length == 0)
+            if (value is not List<Tuple<object, object>> list)
             {
-                Buffer.WriteShort(0);
-                return 2;
+                throw new ArgumentException("Value must be a list of integer pairs", nameof(value));
             }
-            Buffer.WriteShort((short)value.Length);
-            var totalBytes = 2;
-            foreach (var pair in value)
+
+            var bytesWritten = 0;
+            buffer.WriteInt(list.Count);
+            bytesWritten += 4;
+
+            foreach (var pair in list)
             {
-                Buffer.WriteInt(pair.First);
-                Buffer.WriteInt(pair.Second);
-                totalBytes += 8;
+                bytesWritten += _intCodec.Encode(pair.Item1, buffer);
+                bytesWritten += _intCodec.Encode(pair.Item2, buffer);
             }
-            return totalBytes;
+            return bytesWritten;
         }
     }
 } 

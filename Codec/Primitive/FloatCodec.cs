@@ -1,38 +1,48 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Primitive
+namespace ProtankiNetworking.Codec.Primitive
 {
     /// <summary>
     /// Codec for float values
     /// </summary>
-    public class FloatCodec : BaseCodec<float>
+    public class FloatCodec : BaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of FloatCodec
+        /// </summary>
+        public static FloatCodec Instance { get; } = new FloatCodec();
+
         /// <summary>
         /// Creates a new instance of FloatCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public FloatCodec(EByteArray buffer) : base(buffer)
+        private FloatCodec()
         {
         }
 
         /// <summary>
         /// Decodes a float value from the buffer
         /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded float value</returns>
-        public override float Decode()
+        public override object Decode(EByteArray buffer)
         {
-            return Buffer.ReadFloat();
+            return buffer.ReadFloat();
         }
 
         /// <summary>
         /// Encodes a float value to the buffer
         /// </summary>
         /// <param name="value">The float value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(float value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            Buffer.WriteFloat(value);
+            if (value is not float floatValue)
+            {
+                throw new ArgumentException("Value must be a float", nameof(value));
+            }
+            buffer.WriteFloat(floatValue);
             return 4;
         }
     }

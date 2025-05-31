@@ -1,6 +1,6 @@
 using System;
 
-namespace ProboTankiLibCS.Utils
+namespace ProtankiNetworking.Utils
 {
     /// <summary>
     /// Represents a 3D vector with X, Y, and Z coordinates

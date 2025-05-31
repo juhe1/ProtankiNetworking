@@ -1,29 +1,35 @@
-using ProboTankiLibCS.Utils;
+using System;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Complex
+namespace ProtankiNetworking.Codec.Complex
 {
     /// <summary>
     /// Codec for Vector3D values
     /// </summary>
-    public class Vector3DCodec : BaseCodec<Vector3D>
+    public class Vector3DCodec : BaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of Vector3DCodec
+        /// </summary>
+        public static Vector3DCodec Instance { get; } = new Vector3DCodec();
+
         /// <summary>
         /// Creates a new instance of Vector3DCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public Vector3DCodec(EByteArray buffer) : base(buffer)
+        private Vector3DCodec()
         {
         }
 
         /// <summary>
         /// Decodes a Vector3D value from the buffer
         /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded Vector3D value</returns>
-        public override Vector3D Decode()
+        public override object Decode(EByteArray buffer)
         {
-            var x = Buffer.ReadFloat();
-            var y = Buffer.ReadFloat();
-            var z = Buffer.ReadFloat();
+            var x = buffer.ReadFloat();
+            var y = buffer.ReadFloat();
+            var z = buffer.ReadFloat();
             return new Vector3D(x, y, z);
         }
 
@@ -31,12 +37,18 @@ namespace ProboTankiLibCS.Codec.Complex
         /// Encodes a Vector3D value to the buffer
         /// </summary>
         /// <param name="value">The Vector3D value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(Vector3D value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            Buffer.WriteFloat(value.X);
-            Buffer.WriteFloat(value.Y);
-            Buffer.WriteFloat(value.Z);
+            if (value is not Vector3D vector)
+            {
+                throw new ArgumentException("Value must be a Vector3D", nameof(value));
+            }
+
+            buffer.WriteFloat(vector.X);
+            buffer.WriteFloat(vector.Y);
+            buffer.WriteFloat(vector.Z);
             return 12;
         }
     }

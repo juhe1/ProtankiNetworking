@@ -1,45 +1,59 @@
-using ProboTankiLibCS.Utils;
-using ProboTankiLibCS.Codec.Primitive;
+using System;
+using ProtankiNetworking.Utils;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProboTankiLibCS.Codec.Complex
+namespace ProtankiNetworking.Codec.Complex
 {
     /// <summary>
-    /// Codec for handling two integer values
+    /// Codec for double integer values
     /// </summary>
-    public class DoubleIntCodec : BaseCodec<(int, int)>
+    public class DoubleIntCodec : BaseCodec
     {
-        private readonly IntCodec _intCodec;
+        /// <summary>
+        /// Gets the singleton instance of DoubleIntCodec
+        /// </summary>
+        public static DoubleIntCodec Instance { get; } = new DoubleIntCodec(IntCodec.Instance);
+
+        private readonly ICodec _intCodec;
 
         /// <summary>
         /// Creates a new instance of DoubleIntCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public DoubleIntCodec(EByteArray buffer) : base(buffer)
+        /// <param name="intCodec">The codec to use for integer values</param>
+        public DoubleIntCodec(ICodec intCodec)
         {
-            _intCodec = new IntCodec(buffer);
+            _intCodec = intCodec;
         }
 
         /// <summary>
-        /// Decodes two integer values from the buffer
+        /// Decodes a double integer value from the buffer
         /// </summary>
-        /// <returns>A tuple containing the two decoded integer values</returns>
-        public override (int, int) Decode()
+        /// <param name="buffer">The buffer to decode from</param>
+        /// <returns>The decoded double integer value</returns>
+        public override object Decode(EByteArray buffer)
         {
-            var value1 = _intCodec.Decode();
-            var value2 = _intCodec.Decode();
-            return (value1, value2);
+            var first = _intCodec.Decode(buffer);
+            var second = _intCodec.Decode(buffer);
+            return new Tuple<object, object>(first, second);
         }
 
         /// <summary>
-        /// Encodes two integer values to the buffer
+        /// Encodes a double integer value to the buffer
         /// </summary>
-        /// <param name="value">A tuple containing the two integer values to encode</param>
+        /// <param name="value">The double integer value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode((int, int) value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            var bytes1 = _intCodec.Encode(value.Item1);
-            var bytes2 = _intCodec.Encode(value.Item2);
-            return bytes1 + bytes2;
+            if (value is not Tuple<object, object> tuple)
+            {
+                throw new ArgumentException("Value must be a tuple of two objects", nameof(value));
+            }
+
+            var bytesWritten = 0;
+            bytesWritten += _intCodec.Encode(tuple.Item1, buffer);
+            bytesWritten += _intCodec.Encode(tuple.Item2, buffer);
+            return bytesWritten;
         }
     }
 } 

@@ -1,14 +1,21 @@
 using System;
-using System.Collections.Generic;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for mission information
+    /// Codec for mission
     /// </summary>
     public class MissionCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of MissionCodec
+        /// </summary>
+        public static MissionCodec Instance { get; } = new MissionCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -21,30 +28,29 @@ namespace ProboTankiLibCS.Codec.Custom
             "rewards",
             "progress",
             "missionID",
-            "changeCost"
+            "changeCost",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.BoolCodec),
-            typeof(Complex.StringCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Factory.VectorCodec<Dictionary<string, object>>),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec)
+            BoolCodec.Instance,
+            StringCodec.Instance,
+            IntCodec.Instance,
+            IntCodec.Instance,
+            new VectorCodec(MissionRewardCodec.Instance, false),
+            IntCodec.Instance,
+            IntCodec.Instance,
+            IntCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of MissionCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public MissionCodec(EByteArray buffer) : base(buffer)
+        private MissionCodec() : base()
         {
         }
     }
-} 
+}

@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for tank damage information
+    /// Codec for tankdamage
     /// </summary>
     public class TankDamageCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of TankDamageCodec
+        /// </summary>
+        public static TankDamageCodec Instance { get; } = new TankDamageCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -15,25 +23,24 @@ namespace ProboTankiLibCS.Codec.Custom
         {
             "damage",
             "damageType",
-            "target"
+            "target",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.FloatCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec)
+            FloatCodec.Instance,
+            IntCodec.Instance,
+            StringCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of TankDamageCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public TankDamageCodec(EByteArray buffer) : base(buffer)
+        private TankDamageCodec() : base()
         {
         }
     }
-} 
+}

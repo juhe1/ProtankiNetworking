@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
     /// Base class for custom codecs that handle specific data structures
     /// </summary>
-    public abstract class CustomBaseCodec : BaseCodec<Dictionary<string, object>>
+    public abstract class CustomBaseCodec : BaseCodec
     {
         /// <summary>
         /// Gets the list of attribute names for this codec
@@ -17,18 +21,13 @@ namespace ProboTankiLibCS.Codec.Custom
         /// <summary>
         /// Gets the list of codec types for this codec
         /// </summary>
-        protected abstract Type[] CodecTypes { get; }
-
-        /// <summary>
-        /// Gets whether to use boolean short form. Default is false.
-        /// </summary>
-        protected virtual bool BoolShorten => false;
+        protected abstract ICodec[] CodecObjects { get; }
 
         /// <summary>
         /// Creates a new instance of CustomBaseCodec
         /// </summary>
         /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        protected CustomBaseCodec(EByteArray buffer) : base(buffer)
+        protected CustomBaseCodec() : base()
         {
         }
 
@@ -36,25 +35,23 @@ namespace ProboTankiLibCS.Codec.Custom
         /// Decodes a value from the buffer
         /// </summary>
         /// <returns>The decoded value</returns>
-        public override Dictionary<string, object> Decode()
+        public override object Decode(EByteArray buffer)
         {
             var result = new Dictionary<string, object>();
 
             if (BoolShorten)
             {
-                var boolCodec = new Primitive.BoolCodec(Buffer);
-                if (boolCodec.Decode())
+                if ((bool)BoolCodec.Instance.Decode(buffer))
                 {
                     return result;
                 }
             }
 
-            for (int i = 0; i < CodecTypes.Length; i++)
+            for (int i = 0; i < CodecObjects.Length; i++)
             {
                 var attributeName = Attributes[i];
-                var codecType = CodecTypes[i];
-                var codec = (BaseCodec<object>)Activator.CreateInstance(codecType, Buffer);
-                var decodedValue = codec.Decode();
+                var codec = CodecObjects[i];
+                var decodedValue = codec.Decode(buffer);
                 result[attributeName] = decodedValue;
             }
 
@@ -66,26 +63,29 @@ namespace ProboTankiLibCS.Codec.Custom
         /// </summary>
         /// <param name="value">The value to encode</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(Dictionary<string, object> value)
+        public override int Encode(object value, EByteArray buffer)
         {
+            if (value is not Dictionary<string, object> dict)
+            {
+                throw new ArgumentException("Value must be a Dictionary<string, object>", nameof(value));
+            }
+
             var bytesWritten = 0;
 
             if (BoolShorten)
             {
-                var boolCodec = new Primitive.BoolCodec(Buffer);
-                bytesWritten += boolCodec.Encode(value == null);
-                if (value == null)
+                bytesWritten += BoolCodec.Instance.Encode(dict == null, buffer);
+                if (dict == null)
                 {
                     return bytesWritten;
                 }
             }
 
-            for (int i = 0; i < CodecTypes.Length; i++)
+            for (int i = 0; i < CodecObjects.Length; i++)
             {
                 var attributeName = Attributes[i];
-                var codecType = CodecTypes[i];
-                var codec = (BaseCodec<object>)Activator.CreateInstance(codecType, Buffer);
-                bytesWritten += codec.Encode(value[attributeName]);
+                var codec = CodecObjects[i];
+                bytesWritten += codec.Encode(dict[attributeName], buffer);
             }
 
             return bytesWritten;

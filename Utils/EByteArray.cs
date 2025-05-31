@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace ProboTankiLibCS.Utils
+namespace ProtankiNetworking.Utils
 {
     /// <summary>
     /// Enhanced byte array class that provides methods for reading and writing various data types

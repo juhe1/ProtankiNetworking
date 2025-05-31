@@ -1,46 +1,58 @@
-using ProboTankiLibCS.Utils;
+using System;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Primitive
+namespace ProtankiNetworking.Codec.Primitive
 {
     /// <summary>
     /// Codec for boolean values
     /// </summary>
-    public class BoolCodec : BaseCodec<bool>
+    public class BoolCodec : BaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BoolCodec
+        /// </summary>
+        public static BoolCodec Instance { get; } = new BoolCodec();
+
         /// <summary>
         /// Creates a new instance of BoolCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BoolCodec(EByteArray buffer) : base(buffer)
+        private BoolCodec()
         {
         }
 
         /// <summary>
         /// Decodes a boolean value from the buffer
         /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded boolean value</returns>
-        public override bool Decode()
+        public override object Decode(EByteArray buffer)
         {
-            return BoolShorten ? Buffer.ReadByte() != 0 : Buffer.ReadBoolean();
+            if (BoolShorten)
+            {
+                return buffer.ReadByte() != 0;
+            }
+            return buffer.ReadBoolean();
         }
 
         /// <summary>
         /// Encodes a boolean value to the buffer
         /// </summary>
         /// <param name="value">The boolean value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(bool value)
+        public override int Encode(object value, EByteArray buffer)
         {
+            if (value is not bool boolValue)
+            {
+                throw new ArgumentException("Value must be a boolean", nameof(value));
+            }
             if (BoolShorten)
             {
-                Buffer.WriteByte((byte)(value ? 1 : 0));
+                buffer.WriteByte((byte)(boolValue ? 1 : 0));
                 return 1;
             }
-            else
-            {
-                Buffer.WriteBoolean(value);
-                return 1;
-            }
+            buffer.WriteBoolean(boolValue);
+            return 1;
         }
     }
 } 

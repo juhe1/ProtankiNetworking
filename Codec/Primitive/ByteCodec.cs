@@ -1,37 +1,48 @@
-using ProboTankiLibCS.Utils;
+using System;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Primitive
+namespace ProtankiNetworking.Codec.Primitive
 {
     /// <summary>
     /// Codec for byte values
     /// </summary>
-    public class ByteCodec : BaseCodec<byte>
+    public class ByteCodec : BaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of ByteCodec
+        /// </summary>
+        public static ByteCodec Instance { get; } = new ByteCodec();
+
         /// <summary>
         /// Creates a new instance of ByteCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public ByteCodec(EByteArray buffer) : base(buffer)
+        private ByteCodec()
         {
         }
 
         /// <summary>
         /// Decodes a byte value from the buffer
         /// </summary>
+        /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded byte value</returns>
-        public override byte Decode()
+        public override object Decode(EByteArray buffer)
         {
-            return Buffer.ReadByte();
+            return buffer.ReadByte();
         }
 
         /// <summary>
         /// Encodes a byte value to the buffer
         /// </summary>
         /// <param name="value">The byte value to encode</param>
+        /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(byte value)
+        public override int Encode(object value, EByteArray buffer)
         {
-            Buffer.WriteByte(value);
+            if (value is not byte byteValue)
+            {
+                throw new ArgumentException("Value must be a byte", nameof(value));
+            }
+            buffer.WriteByte(byteValue);
             return 1;
         }
     }

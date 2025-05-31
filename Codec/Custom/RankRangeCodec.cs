@@ -1,37 +1,44 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for rank range information
+    /// Codec for rankrange
     /// </summary>
     public class RankRangeCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of Rankrangecodec
+        /// </summary>
+        public static RankRangeCodec Instance { get; } = new RankRangeCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
         protected override string[] Attributes => new[]
         {
             "maxRank",
-            "minRank"
+            "minRank",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec)
+            new DoubleIntCodec(IntCodec.Instance),
+            new DoubleIntCodec(IntCodec.Instance),
         };
 
         /// <summary>
         /// Creates a new instance of RankRangeCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public RankRangeCodec(EByteArray buffer) : base(buffer)
+        private RankRangeCodec() : base()
         {
         }
     }
-} 
+}

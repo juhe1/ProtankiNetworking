@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using ProboTankiLibCS.Packets;
-using ProboTankiLibCS.Security;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Packets;
+using ProtankiNetworking.Security;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Networking
+namespace ProtankiNetworking.Networking
 {
     /// <summary>
     /// Handles TCP client for connecting to the ProTanki server and processing packets

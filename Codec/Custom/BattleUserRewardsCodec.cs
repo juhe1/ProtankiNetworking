@@ -1,13 +1,23 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
+using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Codec.Complex;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle user rewards information
+    /// Codec for battleuserrewards
     /// </summary>
     public class BattleUserRewardsCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleUserRewardsCodec
+        /// </summary>
+        public static BattleUserRewardsCodec Instance { get; } = new BattleUserRewardsCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -16,26 +26,25 @@ namespace ProboTankiLibCS.Codec.Custom
             "newbiesAbonementBonusReward",
             "premiumBonusReward",
             "reward",
-            "userid"
+            "userid",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Complex.StringCodec)
+            (ICodec)IntCodec.Instance,
+            (ICodec)IntCodec.Instance,
+            (ICodec)IntCodec.Instance,
+            (ICodec)StringCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of BattleUserRewardsCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleUserRewardsCodec(EByteArray buffer) : base(buffer)
+        private BattleUserRewardsCodec() : base()
         {
         }
     }
-} 
+}

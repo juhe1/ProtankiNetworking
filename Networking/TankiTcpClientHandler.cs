@@ -2,11 +2,11 @@ using System;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using ProboTankiLibCS.Packets;
-using ProboTankiLibCS.Security;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Packets;
+using ProtankiNetworking.Security;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Networking
+namespace ProtankiNetworking.Networking
 {
     /// <summary>
     /// Handles a single TCP client connection for the ProTanki proxy

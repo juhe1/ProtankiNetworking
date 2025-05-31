@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ProboTankiLibCS.Packets
+namespace ProtankiNetworking.Packets
 {
     /// <summary>
     /// Manages packet types and their creation

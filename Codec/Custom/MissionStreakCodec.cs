@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for mission streak information
+    /// Codec for missionstreak
     /// </summary>
     public class MissionStreakCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of MissionStreakCodec
+        /// </summary>
+        public static MissionStreakCodec Instance { get; } = new MissionStreakCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -17,27 +25,26 @@ namespace ProboTankiLibCS.Codec.Custom
             "streak",
             "doneToday",
             "questImgID",
-            "rewardImgID"
+            "rewardImgID",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.BoolCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec)
+            IntCodec.Instance,
+            IntCodec.Instance,
+            BoolCodec.Instance,
+            IntCodec.Instance,
+            IntCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of MissionStreakCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public MissionStreakCodec(EByteArray buffer) : base(buffer)
+        private MissionStreakCodec() : base()
         {
         }
     }
-} 
+}

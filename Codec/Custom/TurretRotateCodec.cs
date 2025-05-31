@@ -1,37 +1,44 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for turret rotation information
+    /// Codec for turretrotate
     /// </summary>
     public class TurretRotateCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of TurretRotateCodec
+        /// </summary>
+        public static TurretRotateCodec Instance { get; } = new TurretRotateCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
         protected override string[] Attributes => new[]
         {
             "angle",
-            "control"
+            "control",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.FloatCodec),
-            typeof(Primitive.ByteCodec)
+            FloatCodec.Instance,
+            ByteCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of TurretRotateCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public TurretRotateCodec(EByteArray buffer) : base(buffer)
+        private TurretRotateCodec() : base()
         {
         }
     }
-} 
+}

@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for target position information
+    /// Codec for targetposition
     /// </summary>
     public class TargetPositionCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of TargetPositionCodec
+        /// </summary>
+        public static TargetPositionCodec Instance { get; } = new TargetPositionCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -17,27 +25,26 @@ namespace ProboTankiLibCS.Codec.Custom
             "orientation",
             "position",
             "target",
-            "turretAngle"
+            "turretAngle",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Complex.Vector3DCodec),
-            typeof(Complex.Vector3DCodec),
-            typeof(Complex.Vector3DCodec),
-            typeof(Complex.StringCodec),
-            typeof(Primitive.FloatCodec)
+            Vector3DCodec.Instance,
+            Vector3DCodec.Instance,
+            Vector3DCodec.Instance,
+            StringCodec.Instance,
+            FloatCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of TargetPositionCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public TargetPositionCodec(EByteArray buffer) : base(buffer)
+        private TargetPositionCodec() : base()
         {
         }
     }
-} 
+}

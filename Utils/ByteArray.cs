@@ -1,6 +1,6 @@
 using System;
 
-namespace ProboTankiLibCS.Utils
+namespace ProtankiNetworking.Utils
 {
     /// <summary>
     /// Enhanced byte array class that provides basic byte array operations

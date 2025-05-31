@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle info information
+    /// Codec for battleinfo
     /// </summary>
     public class BattleInfoCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleInfoCodec
+        /// </summary>
+        public static BattleInfoCodec Instance { get; } = new BattleInfoCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -19,29 +27,28 @@ namespace ProboTankiLibCS.Codec.Custom
             "private",
             "proBattle",
             "range",
-            "serverNumber"
+            "serverNumber",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Complex.StringCodec),
-            typeof(Complex.StringCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.BoolCodec),
-            typeof(Primitive.BoolCodec),
-            typeof(RankRangeCodec),
-            typeof(Primitive.IntCodec)
+            StringCodec.Instance,
+            StringCodec.Instance,
+            IntCodec.Instance,
+            BoolCodec.Instance,
+            BoolCodec.Instance,
+            RankRangeCodec.Instance,
+            IntCodec.Instance,
         };
 
         /// <summary>
         /// Creates a new instance of BattleInfoCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleInfoCodec(EByteArray buffer) : base(buffer)
+        private BattleInfoCodec() : base()
         {
         }
     }
-} 
+}

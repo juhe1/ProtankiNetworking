@@ -1,13 +1,21 @@
 using System;
-using ProboTankiLibCS.Utils;
+using ProtankiNetworking.Utils;
 
-namespace ProboTankiLibCS.Codec.Custom
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Primitive;
+
+namespace ProtankiNetworking.Codec.Custom
 {
     /// <summary>
-    /// Codec for battle info user information
+    /// Codec for battleinfouser
     /// </summary>
     public class BattleInfoUserCodec : CustomBaseCodec
     {
+        /// <summary>
+        /// Gets the singleton instance of BattleInfoUserCodec
+        /// </summary>
+        public static BattleInfoUserCodec Instance { get; } = new BattleInfoUserCodec();
+
         /// <summary>
         /// Gets the list of attribute names for this codec
         /// </summary>
@@ -16,31 +24,25 @@ namespace ProboTankiLibCS.Codec.Custom
             "kills",
             "score",
             "suspicious",
-            "user"
+            "user",
         };
 
         /// <summary>
-        /// Gets the list of codec types for this codec
+        /// Gets the list of codec objects for this codec
         /// </summary>
-        protected override Type[] CodecTypes => new[]
+        protected override ICodec[] CodecObjects => new ICodec[]
         {
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.IntCodec),
-            typeof(Primitive.BoolCodec),
-            typeof(Complex.StringCodec)
+            IntCodec.Instance,
+            IntCodec.Instance,
+            BoolCodec.Instance,
+            StringCodec.Instance,
         };
-
-        /// <summary>
-        /// Gets whether to use boolean short form
-        /// </summary>
-        protected override bool BoolShorten => false;
 
         /// <summary>
         /// Creates a new instance of BattleInfoUserCodec
         /// </summary>
-        /// <param name="buffer">The buffer to use for encoding/decoding</param>
-        public BattleInfoUserCodec(EByteArray buffer) : base(buffer)
+        private BattleInfoUserCodec() : base()
         {
         }
     }
-} 
+}
