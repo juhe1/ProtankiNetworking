@@ -18,8 +18,6 @@ namespace ProboTankiLibCS.Networking
         private readonly CProtection _protection;
         private CancellationTokenSource _cancellationTokenSource;
         private Task _acceptClientsTask;
-        private TcpClient _currentClient;
-        private NetworkStream _currentStream;
 
         /// <summary>
         /// Creates a new instance of TankiTcpListener
@@ -53,47 +51,6 @@ namespace ProboTankiLibCS.Networking
         /// <param name="exception">The exception that occurred</param>
         /// <param name="context">The context where the error occurred</param>
         protected abstract Task OnErrorAsync(Exception exception, string context);
-
-        /// <summary>
-        /// Sends a packet to the connected client
-        /// </summary>
-        /// <param name="packet">The packet to send</param>
-        public async Task SendPacketAsync(AbstractPacket packet)
-        {
-            if (_currentStream == null || _currentClient == null || !_currentClient.Connected)
-                return;
-
-            try
-            {
-                var packetData = packet.Wrap(_protection);
-                await _currentStream.WriteAsync(packetData.ToArray(), 0, packetData.Length);
-                await _currentStream.FlushAsync();
-            }
-            catch (Exception e)
-            {
-                await OnErrorAsync(e, "TankiTcpListener.SendPacket");
-            }
-        }
-
-        /// <summary>
-        /// Sends raw packet data to the connected client
-        /// </summary>
-        /// <param name="rawData">The raw packet data to send</param>
-        public async Task SendRawPacketAsync(byte[] rawData)
-        {
-            if (_currentStream == null || _currentClient == null || !_currentClient.Connected)
-                return;
-
-            try
-            {
-                await _currentStream.WriteAsync(rawData, 0, rawData.Length);
-                await _currentStream.FlushAsync();
-            }
-            catch (Exception e)
-            {
-                await OnErrorAsync(e, "TankiTcpListener.SendRawPacket");
-            }
-        }
 
         /// <summary>
         /// Starts listening for client connections
@@ -135,7 +92,8 @@ namespace ProboTankiLibCS.Networking
                 while (!_cancellationTokenSource.Token.IsCancellationRequested)
                 {
                     var client = await _listener.AcceptTcpClientAsync();
-                    _ = HandleClientAsync(client);
+                    var handler = CreateClientHandler(client, _protection, _cancellationTokenSource.Token);
+                    _ = handler.StartAsync();
                 }
             }
             catch (OperationCanceledException)
@@ -149,96 +107,13 @@ namespace ProboTankiLibCS.Networking
         }
 
         /// <summary>
-        /// Handles a single client connection
+        /// Creates a new TankiTcpClientHandler instance for a newly accepted client connection.
+        /// This method is called for each new client connection to instantiate a handler that will manage the client's communication.
         /// </summary>
-        private async Task HandleClientAsync(TcpClient client)
-        {
-            try
-            {
-                _currentClient = client;
-                using (_currentStream = client.GetStream())
-                {
-                    while (!_cancellationTokenSource.Token.IsCancellationRequested)
-                    {
-                        // Read header bytes
-                        var packetLenBytes = new byte[4];
-                        var packetIdBytes = new byte[4];
-                        await _currentStream.ReadExactlyAsync(packetLenBytes, 0, 4);
-                        await _currentStream.ReadExactlyAsync(packetIdBytes, 0, 4);
-
-                        var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
-                        var packetId = BitConverter.ToInt32(packetIdBytes, 0);
-                        int packetDataLen = packetLen - AbstractPacket.HEADER_LEN;
-
-                        // Create complete raw packet buffer
-                        var rawPacket = new byte[packetLen];
-                        Buffer.BlockCopy(packetLenBytes, 0, rawPacket, 0, 4);
-                        Buffer.BlockCopy(packetIdBytes, 0, rawPacket, 4, 4);
-
-                        // Read packet data if any
-                        if (packetDataLen > 0)
-                        {
-                            await _currentStream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
-                        }
-
-                        // Notify about raw packet first
-                        await OnRawPacketReceivedAsync(rawPacket);
-
-                        // Then process the packet normally
-                        var encryptedData = new ByteArray();
-                        if (packetDataLen > 0)
-                        {
-                            var packetData = new byte[packetDataLen];
-                            Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
-                            encryptedData.Write(packetData);
-                        }
-                        await ProcessPacketAsync(packetId, encryptedData);
-                    }
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                // Expected when cancelling
-            }
-            catch (Exception e)
-            {
-                await OnErrorAsync(e, "TankiTcpListener.HandleClient");
-            }
-            finally
-            {
-                _currentStream = null;
-                _currentClient = null;
-                client.Close();
-            }
-        }
-
-        /// <summary>
-        /// Processes received packet data
-        /// </summary>
-        private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData)
-        {
-            var packetData = _protection.Decrypt(encryptedData.ToArray());
-            var fittedPacket = PacketFitter(packetId, new ByteArray(packetData));
-            await OnPacketReceivedAsync(fittedPacket);
-        }
-
-        /// <summary>
-        /// Fits received data into appropriate packet type
-        /// </summary>
-        private AbstractPacket PacketFitter(int packetId, ByteArray packetData)
-        {
-            var packetType = PacketManager.GetPacketById(packetId);
-            if (packetType == null)
-            {
-                var packet = new UnknownPacket();
-                packet.Id = packetId;
-                packet.Objects[0] = packetData;
-                return packet;
-            }
-
-            var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
-            currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
-            return currentPacket;
-        }
+        /// <param name="client">The TcpClient instance for the new connection.</param>
+        /// <param name="protection">The protection instance for packet encryption/decryption.</param>
+        /// <param name="cancellationToken">The cancellation token to signal the handler to stop processing.</param>
+        /// <returns>A new TankiTcpClientHandler instance.</returns>
+        protected abstract TankiTcpClientHandler CreateClientHandler(TcpClient client, CProtection protection, CancellationToken cancellationToken);
     }
 } 
