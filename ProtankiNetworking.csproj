@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ProtankiNetworking</RootNamespace>
+    <AssemblyName>ProtankiNetworking</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Authors>ProboTanki</Authors>
+    <Description>C# library for Tanki Online game communication</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/ProboTanki/ProboTankiLibCS</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
