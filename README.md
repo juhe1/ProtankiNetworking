@@ -1,50 +1,117 @@
-# ProboTankiLibCS
+# ProtankiNetworking
 
-A C# library for ProTanki game communication. This project is a C# port of the [ProboTanki-Lib](https://github.com/Teinc3/ProboTanki-Lib) Python library.
+A C# library for ProTanki game communication. This project is based on code from the [ProboTanki-Lib](https://github.com/Teinc3/ProboTanki-Lib) Python library, but it is not exact port.
 
-## Features
-- C# reimplementation of ProTanki client network commonication.
-- Networking utilities for game communication
-- Support for both synchronous and asynchronous operations
+## TCP Networking Components
 
-## Usage
+The library provides three main components for TCP networking:
 
-Here's a basic example of how to use the library:
+- `TankiTcpListener`: Base class for TCP server implementation that accepts client connections
+- `TankiTcpClientHandler`: Base class for handling individual client connections to TankiTcpListener
+- `TankiTcpClient`: Base class for TCP client implementation
+
+## Usage Examples
+
+### 1. Creating a Custom TCP Server
 
 ```csharp
-using ProboTankiLibCS.Client;
-using ProboTankiLibCS.Networking;
-using ProboTankiLibCS.Processing;
+public class MyTankiServer : TankiTcpListener
+{
+    public MyTankiServer(IPEndPoint localEndPoint, CProtection protection) 
+        : base(localEndPoint, protection)
+    {
+    }
 
-// Create a processor instance
-var processor = new YourProcessor();
+    protected override TankiTcpClientHandler CreateClientHandler(
+        TcpClient client, 
+        CProtection protection, 
+        CancellationToken cancellationToken)
+    {
+        return new MyClientHandler(client, protection, cancellationToken);
+    }
 
-// Create a socket instance
-var socket = new TankiSocket(
-    protection: new CProtection(),
-    proxy: null,
-    emergencyHalt: new ManualResetEvent(false),
-    onPacketReceived: processor.ParsePackets,
-    onSocketClose: (e, location, state) => Console.WriteLine($"Socket closed: {e.Message}")
-);
+    protected override async Task OnErrorAsync(Exception exception, string context)
+    {
+        Console.WriteLine($"Server error in {context}: {exception.Message}");
+    }
+}
 
-// Connect to the game server
-await socket.ConnectAsync("game.protanki.com", 443); // The address and port are not valid.
+// Usage:
+var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
+var protection = new CProtection(); // Configure protection as needed
+var server = new MyTankiServer(endPoint, protection);
+server.Start();
+```
+
+### 2. Creating a Custom Client Handler
+
+```csharp
+public class MyClientHandler : TankiTcpClientHandler
+{
+    public MyClientHandler(
+        TcpClient client, 
+        CProtection protection, 
+        CancellationToken cancellationToken) 
+        : base(client, protection, cancellationToken)
+    {
+    }
+
+    protected override async Task OnRawPacketReceivedAsync(byte[] rawPacket)
+    {
+        Console.WriteLine($"Received raw packet of length {rawPacket.Length}");
+    }
+
+    protected override async Task OnPacketReceivedAsync(AbstractPacket packet)
+    {
+        Console.WriteLine($"Received packet of type {packet.GetType().Name}");
+    }
+
+    protected override async Task OnErrorAsync(Exception exception, string context)
+    {
+        Console.WriteLine($"Handler error in {context}: {exception.Message}");
+    }
+}
+```
+
+### 3. Creating a Custom TCP Client
+
+```csharp
+public class MyTankiClient : TankiTcpClient
+{
+    public MyTankiClient(IPEndPoint serverEndPoint, CProtection protection) 
+        : base(serverEndPoint, protection)
+    {
+    }
+
+    protected override async Task OnRawPacketReceivedAsync(byte[] rawPacket)
+    {
+        Console.WriteLine($"Received raw packet of length {rawPacket.Length}");
+    }
+
+    protected override async Task OnPacketReceivedAsync(AbstractPacket packet)
+    {
+        Console.WriteLine($"Received packet of type {packet.GetType().Name}");
+    }
+
+    protected override async Task OnErrorAsync(Exception exception, string context)
+    {
+        Console.WriteLine($"Client error in {context}: {exception.Message}");
+    }
+}
+
+// Usage:
+var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
+var protection = new CProtection(); // Configure protection as needed
+var client = new MyTankiClient(endPoint, protection);
+await client.ConnectAsync();
 ```
 
 ## Project Structure
 
-- `Client/` - Client implementation classes
 - `Codec/` - Data encoding/decoding system
 - `Networking/` - Network communication utilities
 - `Packets/` - Game packet definitions
-- `Processing/` - Packet processing logic
 - `Security/` - Security and protection mechanisms
-- `Utils/` - Utility classes and helpers
-
-## Acknowledgments
-
-This project is based on the [ProboTanki-Lib](https://github.com/Teinc3/ProboTanki-Lib) Python library by [Teinc3](https://github.com/Teinc3).
 
 ## Disclaimer
 
