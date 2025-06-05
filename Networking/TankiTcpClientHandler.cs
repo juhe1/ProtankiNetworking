@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
+using Serilog;
 
 namespace ProtankiNetworking.Networking
 {
@@ -24,6 +25,8 @@ namespace ProtankiNetworking.Networking
             _protection = protection;
             _cancellationToken = cancellationToken;
         }
+
+        protected CProtection Protection => _protection;
 
         public async Task StartAsync()
         {
@@ -79,6 +82,7 @@ namespace ProtankiNetworking.Networking
             {
                 _stream = null;
                 _client.Close();
+                await OnDisconnectedAsync();
             }
         }
 
@@ -138,8 +142,28 @@ namespace ProtankiNetworking.Networking
             return currentPacket;
         }
 
+        /// <summary>
+        /// Called when a raw packet is received from the client
+        /// </summary>
+        /// <param name="rawPacket">The complete raw packet data including headers</param>
         protected abstract Task OnRawPacketReceivedAsync(byte[] rawPacket);
+
+        /// <summary>
+        /// Called when a packet is received from the client
+        /// </summary>
+        /// <param name="packet">The received packet</param>
         protected abstract Task OnPacketReceivedAsync(AbstractPacket packet);
+
+        /// <summary>
+        /// Called when an error occurs
+        /// </summary>
+        /// <param name="exception">The exception that occurred</param>
+        /// <param name="context">The context where the error occurred</param>
         protected abstract Task OnErrorAsync(Exception exception, string context);
+
+        /// <summary>
+        /// Called when the client disconnects
+        /// </summary>
+        protected abstract Task OnDisconnectedAsync();
     }
 } 

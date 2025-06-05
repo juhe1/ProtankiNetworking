@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
+using Serilog;
+using System.Collections.Concurrent;
 
 namespace ProtankiNetworking.Networking
 {
@@ -18,6 +20,7 @@ namespace ProtankiNetworking.Networking
         private readonly CProtection _protection;
         private CancellationTokenSource _cancellationTokenSource;
         private Task _acceptClientsTask;
+        private readonly ConcurrentDictionary<TcpClient, TankiTcpClientHandler> _activeClients;
 
         /// <summary>
         /// Creates a new instance of TankiTcpListener
@@ -31,6 +34,7 @@ namespace ProtankiNetworking.Networking
             _listener = new TcpListener(localEndPoint);
             _protection = protection;
             _cancellationTokenSource = new CancellationTokenSource();
+            _activeClients = new ConcurrentDictionary<TcpClient, TankiTcpClientHandler>();
         }
         
         /// <summary>
@@ -57,6 +61,20 @@ namespace ProtankiNetworking.Networking
             _cancellationTokenSource.Cancel();
             _listener.Stop();
 
+            // Disconnect all active clients
+            foreach (var client in _activeClients.Keys)
+            {
+                try
+                {
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    await OnErrorAsync(ex, "TankiTcpListener.StopAsync");
+                }
+            }
+            _activeClients.Clear();
+
             if (_acceptClientsTask != null)
             {
                 try
@@ -81,7 +99,36 @@ namespace ProtankiNetworking.Networking
                 {
                     var client = await _listener.AcceptTcpClientAsync();
                     var handler = CreateClientHandler(client, _protection, _cancellationTokenSource.Token);
-                    _ = handler.StartAsync();
+                    
+                    if (_activeClients.TryAdd(client, handler))
+                    {
+                        _ = Task.Run(async () =>
+                        {
+                            try
+                            {
+                                await handler.StartAsync();
+                            }
+                            catch (Exception ex)
+                            {
+                                if (!(ex is OperationCanceledException))
+                                {
+                                    await OnErrorAsync(ex, "TankiTcpListener.AcceptClients");
+                                }
+                            }
+                            finally
+                            {
+                                _activeClients.TryRemove(client, out _);
+                                try
+                                {
+                                    client.Close();
+                                }
+                                catch
+                                {
+                                    // Ignore errors during cleanup
+                                }
+                            }
+                        });
+                    }
                 }
             }
             catch (OperationCanceledException)

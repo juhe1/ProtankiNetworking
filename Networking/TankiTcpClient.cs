@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
+using Serilog;
 
 namespace ProtankiNetworking.Networking
 {
