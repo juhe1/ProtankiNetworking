@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
-using Serilog;
 
 namespace ProtankiNetworking.Networking
 {
@@ -54,6 +53,16 @@ namespace ProtankiNetworking.Networking
         /// <param name="exception">The exception that occurred</param>
         /// <param name="context">The context where the error occurred</param>
         protected abstract Task OnErrorAsync(Exception exception, string context);
+
+        /// <summary>
+        /// Called when connected to the server
+        /// </summary>
+        protected abstract Task OnConnectedAsync();
+
+        /// <summary>
+        /// Called when disconnected from the server
+        /// </summary>
+        protected abstract Task OnDisconnectedAsync();
 
         /// <summary>
         /// Sends a packet to the server
@@ -107,6 +116,7 @@ namespace ProtankiNetworking.Networking
                 await _client.ConnectAsync(_serverEndPoint.Address, _serverEndPoint.Port);
                 _stream = _client.GetStream();
                 _processingTask = ProcessPacketsAsync();
+                await OnConnectedAsync();
             }
             catch (Exception e)
             {
@@ -144,6 +154,8 @@ namespace ProtankiNetworking.Networking
                     // Expected when cancelling
                 }
             }
+
+            await OnDisconnectedAsync();
         }
 
         /// <summary>

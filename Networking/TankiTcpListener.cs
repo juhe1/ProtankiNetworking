@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
-using Serilog;
 using System.Collections.Concurrent;
 
 namespace ProtankiNetworking.Networking
@@ -45,6 +44,18 @@ namespace ProtankiNetworking.Networking
         protected abstract Task OnErrorAsync(Exception exception, string context);
 
         /// <summary>
+        /// Called when a client connects
+        /// </summary>
+        /// <param name="client">The client that connected</param>
+        protected abstract Task OnClientConnectedAsync(TcpClient client);
+
+        /// <summary>
+        /// Called when a client disconnects
+        /// </summary>
+        /// <param name="client">The client that disconnected</param>
+        protected abstract Task OnClientDisconnectedAsync(TcpClient client);
+
+        /// <summary>
         /// Starts listening for client connections
         /// </summary>
         public void Start()
@@ -67,6 +78,7 @@ namespace ProtankiNetworking.Networking
                 try
                 {
                     client.Close();
+                    await OnClientDisconnectedAsync(client);
                 }
                 catch (Exception ex)
                 {
@@ -102,6 +114,7 @@ namespace ProtankiNetworking.Networking
                     
                     if (_activeClients.TryAdd(client, handler))
                     {
+                        await OnClientConnectedAsync(client);
                         _ = Task.Run(async () =>
                         {
                             try
@@ -121,6 +134,7 @@ namespace ProtankiNetworking.Networking
                                 try
                                 {
                                     client.Close();
+                                    await OnClientDisconnectedAsync(client);
                                 }
                                 catch
                                 {
