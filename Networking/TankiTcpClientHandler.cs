@@ -9,7 +9,7 @@ using ProtankiNetworking.Utils;
 namespace ProtankiNetworking.Networking
 {
     /// <summary>
-    /// Handles a single TCP client connection for the ProTanki proxy
+    /// Handles a single TCP client connection for the TankiTcpListener
     /// </summary>
     public abstract class TankiTcpClientHandler
     {
@@ -37,8 +37,21 @@ namespace ProtankiNetworking.Networking
                     // Read header bytes
                     var packetLenBytes = new byte[4];
                     var packetIdBytes = new byte[4];
-                    await _stream.ReadExactlyAsync(packetLenBytes, 0, 4);
-                    await _stream.ReadExactlyAsync(packetIdBytes, 0, 4);
+                    
+                    // Check if connection is closed
+                    int bytesRead = await _stream.ReadAsync(packetLenBytes, 0, 4);
+                    if (bytesRead == 0)
+                    {
+                        // Connection closed by client
+                        break;
+                    }
+                    
+                    bytesRead = await _stream.ReadAsync(packetIdBytes, 0, 4);
+                    if (bytesRead == 0)
+                    {
+                        // Connection closed by client
+                        break;
+                    }
 
                     var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
                     var packetId = BitConverter.ToInt32(packetIdBytes, 0);
@@ -52,7 +65,12 @@ namespace ProtankiNetworking.Networking
                     // Read packet data if any
                     if (packetDataLen > 0)
                     {
-                        await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
+                        bytesRead = await _stream.ReadAsync(rawPacket, 8, packetDataLen);
+                        if (bytesRead == 0)
+                        {
+                            // Connection closed by client
+                            break;
+                        }
                     }
 
                     // Notify about raw packet first
