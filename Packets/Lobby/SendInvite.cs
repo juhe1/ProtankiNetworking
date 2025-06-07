@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class SendInvite : AbstractPacket
     {
-        public static new int Id { get; } = -864265623;
-        public static new string Description { get; } = "Send a battle invite to a player";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -864265623;
+        public override string Description => "Send a battle invite to a player";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "battleID",

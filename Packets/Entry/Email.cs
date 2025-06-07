@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class Email : AbstractPacket
     {
-        public static new int Id { get; } = 613462801;
-        public static new string Description { get; } = "email";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 613462801;
+        public override string Description => "email";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "email",
             "emailConfirmed",

@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Chat
     /// </summary>
     public class WipeLobbyMessages : AbstractPacket
     {
-        public static new int Id { get; } = 1993050216;
-        public static new string Description { get; } = "Wipes all messages by a user in the lobby";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1993050216;
+        public override string Description => "Wipes all messages by a user in the lobby";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoadMapInfo : AbstractPacket
     {
-        public static new int Id { get; } = -838186985;
-        public static new string Description { get; } = "Information about all maps the client should load";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -838186985;
+        public override string Description => "Information about all maps the client should load";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             JsonCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
         };

@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Shop
     /// </summary>
     public class PromocodeFailed : AbstractPacket
     {
-        public static new int Id { get; } = -1850050333;
-        public static new string Description { get; } = "Incorrect or expired promocode";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1850050333;
+        public override string Description => "Incorrect or expired promocode";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattleUserStats : AbstractPacket
     {
-        public static new int Id { get; } = 1061006142;
-        public static new string Description { get; } = "Battle User Stats";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1061006142;
+        public override string Description => "Battle User Stats";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             new VectorCodec(BattleUserStatsCodec.Instance, false),
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "usersStat",
         };

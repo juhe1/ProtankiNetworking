@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Status
     /// </summary>
     public class NotInBattleStatus : AbstractPacket
     {
-        public static new int Id { get; } = 1941694508;
-        public static new string Description { get; } = "Sets the player's battle status to not in battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1941694508;
+        public override string Description => "Sets the player's battle status to not in battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

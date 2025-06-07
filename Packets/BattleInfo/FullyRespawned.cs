@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class FullyRespawned : AbstractPacket
     {
-        public static new int Id { get; } = 1868573511;
-        public static new string Description { get; } = "Packet sent when the player has fully respawned";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1868573511;
+        public override string Description => "Packet sent when the player has fully respawned";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

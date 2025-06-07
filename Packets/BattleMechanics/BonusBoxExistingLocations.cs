@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class BonusBoxExistingLocations : AbstractPacket
     {
-        public static new int Id { get; } = 870278784;
-        public static new string Description { get; } = "Locations of existing bonus boxes";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 870278784;
+        public override string Description => "Locations of existing bonus boxes";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             JsonCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
         };

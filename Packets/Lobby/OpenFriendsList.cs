@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class OpenFriendsList : AbstractPacket
     {
-        public static new int Id { get; } = 1441234714;
-        public static new string Description { get; } = "Open Friends List";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1441234714;
+        public override string Description => "Open Friends List";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class TankHealth : AbstractPacket
     {
-        public static new int Id { get; } = -611961116;
-        public static new string Description { get; } = "Updates the health of a tank";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -611961116;
+        public override string Description => "Updates the health of a tank";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             FloatCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "health",

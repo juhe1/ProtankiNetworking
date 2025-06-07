@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class RemoveBonusBox : AbstractPacket
     {
-        public static new int Id { get; } = -2026749922;
-        public static new string Description { get; } = "Supply box bonus id";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -2026749922;
+        public override string Description => "Supply box bonus id";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "bonusId",
         };

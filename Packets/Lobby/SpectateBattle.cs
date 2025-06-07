@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class SpectateBattle : AbstractPacket
     {
-        public static new int Id { get; } = -1315002220;
-        public static new string Description { get; } = "Client requests to spectate the selected battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1315002220;
+        public override string Description => "Client requests to spectate the selected battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

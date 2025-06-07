@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class SelfDestruct : AbstractPacket
     {
-        public static new int Id { get; } = 988664577;
-        public static new string Description { get; } = "Sends a self destruct request to the server";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 988664577;
+        public override string Description => "Sends a self destruct request to the server";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

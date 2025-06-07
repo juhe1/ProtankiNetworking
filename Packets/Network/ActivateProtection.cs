@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Network
     /// </summary>
     public class ActivateProtection : AbstractPacket
     {
-        public static new int Id { get; } = 2001736388;
-        public static new string Description { get; } = "Contains the keys required to activate packet encryption";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 2001736388;
+        public override string Description => "Contains the keys required to activate packet encryption";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             new VectorCodec(ByteCodec.Instance, false),
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "keys",
         };

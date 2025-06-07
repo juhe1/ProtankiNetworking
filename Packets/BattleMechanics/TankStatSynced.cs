@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class TankStatSynced : AbstractPacket
     {
-        public static new int Id { get; } = -1672577397;
-        public static new string Description { get; } = "Server syncs tank movement stats with client";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1672577397;
+        public override string Description => "Server syncs tank movement stats with client";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             FloatCodec.Instance,
@@ -21,7 +21,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics
             FloatCodec.Instance,
             ShortCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "maxSpeed",

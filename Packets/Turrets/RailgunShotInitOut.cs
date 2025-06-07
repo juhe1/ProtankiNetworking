@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class RailgunShotInitOut : AbstractPacket
     {
-        public static new int Id { get; } = -1759063234;
-        public static new string Description { get; } = "Sends server details about a railgun shot that has just started to release";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1759063234;
+        public override string Description => "Sends server details about a railgun shot that has just started to release";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
         };

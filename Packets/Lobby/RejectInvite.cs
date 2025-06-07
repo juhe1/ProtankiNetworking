@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class RejectInvite : AbstractPacket
     {
-        public static new int Id { get; } = 1152865919;
-        public static new string Description { get; } = "Reject a player's battle invite";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1152865919;
+        public override string Description => "Reject a player's battle invite";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

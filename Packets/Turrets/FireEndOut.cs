@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class FireEndOut : AbstractPacket
     {
-        public static new int Id { get; } = -1300958299;
-        public static new string Description { get; } = "Firebird stops shooting";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1300958299;
+        public override string Description => "Firebird stops shooting";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
         };

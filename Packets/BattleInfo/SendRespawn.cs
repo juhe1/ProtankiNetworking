@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class SendRespawn : AbstractPacket
     {
-        public static new int Id { get; } = -1378839846;
-        public static new string Description { get; } = "Send Respawn(fantom) Packet";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1378839846;
+        public override string Description => "Send Respawn(fantom) Packet";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

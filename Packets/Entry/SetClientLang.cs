@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class SetClientLang : AbstractPacket
     {
-        public static new int Id { get; } = -1864333717;
-        public static new string Description { get; } = "Sets client language";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1864333717;
+        public override string Description => "Sets client language";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "lang",
         };

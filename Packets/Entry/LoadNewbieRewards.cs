@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoadNewbieRewards : AbstractPacket
     {
-        public static new int Id { get; } = 602656160;
-        public static new string Description { get; } = "Tells the client which beginner rewards the player has yet to complete";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 602656160;
+        public override string Description => "Tells the client which beginner rewards the player has yet to complete";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             new VectorCodec(IntCodec.Instance, false),
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "incompleteRewards",
         };

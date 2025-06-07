@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Garage
     /// </summary>
     public class MountItem : AbstractPacket
     {
-        public static new int Id { get; } = -1505530736;
-        public static new string Description { get; } = "Mount an item in garage";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1505530736;
+        public override string Description => "Mount an item in garage";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "item_id",
         };

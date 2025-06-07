@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class LeftInsideDmBattle : AbstractPacket
     {
-        public static new int Id { get; } = -1689876764;
-        public static new string Description { get; } = "A player has left a DM battle, the observer being within the battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1689876764;
+        public override string Description => "A player has left a DM battle, the observer being within the battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

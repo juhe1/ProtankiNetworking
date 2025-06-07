@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class ReceiveCaptcha : AbstractPacket
     {
-        public static new int Id { get; } = -1670408519;
-        public static new string Description { get; } = "Received a captcha image with its type";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1670408519;
+        public override string Description => "Received a captcha image with its type";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
             new VectorCodec(ByteCodec.Instance, false),
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "type",
             "imagedata",

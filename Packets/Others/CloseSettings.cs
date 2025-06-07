@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class CloseSettings : AbstractPacket
     {
-        public static new int Id { get; } = -731115522;
-        public static new string Description { get; } = "Close settings modal";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -731115522;
+        public override string Description => "Close settings modal";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "close_state",
         };

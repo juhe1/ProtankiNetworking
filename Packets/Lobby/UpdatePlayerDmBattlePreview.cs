@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class UpdatePlayerDmBattlePreview : AbstractPacket
     {
-        public static new int Id { get; } = -1263036614;
-        public static new string Description { get; } = "Updates a player's kills in a DM battle preview";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1263036614;
+        public override string Description => "Updates a player's kills in a DM battle preview";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleID",
             "username",

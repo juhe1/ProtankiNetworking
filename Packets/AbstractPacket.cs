@@ -27,22 +27,22 @@ namespace ProtankiNetworking.Packets
         /// <summary>
         /// Description of the packet
         /// </summary>
-        public static string Description { get; protected set; }
+        public virtual string Description => "Unknown packet";
 
         /// <summary>
         /// List of codecs used to encode/decode packet data
         /// </summary>
-        public static ICodec[] CodecObjects { get; protected set; } = Array.Empty<ICodec>();
+        public virtual ICodec[] CodecObjects => Array.Empty<ICodec>();
 
         /// <summary>
         /// List of attribute names for the packet
         /// </summary>
-        public static string[] Attributes { get; protected set; } = Array.Empty<string>();
+        public virtual string[] Attributes => Array.Empty<string>();
 
         /// <summary>
         /// Whether the packet should be logged
         /// </summary>
-        public static bool ShouldLog { get; protected set; } = true;
+        public virtual bool ShouldLog => true;
 
         /// <summary>
         /// List of decoded objects
@@ -76,7 +76,7 @@ namespace ProtankiNetworking.Packets
         /// </summary>
         /// <param name="protection">Optional protection for encrypting the packet data</param>
         /// <returns>Encoded packet data</returns>
-        public EByteArray Wrap(CProtection protection = null)
+        public EByteArray Wrap(Protection protection = null)
         {
             EByteArray packetData;
             var dataLen = HEADER_LEN;

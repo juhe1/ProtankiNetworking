@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class LoadMapLights : AbstractPacket
     {
-        public static new int Id { get; } = -152638117;
-        public static new string Description { get; } = "Load Map Lights";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -152638117;
+        public override string Description => "Load Map Lights";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
         };

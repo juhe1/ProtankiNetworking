@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class TurretRotated : AbstractPacket
     {
-        public static new int Id { get; } = 1927704181;
-        public static new string Description { get; } = "Turret rotation data from server";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1927704181;
+        public override string Description => "Turret rotation data from server";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             TurretRotateCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "turretRotation",

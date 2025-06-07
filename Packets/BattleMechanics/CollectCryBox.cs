@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class CollectCryBox : AbstractPacket
     {
-        public static new int Id { get; } = -1047185003;
-        public static new string Description { get; } = "Collect a crystal box";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1047185003;
+        public override string Description => "Collect a crystal box";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "bonusId",
         };

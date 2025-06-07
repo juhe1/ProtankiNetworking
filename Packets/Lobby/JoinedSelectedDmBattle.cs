@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class JoinedSelectedDmBattle : AbstractPacket
     {
-        public static new int Id { get; } = -911626491;
-        public static new string Description { get; } = "Sent when a player joins the currently-selected DM battle.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -911626491;
+        public override string Description => "Sent when a player joins the currently-selected DM battle.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             BattleInfoUserCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleID",
             "userInfo",

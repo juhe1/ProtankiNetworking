@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Status
     /// </summary>
     public class SubscribeStatus : AbstractPacket
     {
-        public static new int Id { get; } = 1774907609;
-        public static new string Description { get; } = "Subscribe to status updates of a player.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1774907609;
+        public override string Description => "Subscribe to status updates of a player.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
         };

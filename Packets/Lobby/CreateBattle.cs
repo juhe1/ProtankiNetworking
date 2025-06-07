@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class CreateBattle : AbstractPacket
     {
-        public static new int Id { get; } = -2135234426;
-        public static new string Description { get; } = "Creates a new battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -2135234426;
+        public override string Description => "Creates a new battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             BoolCodec.Instance,
             IntCodec.Instance,
@@ -42,7 +42,7 @@ namespace ProtankiNetworking.Packets.Lobby
             BoolCodec.Instance,
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "autoBalance",
             "battleMode",

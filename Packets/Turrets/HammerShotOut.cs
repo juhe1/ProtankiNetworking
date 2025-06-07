@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class HammerShotOut : AbstractPacket
     {
-        public static new int Id { get; } = -541655881;
-        public static new string Description { get; } = "Player fires a hammer shot";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -541655881;
+        public override string Description => "Player fires a hammer shot";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
             Vector3DCodec.Instance,
             new VectorCodec(TargetPositionCodec.Instance, false),
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
             "direction",

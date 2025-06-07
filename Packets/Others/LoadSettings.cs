@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class LoadSettings : AbstractPacket
     {
-        public static new int Id { get; } = 850220815;
-        public static new string Description { get; } = "Load settings";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 850220815;
+        public override string Description => "Load settings";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

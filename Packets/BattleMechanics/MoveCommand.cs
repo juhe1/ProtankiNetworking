@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class MoveCommand : AbstractPacket
     {
-        public static new int Id { get; } = 1516578027;
-        public static new string Description { get; } = "Receives movement data of a player from the server.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1516578027;
+        public override string Description => "Receives movement data of a player from the server.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             MoveCodec.Instance,
             FloatCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "movement",

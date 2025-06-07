@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoadAccountStats : AbstractPacket
     {
-        public static new int Id { get; } = 907073245;
-        public static new string Description { get; } = "Loads the player's own account stats";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 907073245;
+        public override string Description => "Loads the player's own account stats";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
             IntCodec.Instance,
@@ -27,7 +27,7 @@ namespace ProtankiNetworking.Packets.Entry
             StringCodec.Instance,
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "crystals",
             "currentRankXP",

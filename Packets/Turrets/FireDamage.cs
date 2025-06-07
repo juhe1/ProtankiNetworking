@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class FireDamage : AbstractPacket
     {
-        public static new int Id { get; } = 1395251766;
-        public static new string Description { get; } = "Firebird attack";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1395251766;
+        public override string Description => "Firebird attack";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
             VectorStringCodec.Instance,
@@ -20,7 +20,7 @@ namespace ProtankiNetworking.Packets.Turrets
             VectorVector3DCodec.Instance,
             VectorVector3DCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
             "targets",

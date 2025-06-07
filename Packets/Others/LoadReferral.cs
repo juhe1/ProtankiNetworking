@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class LoadReferral : AbstractPacket
     {
-        public static new int Id { get; } = -169921234;
-        public static new string Description { get; } = "Load garage";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -169921234;
+        public override string Description => "Load garage";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

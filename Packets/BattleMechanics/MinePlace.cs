@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class MinePlace : AbstractPacket
     {
-        public static new int Id { get; } = -624217047;
-        public static new string Description { get; } = "Sent when a mine is placed.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -624217047;
+        public override string Description => "Sent when a mine is placed.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "mineId",
         };

@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class ShopInfo : AbstractPacket
     {
-        public static new int Id { get; } = 1863710730;
-        public static new string Description { get; } = "Get shop info";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1863710730;
+        public override string Description => "Get shop info";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "data",
         };

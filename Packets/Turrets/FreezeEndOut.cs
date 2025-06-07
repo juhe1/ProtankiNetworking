@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class FreezeEndOut : AbstractPacket
     {
-        public static new int Id { get; } = -1654947652;
-        public static new string Description { get; } = "When we stop using Freeze";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1654947652;
+        public override string Description => "When we stop using Freeze";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
         };

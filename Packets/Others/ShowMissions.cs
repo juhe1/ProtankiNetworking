@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class ShowMissions : AbstractPacket
     {
-        public static new int Id { get; } = 809822533;
-        public static new string Description { get; } = "Show the list of missions currently available to the player";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 809822533;
+        public override string Description => "Show the list of missions currently available to the player";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             new VectorCodec(MissionCodec.Instance, false),
             MissionStreakCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "missions",
             "weeklyStreakInfo",

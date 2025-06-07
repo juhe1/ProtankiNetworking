@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class RequestCaptcha : AbstractPacket
     {
-        public static new int Id { get; } = -349828108;
-        public static new string Description { get; } = "Request a captcha";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -349828108;
+        public override string Description => "Request a captcha";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "type",
         };

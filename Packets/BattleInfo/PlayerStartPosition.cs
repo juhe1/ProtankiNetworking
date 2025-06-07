@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class PlayerStartPosition : AbstractPacket
     {
-        public static new int Id { get; } = -157204477;
-        public static new string Description { get; } = "Player Start Position";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -157204477;
+        public override string Description => "Player Start Position";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             Vector3DCodec.Instance,
             Vector3DCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "position",
             "orientation",

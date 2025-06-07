@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class SyncTurretData : AbstractPacket
     {
-        public static new int Id { get; } = -2124388778;
-        public static new string Description { get; } = "Syncs turret data to the client";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -2124388778;
+        public override string Description => "Syncs turret data to the client";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             JsonCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
         };

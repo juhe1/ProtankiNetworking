@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class LoadOwnedGarageItems : AbstractPacket
     {
-        public static new int Id { get; } = -255516505;
-        public static new string Description { get; } = "Load Owned Garage Items";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -255516505;
+        public override string Description => "Load Owned Garage Items";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             JsonCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
         };

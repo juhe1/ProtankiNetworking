@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Network
     /// </summary>
     public class Ping : AbstractPacket
     {
-        public static new int Id { get; } = -555602629;
-        public static new string Description { get; } = "Ping Packet from server";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -555602629;
+        public override string Description => "Ping Packet from server";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

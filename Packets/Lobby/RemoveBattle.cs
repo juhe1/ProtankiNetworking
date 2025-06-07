@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class RemoveBattle : AbstractPacket
     {
-        public static new int Id { get; } = -1848001147;
-        public static new string Description { get; } = "Removes a battle from the lobby";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1848001147;
+        public override string Description => "Removes a battle from the lobby";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleID",
         };

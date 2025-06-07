@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattleTimeLeft : AbstractPacket
     {
-        public static new int Id { get; } = 732434644;
-        public static new string Description { get; } = "Battle time left in seconds";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 732434644;
+        public override string Description => "Battle time left in seconds";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "timeLimitInSec",
         };

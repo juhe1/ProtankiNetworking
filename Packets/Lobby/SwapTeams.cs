@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class SwapTeams : AbstractPacket
     {
-        public static new int Id { get; } = -994817471;
-        public static new string Description { get; } = "Swaps teams in a battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -994817471;
+        public override string Description => "Swaps teams in a battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleID",
         };

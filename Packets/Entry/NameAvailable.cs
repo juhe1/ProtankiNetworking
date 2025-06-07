@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class NameAvailable : AbstractPacket
     {
-        public static new int Id { get; } = -706679202;
-        public static new string Description { get; } = "Said name is available for registration";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -706679202;
+        public override string Description => "Said name is available for registration";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

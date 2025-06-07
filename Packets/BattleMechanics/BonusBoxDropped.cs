@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class BonusBoxDropped : AbstractPacket
     {
-        public static new int Id { get; } = 1831462385;
-        public static new string Description { get; } = "A bonus box has dropped";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1831462385;
+        public override string Description => "A bonus box has dropped";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             Vector3DCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "bonusId",
             "position",

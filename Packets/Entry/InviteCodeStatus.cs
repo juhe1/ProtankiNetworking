@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class InviteCodeStatus : AbstractPacket
     {
-        public static new int Id { get; } = 444933603;
-        public static new string Description { get; } = "Do we need an invite code to access the server?";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 444933603;
+        public override string Description => "Do we need an invite code to access the server?";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "inviteEnabled",
         };

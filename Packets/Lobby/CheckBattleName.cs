@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class CheckBattleName : AbstractPacket
     {
-        public static new int Id { get; } = 566652736;
-        public static new string Description { get; } = "Censors invalid battle names";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 566652736;
+        public override string Description => "Censors invalid battle names";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleName",
         };

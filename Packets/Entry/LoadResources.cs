@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoadResources : AbstractPacket
     {
-        public static new int Id { get; } = -1797047325;
-        public static new string Description { get; } = "Server tells us what resources to load";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1797047325;
+        public override string Description => "Server tells us what resources to load";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             JsonCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "json",
             "callbackID",

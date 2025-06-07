@@ -10,16 +10,16 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class PlayerShot : AbstractPacket
     {
-        public static new int Id { get; } = -44282936;
-        public static new string Description { get; } = "Player shot a shot.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -44282936;
+        public override string Description => "Player shot a shot.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             ByteCodec.Instance,
             IntCodec.Instance,
             Vector3DCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "shooter",
             "barrel",

@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class ShotEffectApplied : AbstractPacket
     {
-        public static new int Id { get; } = 546849203;
-        public static new string Description { get; } = "Shot Effect Applied";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 546849203;
+        public override string Description => "Shot Effect Applied";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             Vector3DCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "shooter",
             "hitPoint",

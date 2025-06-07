@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoadRatingStats : AbstractPacket
     {
-        public static new int Id { get; } = -1128606444;
-        public static new string Description { get; } = "Player Rating stats";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1128606444;
+        public override string Description => "Player Rating stats";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             FloatCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "rating",
             "place",

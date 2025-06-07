@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class BattleKickReason : AbstractPacket
     {
-        public static new int Id { get; } = -322235316;
-        public static new string Description { get; } = "Reason why player was kicked from battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -322235316;
+        public override string Description => "Reason why player was kicked from battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "reason",
         };

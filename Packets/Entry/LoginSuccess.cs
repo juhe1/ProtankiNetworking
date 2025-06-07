@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class LoginSuccess : AbstractPacket
     {
-        public static new int Id { get; } = -1923286328;
-        public static new string Description { get; } = "Login successful";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1923286328;
+        public override string Description => "Login successful";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

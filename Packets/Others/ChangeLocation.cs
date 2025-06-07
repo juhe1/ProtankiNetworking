@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class ChangeLocation : AbstractPacket
     {
-        public static new int Id { get; } = 921004371;
-        public static new string Description { get; } = "Buy from shop";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 921004371;
+        public override string Description => "Buy from shop";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "location_abbreviation",
         };

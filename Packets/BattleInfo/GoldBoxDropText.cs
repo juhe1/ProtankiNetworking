@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class GoldBoxDropText : AbstractPacket
     {
-        public static new int Id { get; } = -666893269;
-        public static new string Description { get; } = "Announces that a gold box will drop soon";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -666893269;
+        public override string Description => "Announces that a gold box will drop soon";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "text",
             "soundID",

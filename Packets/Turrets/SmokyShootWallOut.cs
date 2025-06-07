@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Turrets
     /// </summary>
     public class SmokyShootWallOut : AbstractPacket
     {
-        public static new int Id { get; } = 1470597926;
-        public static new string Description { get; } = "Smokey Shoot out";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1470597926;
+        public override string Description => "Smokey Shoot out";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
             Vector3DCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "clientTime",
             "hitPoint",

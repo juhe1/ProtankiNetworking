@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class KillConfirm : AbstractPacket
     {
-        public static new int Id { get; } = -42520728;
-        public static new string Description { get; } = "A tank has been killed";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -42520728;
+        public override string Description => "A tank has been killed";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "target",
             "killer",

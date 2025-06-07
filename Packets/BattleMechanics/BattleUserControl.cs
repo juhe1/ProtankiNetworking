@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class BattleUserControl : AbstractPacket
     {
-        public static new int Id { get; } = -301298508;
-        public static new string Description { get; } = "Battle user control packet";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -301298508;
+        public override string Description => "Battle user control packet";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             ByteCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "tankiId",
             "control",

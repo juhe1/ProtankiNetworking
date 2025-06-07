@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class LoadMissions : AbstractPacket
     {
-        public static new int Id { get; } = 1227293080;
-        public static new string Description { get; } = "User requests to load their missions";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1227293080;
+        public override string Description => "User requests to load their missions";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

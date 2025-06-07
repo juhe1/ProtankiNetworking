@@ -10,14 +10,14 @@ namespace ProtankiNetworking.Packets.Chat
     /// </summary>
     public class SendLobbyChat : AbstractPacket
     {
-        public static new int Id { get; } = 705454610;
-        public static new string Description { get; } = "Sends a chat message to the lobby";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 705454610;
+        public override string Description => "Sends a chat message to the lobby";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "message",

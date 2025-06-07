@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattlePingInfo : AbstractPacket
     {
-        public static new int Id { get; } = 34068208;
-        public static new string Description { get; } = "Information about the ping of the player.";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 34068208;
+        public override string Description => "Information about the ping of the player.";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             DoubleIntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "latencyInfo",
         };

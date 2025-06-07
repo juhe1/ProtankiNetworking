@@ -10,12 +10,12 @@ namespace ProtankiNetworking.Packets.Shop
     /// </summary>
     public class PromocodeSuccess : AbstractPacket
     {
-        public static new int Id { get; } = -1859441081;
-        public static new string Description { get; } = "Promocode applied successfully";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1859441081;
+        public override string Description => "Promocode applied successfully";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
 
         };

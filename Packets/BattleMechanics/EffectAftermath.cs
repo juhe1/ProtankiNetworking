@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class EffectAftermath : AbstractPacket
     {
-        public static new int Id { get; } = -1639713644;
-        public static new string Description { get; } = "Effect Aftermath";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1639713644;
+        public override string Description => "Effect Aftermath";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             IntCodec.Instance,
@@ -20,7 +20,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics
             BoolCodec.Instance,
             ByteCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "effectId",

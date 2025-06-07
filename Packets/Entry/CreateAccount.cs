@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.Entry
     /// </summary>
     public class CreateAccount : AbstractPacket
     {
-        public static new int Id { get; } = 427083290;
-        public static new string Description { get; } = "Create new account";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 427083290;
+        public override string Description => "Create new account";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "password",

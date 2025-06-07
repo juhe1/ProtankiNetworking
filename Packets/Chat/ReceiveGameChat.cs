@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.Chat
     /// </summary>
     public class ReceiveGameChat : AbstractPacket
     {
-        public static new int Id { get; } = 1259981343;
-        public static new string Description { get; } = "Receives a message from the game chat";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1259981343;
+        public override string Description => "Receives a message from the game chat";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             StringCodec.Instance,
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "message",

@@ -10,15 +10,15 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class LoadNewPlayerTeam : AbstractPacket
     {
-        public static new int Id { get; } = 2040021062;
-        public static new string Description { get; } = "A new player has joined the team battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 2040021062;
+        public override string Description => "A new player has joined the team battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             new VectorCodec(BattleUserCodec.Instance, false),
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "userinfos",

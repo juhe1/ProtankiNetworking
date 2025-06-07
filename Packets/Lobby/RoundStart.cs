@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class RoundStart : AbstractPacket
     {
-        public static new int Id { get; } = -344514517;
-        public static new string Description { get; } = "Starts a new round in the existing battle";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -344514517;
+        public override string Description => "Starts a new round in the existing battle";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "battleID",
         };

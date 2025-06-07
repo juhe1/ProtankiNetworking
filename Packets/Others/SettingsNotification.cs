@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Others
     /// </summary>
     public class SettingsNotification : AbstractPacket
     {
-        public static new int Id { get; } = 1447082276;
-        public static new string Description { get; } = "Check if the user has notification on";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 1447082276;
+        public override string Description => "Check if the user has notification on";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             BoolCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "notificationEnabled",
         };

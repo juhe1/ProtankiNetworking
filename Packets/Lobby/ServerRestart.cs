@@ -10,13 +10,13 @@ namespace ProtankiNetworking.Packets.Lobby
     /// </summary>
     public class ServerRestart : AbstractPacket
     {
-        public static new int Id { get; } = -1712113407;
-        public static new string Description { get; } = "Indicates time (in seconds) until server restart";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = -1712113407;
+        public override string Description => "Indicates time (in seconds) until server restart";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "time",
         };

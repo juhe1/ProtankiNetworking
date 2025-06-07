@@ -10,9 +10,9 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// </summary>
     public class StartRespFantom : AbstractPacket
     {
-        public static new int Id { get; } = 875259457;
-        public static new string Description { get; } = "Information about fantom status of a player";
-        public static new BaseCodec[] CodecObjects { get; } = new BaseCodec[]
+        public static int Id { get; } = 875259457;
+        public override string Description => "Information about fantom status of a player";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             IntCodec.Instance,
@@ -21,7 +21,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics
             ShortCodec.Instance,
             ShortCodec.Instance,
         };
-        public static new string[] Attributes { get; } = new string[]
+        public override string[] Attributes => new string[]
         {
             "username",
             "team",
