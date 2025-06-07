@@ -115,7 +115,7 @@ namespace ProtankiNetworking.Networking
                 _client = new TcpClient();
                 await _client.ConnectAsync(_serverEndPoint.Address, _serverEndPoint.Port);
                 _stream = _client.GetStream();
-                _processingTask = ProcessPacketsAsync();
+                _processingTask = Task.Run(ProcessPacketsAsync);
                 await OnConnectedAsync();
             }
             catch (Exception e)
