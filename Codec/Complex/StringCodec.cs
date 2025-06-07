@@ -13,8 +13,6 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         public static StringCodec Instance { get; } = new StringCodec();
 
-        private static readonly Encoding Encoding = Encoding.UTF8;
-
         /// <summary>
         /// Creates a new instance of StringCodec
         /// </summary>
@@ -29,12 +27,15 @@ namespace ProtankiNetworking.Codec.Complex
         /// <returns>The decoded string value</returns>
         public override object Decode(EByteArray buffer)
         {
-            var length = buffer.ReadShort();
+            bool isEmpty = buffer.ReadBoolean();
+            if (isEmpty)
+                return string.Empty;
+
+            var length = buffer.ReadInt();
             if (length == 0)
                 return string.Empty;
 
-            var bytes = buffer.ReadBytes(length);
-            return Encoding.GetString(bytes);
+            return buffer.ReadString(length);
         }
 
         /// <summary>
@@ -45,21 +46,16 @@ namespace ProtankiNetworking.Codec.Complex
         /// <returns>The number of bytes written</returns>
         public override int Encode(object value, EByteArray buffer)
         {
-            if (value is not string str)
-            {
-                throw new ArgumentException("Value must be a string", nameof(value));
-            }
-
+            string str = (string)value;
             if (string.IsNullOrEmpty(str))
             {
-                buffer.WriteShort(0);
-                return 2;
+                buffer.WriteBoolean(true);
+                return 1;
             }
-
-            var bytes = Encoding.GetBytes(str);
-            buffer.WriteShort((short)bytes.Length);
-            buffer.Write(bytes);
-            return 2 + bytes.Length;
+            buffer.WriteBoolean(false);
+            buffer.WriteInt(str.Length);
+            buffer.WriteString(str);
+            return 1 + 4 + str.Length;
         }
     }
 } 
