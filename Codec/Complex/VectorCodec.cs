@@ -1,6 +1,7 @@
-using System;
-using System.Collections.Generic;
 using ProtankiNetworking.Utils;
+using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Packets.Entry;
+using System;
 
 namespace ProtankiNetworking.Codec.Complex
 {
@@ -31,14 +32,12 @@ namespace ProtankiNetworking.Codec.Complex
         public override object Decode(EByteArray buffer)
         {
             int length;
-            if (_shorten)
+            if (_shorten && (bool)BoolCodec.Instance.Decode(buffer))
             {
-                length = buffer.ReadByte();
+                return new List<object>();
             }
-            else
-            {
-                length = buffer.ReadInt();
-            }
+            length = (int)IntCodec.Instance.Decode(buffer);
+            Console.WriteLine("Length: " + length);
 
             var result = new List<object>();
             for (int i = 0; i < length; i++)
@@ -56,24 +55,13 @@ namespace ProtankiNetworking.Codec.Complex
         /// <returns>The number of bytes written</returns>
         public override int Encode(object value, EByteArray buffer)
         {
-            if (value is not List<object> list)
-            {
-                throw new ArgumentException("Value must be a list", nameof(value));
-            }
-
             int bytesWritten = 0;
-            if (_shorten)
+            if (_shorten && ((List<object>)value).Count == 0)
             {
-                buffer.WriteByte((byte)list.Count);
-                bytesWritten += 1;
+                return BoolCodec.Instance.Encode(true, buffer);
             }
-            else
-            {
-                buffer.WriteInt(list.Count);
-                bytesWritten += 4;
-            }
-
-            foreach (var item in list)
+            bytesWritten += IntCodec.Instance.Encode(((List<object>)value).Count, buffer);
+            foreach (var item in (List<object>)value)
             {
                 bytesWritten += _elementCodec.Encode(item, buffer);
             }
