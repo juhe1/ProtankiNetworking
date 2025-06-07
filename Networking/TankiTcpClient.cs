@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
+using System.Linq;
 
 namespace ProtankiNetworking.Networking
 {
@@ -167,39 +168,65 @@ namespace ProtankiNetworking.Networking
             {
                 while (!_cancellationTokenSource.Token.IsCancellationRequested)
                 {
-                    // Read header bytes
-                    var packetLenBytes = new byte[4];
-                    var packetIdBytes = new byte[4];
-                    await _stream.ReadExactlyAsync(packetLenBytes, 0, 4);
-                    await _stream.ReadExactlyAsync(packetIdBytes, 0, 4);
-
-                    var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
-                    var packetId = BitConverter.ToInt32(packetIdBytes, 0);
-                    int packetDataLen = packetLen - AbstractPacket.HEADER_LEN;
-
-                    // Create complete raw packet buffer
-                    var rawPacket = new byte[packetLen];
-                    Buffer.BlockCopy(packetLenBytes, 0, rawPacket, 0, 4);
-                    Buffer.BlockCopy(packetIdBytes, 0, rawPacket, 4, 4);
-
-                    // Read packet data if any
-                    if (packetDataLen > 0)
+                    try
                     {
-                        await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
+                        // Read header bytes
+                        var packetLenBytes = new byte[4];
+                        var packetIdBytes = new byte[4];
+                        await _stream.ReadExactlyAsync(packetLenBytes, 0, 4);
+                        await _stream.ReadExactlyAsync(packetIdBytes, 0, 4);
+
+                        // Create complete raw packet buffer first with original byte order
+                        var rawPacket = new byte[8];
+                        Buffer.BlockCopy(packetLenBytes, 0, rawPacket, 0, 4);
+                        Buffer.BlockCopy(packetIdBytes, 0, rawPacket, 4, 4);
+
+                        // Convert from big-endian to little-endian for BitConverter
+                        Array.Reverse(packetLenBytes);
+                        Array.Reverse(packetIdBytes);
+                        var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
+                        var packetId = BitConverter.ToInt32(packetIdBytes, 0);
+                        int packetDataLen = packetLen - AbstractPacket.HEADER_LEN;
+
+                        // Validate packet length
+                        if (packetLen < AbstractPacket.HEADER_LEN || packetLen > 1024 * 1024) // Max 1MB packet size
+                        {
+                            throw new InvalidOperationException($"Invalid packet length: {packetLen}");
+                        }
+
+                        // Resize raw packet to full length if needed
+                        if (packetLen > 8)
+                        {
+                            Array.Resize(ref rawPacket, packetLen);
+                        }
+
+                        // Read packet data if any
+                        if (packetDataLen > 0)
+                        {
+                            await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
+                        }
+
+                        // Notify about raw packet first
+                        await OnRawPacketReceivedAsync(rawPacket);
+
+                        // Then process the packet normally
+                        var encryptedData = new ByteArray();
+                        if (packetDataLen > 0)
+                        {
+                            var packetData = new byte[packetDataLen];
+                            Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
+                            encryptedData.Write(packetData);
+                        }
+                        await ProcessPacketAsync(packetId, encryptedData);
                     }
-
-                    // Notify about raw packet first
-                    await OnRawPacketReceivedAsync(rawPacket);
-
-                    // Then process the packet normally
-                    var encryptedData = new ByteArray();
-                    if (packetDataLen > 0)
+                    catch (IOException ex) when (ex.InnerException is SocketException socketEx && 
+                        (socketEx.SocketErrorCode == SocketError.ConnectionReset || 
+                         socketEx.SocketErrorCode == SocketError.ConnectionAborted ||
+                         socketEx.SocketErrorCode == SocketError.OperationAborted))
                     {
-                        var packetData = new byte[packetDataLen];
-                        Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
-                        encryptedData.Write(packetData);
+                        // Connection was closed by the remote end
+                        break;
                     }
-                    await ProcessPacketAsync(packetId, encryptedData);
                 }
             }
             catch (OperationCanceledException)
@@ -209,6 +236,10 @@ namespace ProtankiNetworking.Networking
             catch (Exception e)
             {
                 await OnErrorAsync(e, "TankiTcpClient.ProcessPackets");
+            }
+            finally
+            {
+                await DisconnectAsync();
             }
         }
 
