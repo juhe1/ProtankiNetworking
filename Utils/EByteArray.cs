@@ -30,8 +30,6 @@ namespace ProtankiNetworking.Utils
         public int ReadInt()
         {
             var bytes = ReadBytes(4);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             return BitConverter.ToInt32(bytes, 0);
         }
 
@@ -42,8 +40,6 @@ namespace ProtankiNetworking.Utils
         public short ReadShort()
         {
             var bytes = ReadBytes(2);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             return BitConverter.ToInt16(bytes, 0);
         }
 
@@ -72,8 +68,6 @@ namespace ProtankiNetworking.Utils
         public float ReadFloat()
         {
             var bytes = ReadBytes(4);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             return BitConverter.ToSingle(bytes, 0);
         }
 
@@ -96,8 +90,6 @@ namespace ProtankiNetworking.Utils
         public EByteArray WriteInt(int value)
         {
             var bytes = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             Write(bytes);
             return this;
         }
@@ -110,8 +102,6 @@ namespace ProtankiNetworking.Utils
         public EByteArray WriteShort(short value)
         {
             var bytes = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             Write(bytes);
             return this;
         }
@@ -146,8 +136,6 @@ namespace ProtankiNetworking.Utils
         public EByteArray WriteFloat(float value)
         {
             var bytes = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
             Write(bytes);
             return this;
         }
