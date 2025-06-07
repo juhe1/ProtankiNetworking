@@ -268,6 +268,7 @@ namespace ProtankiNetworking.Networking
             }
 
             var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
+            currentPacket.Id = packetId;
             currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
             return currentPacket;
         }
