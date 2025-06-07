@@ -27,10 +27,6 @@ namespace ProtankiNetworking.Codec.Primitive
         /// <returns>The decoded boolean value</returns>
         public override object Decode(EByteArray buffer)
         {
-            if (BoolShorten)
-            {
-                return buffer.ReadByte() != 0;
-            }
             return buffer.ReadBoolean();
         }
 
@@ -45,11 +41,6 @@ namespace ProtankiNetworking.Codec.Primitive
             if (value is not bool boolValue)
             {
                 throw new ArgumentException("Value must be a boolean", nameof(value));
-            }
-            if (BoolShorten)
-            {
-                buffer.WriteByte((byte)(boolValue ? 1 : 0));
-                return 1;
             }
             buffer.WriteBoolean(boolValue);
             return 1;
