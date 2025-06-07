@@ -15,16 +15,29 @@ namespace ProtankiNetworking.Packets
 
         static PacketManager()
         {
-            // Find all packet types in the current assembly
-            var packetTypes = Assembly.GetExecutingAssembly()
-                .GetTypes()
+            // Find all packet types in the ProtankiNetworking assembly
+            var assembly = typeof(AbstractPacket).Assembly;
+            var packetTypes = assembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(AbstractPacket)) && !t.IsAbstract);
 
             foreach (var type in packetTypes)
             {
-                var packet = (AbstractPacket)Activator.CreateInstance(type);
-                _packetTypes[packet.Id] = type;
-                _packetNames[type.Name] = type;
+                try
+                {
+                    // Get the static Id property
+                    var idProperty = type.GetProperty("Id", BindingFlags.Public | BindingFlags.Static);
+                    if (idProperty != null)
+                    {
+                        var id = (int)idProperty.GetValue(null);
+                        _packetTypes[id] = type;
+                        _packetNames[type.Name] = type;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log error but continue loading other packet types
+                    System.Diagnostics.Debug.WriteLine($"Failed to load packet type {type.Name}: {ex.Message}");
+                }
             }
         }
 
