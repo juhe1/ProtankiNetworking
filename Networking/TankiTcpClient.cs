@@ -260,6 +260,15 @@ namespace ProtankiNetworking.Networking
         {
             var packetData = _protection.Decrypt(encryptedData.ToArray());
             var fittedPacket = PacketFitter(packetId, new ByteArray(packetData));
+            
+            // Handle ActivateProtection packet
+            if (ActivateProtection.Id == packetId) // ActivateProtection packet ID
+            {
+                var keys = (List<object>)fittedPacket.ObjectByAttributeName["keys"];
+                var intKeys = keys.Select(k => (int)(byte)k).ToArray();
+                _protection.Activate(intKeys);
+            }
+            
             await OnPacketReceivedAsync(fittedPacket);
         }
 
