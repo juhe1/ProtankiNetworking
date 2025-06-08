@@ -45,6 +45,16 @@ namespace ProtankiNetworking.Packets
         public virtual bool ShouldLog => true;
 
         /// <summary>
+        /// The original raw packet data
+        /// </summary>
+        public byte[] RawData { get; set; }
+
+        /// <summary>
+        /// The decrypted packet data (without headers)
+        /// </summary>
+        public byte[] DecryptedData { get; set; }
+
+        /// <summary>
         /// List of decoded objects
         /// </summary>
         public List<object> Objects { get; } = new List<object>();
