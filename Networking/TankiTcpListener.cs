@@ -16,7 +16,6 @@ namespace ProtankiNetworking.Networking
     public abstract class TankiTcpListener
     {
         private readonly TcpListener _listener;
-        private readonly CProtection _protection;
         private CancellationTokenSource _cancellationTokenSource;
         private Task _acceptClientsTask;
         private readonly ConcurrentDictionary<TcpClient, TankiTcpClientHandler> _activeClients;
@@ -25,13 +24,11 @@ namespace ProtankiNetworking.Networking
         /// Creates a new instance of TankiTcpListener
         /// </summary>
         /// <param name="localEndPoint">The local endpoint to listen on</param>
-        /// <param name="protection">The protection instance for packet encryption/decryption</param>
         protected TankiTcpListener(
-            IPEndPoint localEndPoint,
-            CProtection protection)
+            IPEndPoint localEndPoint
+            )
         {
             _listener = new TcpListener(localEndPoint);
-            _protection = protection;
             _cancellationTokenSource = new CancellationTokenSource();
             _activeClients = new ConcurrentDictionary<TcpClient, TankiTcpClientHandler>();
         }
@@ -110,7 +107,7 @@ namespace ProtankiNetworking.Networking
                 while (!_cancellationTokenSource.Token.IsCancellationRequested)
                 {
                     var client = await _listener.AcceptTcpClientAsync();
-                    var handler = CreateClientHandler(client, _protection, _cancellationTokenSource.Token);
+                    var handler = CreateClientHandler(client, _cancellationTokenSource.Token);
                     
                     if (_activeClients.TryAdd(client, handler))
                     {
@@ -160,9 +157,8 @@ namespace ProtankiNetworking.Networking
         /// This method is called for each new client connection to instantiate a handler that will manage the client's communication.
         /// </summary>
         /// <param name="client">The TcpClient instance for the new connection.</param>
-        /// <param name="protection">The protection instance for packet encryption/decryption.</param>
         /// <param name="cancellationToken">The cancellation token to signal the handler to stop processing.</param>
         /// <returns>A new TankiTcpClientHandler instance.</returns>
-        protected abstract TankiTcpClientHandler CreateClientHandler(TcpClient client, CProtection protection, CancellationToken cancellationToken);
+        protected abstract TankiTcpClientHandler CreateClientHandler(TcpClient client, CancellationToken cancellationToken);
     }
 } 

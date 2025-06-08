@@ -14,11 +14,11 @@ namespace ProtankiNetworking.Networking
     public abstract class TankiTcpClientHandler
     {
         protected readonly TcpClient _client;
-        private readonly CProtection _protection;
+        protected readonly Protection _protection;
         protected readonly CancellationToken _cancellationToken;
         private NetworkStream _stream;
 
-        protected TankiTcpClientHandler(TcpClient client, CProtection protection, CancellationToken cancellationToken)
+        protected TankiTcpClientHandler(TcpClient client, Protection protection, CancellationToken cancellationToken)
         {
             _client = client;
             _protection = protection;
@@ -26,6 +26,7 @@ namespace ProtankiNetworking.Networking
         }
 
         protected CProtection Protection => _protection;
+        public Protection Protection => _protection;
 
         public async Task StartAsync()
         {

@@ -23,11 +23,10 @@ public class MyTankiServer : TankiTcpListener
     }
 
     protected override TankiTcpClientHandler CreateClientHandler(
-        TcpClient client, 
-        CProtection protection, 
+        TcpClient client,
         CancellationToken cancellationToken)
     {
-        return new MyClientHandler(client, protection, cancellationToken);
+        return new MyClientHandler(client, new Protection(), cancellationToken);
     }
 
     protected override async Task OnErrorAsync(Exception exception, string context)
@@ -38,8 +37,7 @@ public class MyTankiServer : TankiTcpListener
 
 // Usage:
 var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
-var protection = new CProtection(); // Configure protection as needed
-var server = new MyTankiServer(endPoint, protection);
+var server = new MyTankiServer(endPoint);
 server.Start();
 ```
 

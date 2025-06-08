@@ -5,7 +5,7 @@ namespace ProtankiNetworking.Security
     /// <summary>
     /// Handles encryption and decryption of packet data using a custom XOR-based scheme
     /// </summary>
-    public class CProtection
+    public class Protection
     {
         private const int VECTOR_LEN = 8;
         private bool _active;
@@ -17,10 +17,10 @@ namespace ProtankiNetworking.Security
         private int _encryptionIndex;
 
         /// <summary>
-        /// Creates a new instance of CProtection
+        /// Creates a new instance of Protection
         /// </summary>
         /// <param name="flipDirection">Whether to flip the encryption/decryption roles</param>
-        public CProtection(bool flipDirection = false)
+        public Protection(bool flipDirection = false)
         {
             _active = false;
             _flipDirection = flipDirection;
@@ -75,9 +75,8 @@ namespace ProtankiNetworking.Security
             for (int i = 0; i < data.Length; i++)
             {
                 byte encryptedByte = data[i];
-                _decryptionVector[_decryptionIndex] = (byte)(encryptedByte ^ _decryptionVector[_decryptionIndex]);
-                data[i] = _decryptionVector[_decryptionIndex];
-                _decryptionIndex ^= _decryptionVector[_decryptionIndex] & 7;
+                byte decVal = _decryptionVector[_decryptionIndex] = data[i] = (byte)(_decryptionVector[_decryptionIndex] ^ encryptedByte);
+                _decryptionIndex ^= decVal & 7;
             }
 
             return data;

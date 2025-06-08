@@ -15,7 +15,7 @@ namespace ProtankiNetworking.Networking
     /// </summary>
     public abstract class TankiTcpClient
     {
-        private readonly CProtection _protection;
+        private readonly Protection _protection;
         private readonly IPEndPoint _serverEndPoint;
         private CancellationTokenSource _cancellationTokenSource;
         private Task _processingTask;
@@ -29,7 +29,7 @@ namespace ProtankiNetworking.Networking
         /// <param name="protection">The protection instance for packet encryption/decryption</param>
         protected TankiTcpClient(
             IPEndPoint serverEndPoint,
-            CProtection protection)
+            Protection protection)
         {
             _serverEndPoint = serverEndPoint;
             _protection = protection;
