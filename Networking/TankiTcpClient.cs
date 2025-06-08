@@ -1,12 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
-using System.Linq;
+using ProtankiNetworking.Packets.Network;
 
 namespace ProtankiNetworking.Networking
 {
@@ -64,6 +66,14 @@ namespace ProtankiNetworking.Networking
         /// Called when disconnected from the server
         /// </summary>
         protected abstract Task OnDisconnectedAsync();
+
+        /// <summary>
+        /// Called when a packet fails to unwrap
+        /// </summary>
+        /// <param name="packetType">The type of packet that failed</param>
+        /// <param name="packetId">The ID of the packet that failed</param>
+        /// <param name="exception">The exception that occurred during unwrapping</param>
+        protected abstract Task OnPacketUnwrapFailureAsync(Type packetType, int packetId, Exception exception);
 
         /// <summary>
         /// Sends a packet to the server
@@ -269,7 +279,21 @@ namespace ProtankiNetworking.Networking
 
             var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
             currentPacket.Id = packetId;
-            currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
+            try
+            {
+                currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
+            }
+            catch (Exception ex)
+            {
+                // Notify about the failure
+                _ = OnPacketUnwrapFailureAsync(packetType, packetId, ex);
+                
+                // Create an unknown packet instead
+                var unknownPacket = new UnknownPacket();
+                unknownPacket.Id = packetId;
+                unknownPacket.Objects[0] = packetData;
+                return unknownPacket;
+            }
             return currentPacket;
         }
     }
