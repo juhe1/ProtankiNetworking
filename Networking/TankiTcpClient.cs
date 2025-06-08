@@ -216,9 +216,6 @@ namespace ProtankiNetworking.Networking
                             await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
                         }
 
-                        // Notify about raw packet first
-                        await OnRawPacketReceivedAsync(rawPacket);
-
                         // Then process the packet normally
                         var encryptedData = new ByteArray();
                         if (packetDataLen > 0)
@@ -227,7 +224,7 @@ namespace ProtankiNetworking.Networking
                             Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
                             encryptedData.Write(packetData);
                         }
-                        await ProcessPacketAsync(packetId, encryptedData);
+                        await ProcessPacketAsync(packetId, encryptedData, rawPacket);
                     }
                     catch (IOException ex) when (ex.InnerException is SocketException socketEx && 
                         (socketEx.SocketErrorCode == SocketError.ConnectionReset || 
@@ -256,20 +253,26 @@ namespace ProtankiNetworking.Networking
         /// <summary>
         /// Processes received packet data
         /// </summary>
-        private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData)
+        private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData, byte[] rawPacket)
         {
             var packetData = _protection.Decrypt(encryptedData.ToArray());
             var fittedPacket = PacketFitter(packetId, new ByteArray(packetData));
+            
+            // Store the complete raw packet data including headers
+            fittedPacket.RawData = rawPacket;
+            // Store the decrypted packet data (without headers)
+            fittedPacket.DecryptedData = packetData;
             
             // Handle ActivateProtection packet
             if (ActivateProtection.Id == packetId) // ActivateProtection packet ID
             {
                 var keys = (List<object>)fittedPacket.ObjectByAttributeName["keys"];
-                var intKeys = keys.Select(k => (int)(byte)k).ToArray();
+                var intKeys = keys.Select(k => (byte)k).ToArray();
                 _protection.Activate(intKeys);
             }
             
             await OnPacketReceivedAsync(fittedPacket);
+            await OnRawPacketReceivedAsync(rawPacket);
         }
 
         /// <summary>

@@ -37,25 +37,25 @@ namespace ProtankiNetworking.Networking
                 while (!_cancellationToken.IsCancellationRequested)
                 {
                     try
+                {
+                    // Read header bytes
+                    var packetLenBytes = new byte[4];
+                    var packetIdBytes = new byte[4];
+                    
+                    // Check if connection is closed
+                    int bytesRead = await _stream.ReadAsync(packetLenBytes, 0, 4);
+                    if (bytesRead == 0)
                     {
-                        // Read header bytes
-                        var packetLenBytes = new byte[4];
-                        var packetIdBytes = new byte[4];
-                        
-                        // Check if connection is closed
-                        int bytesRead = await _stream.ReadAsync(packetLenBytes, 0, 4);
-                        if (bytesRead == 0)
-                        {
-                            // Connection closed by client
-                            break;
-                        }
-                        
-                        bytesRead = await _stream.ReadAsync(packetIdBytes, 0, 4);
-                        if (bytesRead == 0)
-                        {
-                            // Connection closed by client
-                            break;
-                        }
+                        // Connection closed by client
+                        break;
+                    }
+                    
+                    bytesRead = await _stream.ReadAsync(packetIdBytes, 0, 4);
+                    if (bytesRead == 0)
+                    {
+                        // Connection closed by client
+                        break;
+                    }
 
                         // Create complete raw packet buffer first with original byte order
                         var rawPacket = new byte[8];
@@ -81,29 +81,26 @@ namespace ProtankiNetworking.Networking
                             Array.Resize(ref rawPacket, packetLen);
                         }
 
-                        // Read packet data if any
-                        if (packetDataLen > 0)
+                    // Read packet data if any
+                    if (packetDataLen > 0)
+                    {
+                        bytesRead = await _stream.ReadAsync(rawPacket, 8, packetDataLen);
+                        if (bytesRead == 0)
                         {
-                            bytesRead = await _stream.ReadAsync(rawPacket, 8, packetDataLen);
-                            if (bytesRead == 0)
-                            {
-                                // Connection closed by client
-                                break;
-                            }
+                            // Connection closed by client
+                            break;
                         }
+                    }
 
-                        // Notify about raw packet first
-                        await OnRawPacketReceivedAsync(rawPacket);
-
-                        // Then process the packet normally
-                        var encryptedData = new ByteArray();
-                        if (packetDataLen > 0)
-                        {
-                            var packetData = new byte[packetDataLen];
-                            Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
-                            encryptedData.Write(packetData);
-                        }
-                        await ProcessPacketAsync(packetId, encryptedData);
+                    // Then process the packet normally
+                    var encryptedData = new ByteArray();
+                    if (packetDataLen > 0)
+                    {
+                        var packetData = new byte[packetDataLen];
+                        Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
+                        encryptedData.Write(packetData);
+                    }
+                        await ProcessPacketAsync(packetId, encryptedData, rawPacket);
                     }
                     catch (IOException ex) when (ex.InnerException is SocketException socketEx && 
                         (socketEx.SocketErrorCode == SocketError.ConnectionReset || 
@@ -164,11 +161,16 @@ namespace ProtankiNetworking.Networking
             }
         }
 
-        private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData)
+        private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData, byte[] rawPacket)
         {
             var packetData = _protection.Decrypt(encryptedData.ToArray());
             var fittedPacket = PacketFitter(packetId, new ByteArray(packetData));
+            // Store the complete raw packet data including headers
+            fittedPacket.RawData = rawPacket;
+            // Store the decrypted packet data (without headers)
+            fittedPacket.DecryptedData = packetData;
             await OnPacketReceivedAsync(fittedPacket);
+            await OnRawPacketReceivedAsync(rawPacket);
         }
 
         private AbstractPacket PacketFitter(int packetId, ByteArray packetData)
@@ -186,7 +188,7 @@ namespace ProtankiNetworking.Networking
             currentPacket.Id = packetId;
             try
             {
-                currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
+            currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
             }
             catch (Exception ex)
             {
