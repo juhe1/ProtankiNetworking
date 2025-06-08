@@ -35,7 +35,7 @@ namespace ProtankiNetworking.Security
         /// Activates protection using a list of keys
         /// </summary>
         /// <param name="keys">List of keys to use for encryption/decryption</param>
-        public void Activate(int[] keys)
+        public void Activate(byte[] keys)
         {
             foreach (var key in keys)
             {
@@ -75,7 +75,7 @@ namespace ProtankiNetworking.Security
             for (int i = 0; i < data.Length; i++)
             {
                 byte encryptedByte = data[i];
-                byte decVal = _decryptionVector[_decryptionIndex] = data[i] = (byte)(_decryptionVector[_decryptionIndex] ^ encryptedByte);
+                byte decVal = _decryptionVector[_decryptionIndex] = data[i] = (byte)(encryptedByte ^ _decryptionVector[_decryptionIndex]);
                 _decryptionIndex ^= decVal & 7;
             }
 
