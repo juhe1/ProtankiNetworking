@@ -74,8 +74,8 @@ namespace ProtankiNetworking.Codec.Custom
 
             if (BoolShorten)
             {
-                bytesWritten += BoolCodec.Instance.Encode(dict == null, buffer);
-                if (dict == null)
+                bytesWritten += BoolCodec.Instance.Encode(dict.Count == 0, buffer);
+                if (dict.Count == 0)
                 {
                     return bytesWritten;
                 }
