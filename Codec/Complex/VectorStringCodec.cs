@@ -12,17 +12,16 @@ namespace ProtankiNetworking.Codec.Complex
         /// <summary>
         /// Gets the singleton instance of VectorStringCodec
         /// </summary>
-        public static VectorStringCodec Instance { get; } = new VectorStringCodec(StringCodec.Instance);
+        public static VectorStringCodec Instance { get; } = new VectorStringCodec();
 
-        private readonly ICodec _stringCodec;
+        private static VectorCodec codec = new VectorCodec(StringCodec.Instance, true);
 
         /// <summary>
         /// Creates a new instance of VectorStringCodec
         /// </summary>
         /// <param name="stringCodec">The codec to use for string values</param>
-        public VectorStringCodec(ICodec stringCodec)
+        public VectorStringCodec()
         {
-            _stringCodec = stringCodec;
         }
 
         /// <summary>
@@ -32,13 +31,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <returns>The decoded vector of strings</returns>
         public override object Decode(EByteArray buffer)
         {
-            var length = buffer.ReadInt();
-            var result = new List<string>();
-            for (int i = 0; i < length; i++)
-            {
-                result.Add((string)_stringCodec.Decode(buffer));
-            }
-            return result;
+            return codec.Decode(buffer);
         }
 
         /// <summary>
@@ -49,20 +42,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <returns>The number of bytes written</returns>
         public override int Encode(object value, EByteArray buffer)
         {
-            if (value is not List<string> list)
-            {
-                throw new ArgumentException("Value must be a list of strings", nameof(value));
-            }
-
-            var bytesWritten = 0;
-            buffer.WriteInt(list.Count);
-            bytesWritten += 4;
-
-            foreach (var str in list)
-            {
-                bytesWritten += _stringCodec.Encode(str, buffer);
-            }
-            return bytesWritten;
+            return codec.Encode(value, buffer);
         }
     }
 } 
