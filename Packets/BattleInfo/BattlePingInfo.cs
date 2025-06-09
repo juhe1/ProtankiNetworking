@@ -14,11 +14,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
         public override string Description => "Information about the ping of the player.";
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
-            DoubleIntCodec.Instance,
+            IntCodec.Instance,
+            IntCodec.Instance,
         };
         public override string[] Attributes => new string[]
         {
-            "latencyInfo",
+            "serverSessionTime",
+            "clientPing",
         };
     }
 }

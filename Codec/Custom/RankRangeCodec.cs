@@ -30,8 +30,8 @@ namespace ProtankiNetworking.Codec.Custom
         /// </summary>
         protected override ICodec[] CodecObjects => new ICodec[]
         {
-            new DoubleIntCodec(IntCodec.Instance),
-            new DoubleIntCodec(IntCodec.Instance),
+            IntCodec.Instance,
+            IntCodec.Instance,
         };
 
         /// <summary>
