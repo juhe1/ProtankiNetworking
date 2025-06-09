@@ -43,6 +43,7 @@ namespace ProtankiNetworking.Codec.Custom
         /// </summary>
         private UserStatusCodec() : base()
         {
+            BoolShorten = true;
         }
     }
 }
