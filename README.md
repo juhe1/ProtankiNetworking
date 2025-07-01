@@ -1,5 +1,9 @@
 # ProtankiNetworking
 
+[![NuGet](https://img.shields.io/nuget/v/ProtankiNetworking.svg)](https://www.nuget.org/packages/ProtankiNetworking/)
+
+**NuGet package:** [ProtankiNetworking on NuGet](https://www.nuget.org/packages/ProtankiNetworking/)
+
 A C# library for ProTanki game communication. This project is based on code from the [ProboTanki-Lib](https://github.com/Teinc3/ProboTanki-Lib) Python library, but it is not exact port.
 
 ## TCP Networking Components
