@@ -7,12 +7,12 @@
     <RootNamespace>ProtankiNetworking</RootNamespace>
     <AssemblyName>ProtankiNetworking</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>ProtankiNetworking</PackageId>
+    <PackageId>ProtankiNetworkingV1</PackageId>
     <Version>1.0.0</Version>
     <Authors>Juho</Authors>
     <Description>Networking library for Protanki. Provides packet and codec definitions for the Protanki game server/client.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/ProboTanki/ProtankiNetworking</RepositoryUrl>
+    <RepositoryUrl>https://github.com/juhe1/ProtankiNetworking</RepositoryUrl>
     <PackageTags>protanki;networking;packets;codecs;game</PackageTags>
   </PropertyGroup>
 
