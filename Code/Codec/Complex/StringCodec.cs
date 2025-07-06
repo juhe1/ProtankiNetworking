@@ -25,11 +25,11 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded string value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             bool isEmpty = buffer.ReadBoolean();
             if (isEmpty)
-                return string.Empty;
+                return null;
 
             var length = buffer.ReadInt();
             if (length == 0)
@@ -44,14 +44,14 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The string value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
-            string str = (string)value;
-            if (string.IsNullOrEmpty(str))
+            if (value is null)
             {
                 buffer.WriteBoolean(true);
                 return 1;
             }
+            string str = (string)value;
             buffer.WriteBoolean(false);
             buffer.WriteInt(str.Length);
             buffer.WriteString(str);

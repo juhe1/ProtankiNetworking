@@ -25,7 +25,7 @@ namespace ProtankiNetworking.Codec.Primitive
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded short value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             return buffer.ReadShort();
         }
@@ -36,7 +36,7 @@ namespace ProtankiNetworking.Codec.Primitive
         /// <param name="value">The short value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             if (value is not short shortValue)
             {

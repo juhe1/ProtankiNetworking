@@ -35,7 +35,7 @@ namespace ProtankiNetworking.Codec.Custom
         /// Decodes a value from the buffer
         /// </summary>
         /// <returns>The decoded value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             var result = new Dictionary<string, object>();
 
@@ -63,7 +63,7 @@ namespace ProtankiNetworking.Codec.Custom
         /// </summary>
         /// <param name="value">The value to encode</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             if (value is not Dictionary<string, object> dict)
             {

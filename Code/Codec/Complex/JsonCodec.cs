@@ -28,7 +28,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded JSON value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             string jsonString = (string)StringCodec.Instance.Decode(buffer);
             return JsonNode.Parse(jsonString);;
@@ -40,7 +40,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The JSON value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             string jsonString = JsonSerializer.Serialize(value);
             return StringCodec.Instance.Encode(jsonString, buffer);

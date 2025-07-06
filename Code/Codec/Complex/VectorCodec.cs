@@ -29,12 +29,12 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded vector value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             int length;
             if (_shorten && (bool)BoolCodec.Instance.Decode(buffer))
             {
-                return new List<object>();
+                return null;
             }
             length = (int)IntCodec.Instance.Decode(buffer);
             Console.WriteLine("Length: " + length);
@@ -53,12 +53,16 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The vector value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             int bytesWritten = 0;
-            if (_shorten && ((List<object>)value).Count == 0)
+            if (_shorten && value is null)
             {
                 return BoolCodec.Instance.Encode(true, buffer);
+            }
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
             }
             bytesWritten += IntCodec.Instance.Encode(((List<object>)value).Count, buffer);
             foreach (var item in (List<object>)value)

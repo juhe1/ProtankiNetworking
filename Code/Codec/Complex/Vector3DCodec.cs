@@ -25,8 +25,11 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded Vector3D value</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
+            bool isEmpty = buffer.ReadBoolean();
+            if (isEmpty)
+                return null;
             var x = buffer.ReadFloat();
             var y = buffer.ReadFloat();
             var z = buffer.ReadFloat();
@@ -39,8 +42,13 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The Vector3D value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
+            if (value is null)
+            {
+                buffer.WriteBoolean(true);
+                return 1;
+            }
             if (value is not Vector3D vector)
             {
                 throw new ArgumentException("Value must be a Vector3D", nameof(value));

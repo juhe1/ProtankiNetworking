@@ -18,7 +18,7 @@ namespace ProtankiNetworking.Codec
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded value</returns>
-        object Decode(EByteArray buffer);
+        object? Decode(EByteArray buffer);
 
         /// <summary>
         /// Encodes a value to the buffer
@@ -26,6 +26,6 @@ namespace ProtankiNetworking.Codec
         /// <param name="value">The value to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        int Encode(object value, EByteArray buffer);
+        int Encode(object? value, EByteArray buffer);
     }
 } 

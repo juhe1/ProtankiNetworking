@@ -39,7 +39,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded vector of integer pairs</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             var length = buffer.ReadInt();
             var result = new List<Tuple<object, object>>();
@@ -58,7 +58,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The vector of integer pairs to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             if (value is not List<Tuple<object, object>> list)
             {

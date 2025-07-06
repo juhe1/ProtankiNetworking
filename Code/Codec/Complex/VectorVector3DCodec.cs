@@ -30,7 +30,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded vector of Vector3D values</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             var length = buffer.ReadInt();
             var result = new List<Vector3D>();
@@ -47,7 +47,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The vector of Vector3D values to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             if (value is not List<Vector3D> list)
             {

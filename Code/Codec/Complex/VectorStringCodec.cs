@@ -29,7 +29,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// </summary>
         /// <param name="buffer">The buffer to decode from</param>
         /// <returns>The decoded vector of strings</returns>
-        public override object Decode(EByteArray buffer)
+        public override object? Decode(EByteArray buffer)
         {
             return codec.Decode(buffer);
         }
@@ -40,7 +40,7 @@ namespace ProtankiNetworking.Codec.Complex
         /// <param name="value">The vector of strings to encode</param>
         /// <param name="buffer">The buffer to encode to</param>
         /// <returns>The number of bytes written</returns>
-        public override int Encode(object value, EByteArray buffer)
+        public override int Encode(object? value, EByteArray buffer)
         {
             return codec.Encode(value, buffer);
         }
