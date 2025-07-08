@@ -10,7 +10,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadChat : AbstractPacket
 {
-    public static int Id { get; } = 178154988;
+    public static int IdStatic { get; } = 178154988;
+    public override int Id => IdStatic;
     public override string Description => "Load chat configuration";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

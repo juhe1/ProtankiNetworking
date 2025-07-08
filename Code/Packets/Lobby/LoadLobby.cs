@@ -7,7 +7,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadLobby : AbstractPacket
 {
-    public static int Id { get; } = 1452181070;
+    public static int IdStatic { get; } = 1452181070;
+    public override int Id => IdStatic;
     public override string Description => "Load battle info";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

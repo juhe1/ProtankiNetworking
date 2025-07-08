@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class JoinedOutsideTeamBattle : AbstractPacket
 {
-    public static int Id { get; } = -169305322;
+    public static int IdStatic { get; } = -169305322;
 
     public override string Description =>
         "Sent when a player joins a global Team battle, outside from the observer's perspective.";

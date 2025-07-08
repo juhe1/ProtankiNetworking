@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunShotOut : AbstractPacket
 {
-    public static int Id { get; } = -484994657;
+    public static int IdStatic { get; } = -484994657;
+    public override int Id => IdStatic;
     public override string Description => "Sends server details about a released railgun shot";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

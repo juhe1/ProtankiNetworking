@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadSupplyEffect : AbstractPacket
 {
-    public static int Id { get; } = 417965410;
+    public static int IdStatic { get; } = 417965410;
+    public override int Id => IdStatic;
     public override string Description => "Load Current Supply Effect";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RicochetFireDummyIn : AbstractPacket
 {
-    public static int Id { get; } = -1670466290;
+    public static int IdStatic { get; } = -1670466290;
+    public override int Id => IdStatic;
     public override string Description => "Ricochet fire dummy event (shooter)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class TankDamage : AbstractPacket
 {
-    public static int Id { get; } = -1165230470;
+    public static int IdStatic { get; } = -1165230470;
+    public override int Id => IdStatic;
     public override string Description => "Damage dealt to a tank";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

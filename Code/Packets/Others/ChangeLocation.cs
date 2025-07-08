@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ChangeLocation : AbstractPacket
 {
-    public static int Id { get; } = 921004371;
+    public static int IdStatic { get; } = 921004371;
+    public override int Id => IdStatic;
     public override string Description => "Buy from shop";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

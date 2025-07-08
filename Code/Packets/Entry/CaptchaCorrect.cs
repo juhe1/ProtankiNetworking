@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class CaptchaCorrect : AbstractPacket
 {
-    public static int Id { get; } = -819536476;
+    public static int IdStatic { get; } = -819536476;
+    public override int Id => IdStatic;
     public override string Description => "Captcha is correct";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

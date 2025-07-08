@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Shop;
 /// </summary>
 public class SendPromocode : AbstractPacket
 {
-    public static int Id { get; } = -511004908;
+    public static int IdStatic { get; } = -511004908;
+    public override int Id => IdStatic;
     public override string Description => "Client uses a promocode";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

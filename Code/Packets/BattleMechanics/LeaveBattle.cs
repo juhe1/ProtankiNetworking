@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LeaveBattle : AbstractPacket
 {
-    public static int Id { get; } = 377959142;
+    public static int IdStatic { get; } = 377959142;
+    public override int Id => IdStatic;
     public override string Description => "Leaves battle to a layout (0 = Lobby, 1 = Garage)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

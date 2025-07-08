@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TurretControl : AbstractPacket
 {
-    public static int Id { get; } = -1749108178;
+    public static int IdStatic { get; } = -1749108178;
+    public override int Id => IdStatic;
     public override string Description => "Turret Control Packet";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

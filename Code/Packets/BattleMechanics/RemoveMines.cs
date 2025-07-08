@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RemoveMines : AbstractPacket
 {
-    public static int Id { get; } = -1200619383;
+    public static int IdStatic { get; } = -1200619383;
+    public override int Id => IdStatic;
     public override string Description => "Remove mines (ownerId)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

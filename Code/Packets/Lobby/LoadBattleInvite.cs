@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadBattleInvite : AbstractPacket
 {
-    public static int Id { get; } = 834877801;
+    public static int IdStatic { get; } = 834877801;
+    public override int Id => IdStatic;
     public override string Description => "BattleInviteCC packet with sound notification";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

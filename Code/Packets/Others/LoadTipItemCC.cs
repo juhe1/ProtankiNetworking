@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class LoadTipItemCC : AbstractPacket
 {
-    public static int Id { get; } = 2094741924;
+    public static int IdStatic { get; } = 2094741924;
+    public override int Id => IdStatic;
     public override string Description => "Load a tip item for loader window.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

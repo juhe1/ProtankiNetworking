@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class SwapTeams : AbstractPacket
 {
-    public static int Id { get; } = -994817471;
+    public static int IdStatic { get; } = -994817471;
+    public override int Id => IdStatic;
     public override string Description => "Swaps teams in a battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

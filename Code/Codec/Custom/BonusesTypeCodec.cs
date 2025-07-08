@@ -1,8 +1,6 @@
 using ProtankiNetworking.Codec.Primitive;
 using ProtankiNetworking.Utils;
 
-// not used
-
 namespace ProtankiNetworking.Codec.Custom;
 
 public enum BonusesType

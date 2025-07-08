@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RemoveBonusBox : AbstractPacket
 {
-    public static int Id { get; } = -2026749922;
+    public static int IdStatic { get; } = -2026749922;
+    public override int Id => IdStatic;
     public override string Description => "Supply box bonus id";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

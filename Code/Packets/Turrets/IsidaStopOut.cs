@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class IsidaStopOut : AbstractPacket
 {
-    public static int Id { get; } = -1051248475;
+    public static int IdStatic { get; } = -1051248475;
+    public override int Id => IdStatic;
     public override string Description => "Send Isida stop out event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

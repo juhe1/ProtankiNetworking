@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class ServerRestart : AbstractPacket
 {
-    public static int Id { get; } = -1712113407;
+    public static int IdStatic { get; } = -1712113407;
+    public override int Id => IdStatic;
     public override string Description => "Indicates time (in seconds) until server restart";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

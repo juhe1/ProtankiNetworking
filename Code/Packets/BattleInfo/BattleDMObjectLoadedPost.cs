@@ -7,8 +7,9 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattleDMObjectLoadedPost : AbstractPacket
     {
-        public static int Id { get; } = 930618015;
-        public override string Description => "Battle DM object loaded post (no attributes)";
+        public static int IdStatic { get; } = 930618015;
+        public override int Id => IdStatic;
+    public override string Description => "Battle DM object loaded post (no attributes)";
         public override BaseCodec[] CodecObjects => new BaseCodec[] { };
         public override string[] Attributes => new string[] { };
     }

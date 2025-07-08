@@ -7,7 +7,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class StatisticsObjectLoadedPost : AbstractPacket
 {
-    public static int Id { get; } = 1953272681;
+    public static int IdStatic { get; } = 1953272681;
+    public override int Id => IdStatic;
     public override string Description => "Indicates that the statistics object has been loaded (post event)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

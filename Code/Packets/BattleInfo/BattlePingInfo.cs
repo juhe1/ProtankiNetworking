@@ -10,8 +10,9 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattlePingInfo : AbstractPacket
     {
-        public static int Id { get; } = 34068208;
-        public override string Description => "Information about the ping of the player.";
+        public static int IdStatic { get; } = 34068208;
+        public override int Id => IdStatic;
+    public override string Description => "Information about the ping of the player.";
 
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {

@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadeStatisticsDMCC : AbstractPacket
 {
-    public static int Id { get; } = -1959138292;
+    public static int IdStatic { get; } = -1959138292;
+    public override int Id => IdStatic;
     public override string Description => "Load DM statistics (usersInfo: Vector<UserInfo>)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

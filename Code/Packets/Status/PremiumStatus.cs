@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class PremiumStatus : AbstractPacket
 {
-    public static int Id { get; } = -2069508071;
+    public static int IdStatic { get; } = -2069508071;
+    public override int Id => IdStatic;
     public override string Description => "Updates a player's premium status";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -10,7 +10,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadUserCountry : AbstractPacket
 {
-    public static int Id { get; } = -1232334539;
+    public static int IdStatic { get; } = -1232334539;
+    public override int Id => IdStatic;
     public override string Description => "Load user country information";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

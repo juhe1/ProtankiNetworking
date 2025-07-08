@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class VulcanEndOut : AbstractPacket
 {
-    public static int Id { get; } = 1794372798;
+    public static int IdStatic { get; } = 1794372798;
+    public override int Id => IdStatic;
     public override string Description => "Vulcan stops shooting";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

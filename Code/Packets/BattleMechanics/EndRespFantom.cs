@@ -7,7 +7,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class EndRespFantom : AbstractPacket
 {
-    public static int Id { get; } = 1178028365;
+    public static int IdStatic { get; } = 1178028365;
+    public override int Id => IdStatic;
     public override string Description => "Client end the Fantom period to fully spawn";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

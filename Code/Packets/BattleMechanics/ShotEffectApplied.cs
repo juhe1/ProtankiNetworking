@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ShotEffectApplied : AbstractPacket
 {
-    public static int Id { get; } = 546849203;
+    public static int IdStatic { get; } = 546849203;
+    public override int Id => IdStatic;
     public override string Description => "Shot Effect Applied";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

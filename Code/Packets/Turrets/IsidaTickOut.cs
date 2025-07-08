@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class IsidaTickOut : AbstractPacket
 {
-    public static int Id { get; } = 244072998;
+    public static int IdStatic { get; } = 244072998;
+    public override int Id => IdStatic;
     public override string Description => "Send Isida tick out event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TankMovementInfo : AbstractPacket
 {
-    public static int Id { get; } = -1683279062;
+    public static int IdStatic { get; } = -1683279062;
+    public override int Id => IdStatic;
     public override string Description => "Client moved passively";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class ChangeBy : AbstractPacket
 {
-    public static int Id { get; } = -593513288;
+    public static int IdStatic { get; } = -593513288;
+    public override int Id => IdStatic;
     public override string Description => "Change By";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

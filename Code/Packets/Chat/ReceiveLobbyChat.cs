@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Chat;
 /// </summary>
 public class ReceiveLobbyChat : AbstractPacket
 {
-    public static int Id { get; } = -1263520410;
+    public static int IdStatic { get; } = -1263520410;
+    public override int Id => IdStatic;
     public override string Description => "Receives chat messages from the lobby";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

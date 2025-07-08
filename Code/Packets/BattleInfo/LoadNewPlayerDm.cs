@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadNewPlayerDm : AbstractPacket
 {
-    public static int Id { get; } = 862913394;
+    public static int IdStatic { get; } = 862913394;
+    public override int Id => IdStatic;
     public override string Description => "A new player has joined the battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

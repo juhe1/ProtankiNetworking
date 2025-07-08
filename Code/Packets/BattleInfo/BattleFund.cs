@@ -10,8 +10,9 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattleFund : AbstractPacket
     {
-        public static int Id { get; } = 1149211509;
-        public override string Description => "Battle fund";
+        public static int IdStatic { get; } = 1149211509;
+        public override int Id => IdStatic;
+    public override string Description => "Battle fund";
 
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {

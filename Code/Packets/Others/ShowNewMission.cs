@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ShowNewMission : AbstractPacket
 {
-    public static int Id { get; } = -1266665816;
+    public static int IdStatic { get; } = -1266665816;
+    public override int Id => IdStatic;
     public override string Description => "Show the new mission that was previously changed";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

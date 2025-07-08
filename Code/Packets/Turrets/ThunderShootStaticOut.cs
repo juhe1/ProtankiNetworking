@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ThunderShootStaticOut : AbstractPacket
 {
-    public static int Id { get; } = 1501310158;
+    public static int IdStatic { get; } = 1501310158;
+    public override int Id => IdStatic;
     public override string Description => "Thunder shoot static (time, hitPoint)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -164,13 +164,11 @@ public abstract class TankiTcpClientHandler
         if (packetType == null)
         {
             var packet = new UnknownPacket();
-            packet.Id = packetId;
             packet.Objects[0] = packetData;
             return packet;
         }
 
         var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
-        currentPacket.Id = packetId;
         try
         {
             currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
@@ -180,7 +178,6 @@ public abstract class TankiTcpClientHandler
             _ = OnPacketUnwrapFailureAsync(packetType, packetId, ex);
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
-            unknownPacket.Id = packetId;
             unknownPacket.Objects[0] = packetData;
             return unknownPacket;
         }

@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerStartOut : AbstractPacket
 {
-    public static int Id { get; } = -1986638927;
+    public static int IdStatic { get; } = -1986638927;
+    public override int Id => IdStatic;
     public override string Description => "Firebird starts shooting";
 
     public override ICodec[] CodecObjects => new ICodec[]

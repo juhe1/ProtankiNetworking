@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class MineLocation : AbstractPacket
 {
-    public static int Id { get; } = 272183855;
+    public static int IdStatic { get; } = 272183855;
+    public override int Id => IdStatic;
     public override string Description => "Sent when a mine is placed or removed.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

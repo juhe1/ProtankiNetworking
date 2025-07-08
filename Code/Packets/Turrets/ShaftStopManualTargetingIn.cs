@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftStopManualTargetingIn : AbstractPacket
 {
-    public static int Id { get; } = -1380283560;
+    public static int IdStatic { get; } = -1380283560;
+    public override int Id => IdStatic;
     public override string Description => "Shaft stop manual targeting (shooter)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

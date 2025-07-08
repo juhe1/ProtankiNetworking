@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class OnlineStatus : AbstractPacket
 {
-    public static int Id { get; } = 2041598093;
+    public static int IdStatic { get; } = 2041598093;
+    public override int Id => IdStatic;
     public override string Description => "Updates Player's Online Status";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

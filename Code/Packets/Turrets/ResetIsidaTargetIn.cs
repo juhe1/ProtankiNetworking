@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ResetIsidaTargetIn : AbstractPacket
 {
-    public static int Id { get; } = -1271729363;
+    public static int IdStatic { get; } = -1271729363;
+    public override int Id => IdStatic;
     public override string Description => "Reset Isida target event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

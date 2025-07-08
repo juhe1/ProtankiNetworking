@@ -7,7 +7,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class UpdateTeamBattleScore : AbstractPacket
 {
-    public static int Id { get; } = 561771020;
+    public static int IdStatic { get; } = 561771020;
+    public override int Id => IdStatic;
     public override string Description => "Update the score of a team within battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

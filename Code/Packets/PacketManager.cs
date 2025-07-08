@@ -21,7 +21,7 @@ public static class PacketManager
             try
             {
                 // Get the static Id property
-                var idProperty = type.GetProperty("Id", BindingFlags.Public | BindingFlags.Static);
+                var idProperty = type.GetProperty("IdStatic", BindingFlags.Public | BindingFlags.Static);
                 if (idProperty != null)
                 {
                     var id = (int)idProperty.GetValue(null);

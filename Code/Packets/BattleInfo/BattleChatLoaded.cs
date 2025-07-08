@@ -1,6 +1,3 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
 
 namespace ProtankiNetworking.Packets.BattleInfo
@@ -10,8 +7,9 @@ namespace ProtankiNetworking.Packets.BattleInfo
     /// </summary>
     public class BattleChatLoaded : AbstractPacket
     {
-        public static int Id { get; } = -643105296;
-        public override string Description => "Indicates that the battle chat has loaded";
+        public static int IdStatic { get; } = -643105296;
+        public override int Id => IdStatic;
+    public override string Description => "Indicates that the battle chat has loaded";
 
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {

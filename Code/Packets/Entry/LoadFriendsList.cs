@@ -7,7 +7,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadFriendsList : AbstractPacket
 {
-    public static int Id { get; } = 1422563374;
+    public static int IdStatic { get; } = 1422563374;
+    public override int Id => IdStatic;
     public override string Description => "Loads the player's friend lists";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

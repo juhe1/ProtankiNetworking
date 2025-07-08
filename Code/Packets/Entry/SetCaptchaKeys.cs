@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class SetCaptchaKeys : AbstractPacket
 {
-    public static int Id { get; } = 321971701;
+    public static int IdStatic { get; } = 321971701;
+    public override int Id => IdStatic;
     public override string Description => "Sets captcha hash keys";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

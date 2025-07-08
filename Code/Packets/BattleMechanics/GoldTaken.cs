@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class GoldTaken : AbstractPacket
 {
-    public static int Id { get; } = 463494974;
+    public static int IdStatic { get; } = 463494974;
+    public override int Id => IdStatic;
     public override string Description => "Gold taken (uid)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

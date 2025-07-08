@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TankEnteredPointZone : AbstractPacket
 {
-    public static int Id { get; } = -456245145;
+    public static int IdStatic { get; } = -456245145;
+    public override int Id => IdStatic;
     public override string Description => "Tank entered point zone (pointId, tankId)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

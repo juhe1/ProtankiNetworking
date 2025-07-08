@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class RemoveBattle : AbstractPacket
 {
-    public static int Id { get; } = -1848001147;
+    public static int IdStatic { get; } = -1848001147;
+    public override int Id => IdStatic;
     public override string Description => "Removes a battle from the lobby";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

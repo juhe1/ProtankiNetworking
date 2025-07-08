@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class DropFlag : AbstractPacket
 {
-    public static int Id { get; } = 1925237062;
+    public static int IdStatic { get; } = 1925237062;
+    public override int Id => IdStatic;
     public override string Description => "Drop flag at position for a team";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

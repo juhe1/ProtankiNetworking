@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Garage;
 /// </summary>
 public class BuyKit : AbstractPacket
 {
-    public static int Id { get; } = -523392052;
+    public static int IdStatic { get; } = -523392052;
+    public override int Id => IdStatic;
     public override string Description => "Buy a kit";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

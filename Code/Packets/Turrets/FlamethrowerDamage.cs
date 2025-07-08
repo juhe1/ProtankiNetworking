@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerDamage : AbstractPacket
 {
-    public static int Id { get; } = 1395251766;
+    public static int IdStatic { get; } = 1395251766;
+    public override int Id => IdStatic;
     public override string Description => "Firebird attack";
 
     public override ICodec[] CodecObjects => new ICodec[]

@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadMapInfo : AbstractPacket
 {
-    public static int Id { get; } = -838186985;
+    public static int IdStatic { get; } = -838186985;
+    public override int Id => IdStatic;
     public override string Description => "Information about all maps the client should load";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

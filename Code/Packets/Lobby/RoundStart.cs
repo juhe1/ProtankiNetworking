@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class RoundStart : AbstractPacket
 {
-    public static int Id { get; } = -344514517;
+    public static int IdStatic { get; } = -344514517;
+    public override int Id => IdStatic;
     public override string Description => "Starts a new round in the existing battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

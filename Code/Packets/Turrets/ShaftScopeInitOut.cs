@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftScopeInitOut : AbstractPacket
 {
-    public static int Id { get; } = -367760678;
+    public static int IdStatic { get; } = -367760678;
+    public override int Id => IdStatic;
     public override string Description => "Initiates a shaft scope shot";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class ChangeLayout : AbstractPacket
 {
-    public static int Id { get; } = 1118835050;
+    public static int IdStatic { get; } = 1118835050;
+    public override int Id => IdStatic;
     public override string Description => "Changes client layout/mode";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -248,7 +248,7 @@ public abstract class TankiTcpClient
         fittedPacket.DecryptedData = packetData;
 
         // Handle ActivateProtection packet
-        if (ActivateProtection.Id == packetId) // ActivateProtection packet ID
+        if (ActivateProtection.IdStatic == packetId) // ActivateProtection packet ID
         {
             var keys = (List<object>)fittedPacket.ObjectByAttributeName["keys"];
             var intKeys = keys.Select(k => (byte)k).ToArray();
@@ -268,13 +268,11 @@ public abstract class TankiTcpClient
         if (packetType == null)
         {
             var packet = new UnknownPacket();
-            packet.Id = packetId;
             packet.Objects[0] = packetData;
             return packet;
         }
 
         var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
-        currentPacket.Id = packetId;
         try
         {
             currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
@@ -286,7 +284,6 @@ public abstract class TankiTcpClient
 
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
-            unknownPacket.Id = packetId;
             unknownPacket.Objects[0] = packetData;
             return unknownPacket;
         }

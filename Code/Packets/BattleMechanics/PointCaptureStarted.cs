@@ -8,7 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class PointCaptureStarted : AbstractPacket
 {
-    public static int Id { get; } = -1346883037;
+    public static int IdStatic { get; } = -1346883037;
+    public override int Id => IdStatic;
     public override string Description => "Point capture started (team)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

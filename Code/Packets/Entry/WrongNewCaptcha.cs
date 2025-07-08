@@ -9,7 +9,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class WrongNewCaptcha : AbstractPacket
 {
-    public static int Id { get; } = -373510957;
+    public static int IdStatic { get; } = -373510957;
+    public override int Id => IdStatic;
     public override string Description => "The captcha was incorrect, a new one is sent";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]
