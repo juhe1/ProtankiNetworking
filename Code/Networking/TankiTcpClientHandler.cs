@@ -173,7 +173,6 @@ public abstract class TankiTcpClientHandler
         if (packetType == null)
         {
             var packet = new UnknownPacket();
-            packet.Objects[0] = packetData;
             return packet;
         }
 

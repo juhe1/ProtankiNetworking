@@ -284,7 +284,6 @@ public abstract class TankiTcpClient
         if (packetType == null)
         {
             var packet = new UnknownPacket();
-            packet.Objects[0] = packetData;
             return packet;
         }
 
@@ -304,7 +303,6 @@ public abstract class TankiTcpClient
 
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
-            unknownPacket.Objects[0] = packetData;
             return unknownPacket;
         }
 
