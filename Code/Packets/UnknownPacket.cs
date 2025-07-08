@@ -1,5 +1,3 @@
-using ProtankiNetworking.Utils;
-
 namespace ProtankiNetworking.Packets;
 
 /// <summary>
@@ -7,20 +5,11 @@ namespace ProtankiNetworking.Packets;
 /// </summary>
 public class UnknownPacket : AbstractPacket
 {
-    public UnknownPacket()
-    {
-        // Set up the packet to store raw data
-        Objects.Add(new ByteArray());
-        ObjectByAttributeName["data"] = Objects[0];
-    }
-
-    /// <summary>
-    ///     The raw packet data
-    /// </summary>
-    public ByteArray RawData => (ByteArray)Objects[0];
+    public UnknownPacket() { }
 
     /// <summary>
     ///     The ID of the unknown packet
     /// </summary>
     public int PacketId => Id;
 }
+

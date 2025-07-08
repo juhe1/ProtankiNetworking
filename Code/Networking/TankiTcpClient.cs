@@ -1,9 +1,9 @@
+using System.Net;
+using System.Net.Sockets;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Packets.Network;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
-using System.Net;
-using System.Net.Sockets;
 
 namespace ProtankiNetworking.Networking;
 
@@ -15,18 +15,16 @@ public abstract class TankiTcpClient
     private readonly Protection _protection;
     private readonly IPEndPoint _serverEndPoint;
     private CancellationTokenSource _cancellationTokenSource;
-    private TcpClient _client;
-    private Task _processingTask;
-    private NetworkStream _stream;
+    private TcpClient? _client;
+    private Task? _processingTask;
+    private NetworkStream? _stream;
 
     /// <summary>
     ///     Creates a new instance of TankiTcpClient
     /// </summary>
     /// <param name="serverEndPoint">The server endpoint to connect to</param>
     /// <param name="protection">The protection instance for packet encryption/decryption</param>
-    protected TankiTcpClient(
-        IPEndPoint serverEndPoint,
-        Protection protection)
+    protected TankiTcpClient(IPEndPoint serverEndPoint, Protection protection)
     {
         _serverEndPoint = serverEndPoint;
         _protection = protection;
@@ -68,7 +66,11 @@ public abstract class TankiTcpClient
     /// <param name="packetType">The type of packet that failed</param>
     /// <param name="packetId">The ID of the packet that failed</param>
     /// <param name="exception">The exception that occurred during unwrapping</param>
-    protected abstract Task OnPacketUnwrapFailureAsync(Type packetType, int packetId, Exception exception);
+    protected abstract Task OnPacketUnwrapFailureAsync(
+        Type packetType,
+        int packetId,
+        Exception exception
+    );
 
     /// <summary>
     ///     Sends a packet to the server
@@ -175,6 +177,10 @@ public abstract class TankiTcpClient
                     // Read header bytes
                     var packetLenBytes = new byte[4];
                     var packetIdBytes = new byte[4];
+                    if (_stream is null)
+                    {
+                        throw new Exception("_stream cannot be null");
+                    }
                     await _stream.ReadExactlyAsync(packetLenBytes, 0, 4);
                     await _stream.ReadExactlyAsync(packetIdBytes, 0, 4);
 
@@ -195,10 +201,12 @@ public abstract class TankiTcpClient
                         throw new InvalidOperationException($"Invalid packet length: {packetLen}");
 
                     // Resize raw packet to full length if needed
-                    if (packetLen > 8) Array.Resize(ref rawPacket, packetLen);
+                    if (packetLen > 8)
+                        Array.Resize(ref rawPacket, packetLen);
 
                     // Read packet data if any
-                    if (packetDataLen > 0) await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
+                    if (packetDataLen > 0)
+                        await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
 
                     // Then process the packet normally
                     var encryptedData = new ByteArray();
@@ -211,10 +219,14 @@ public abstract class TankiTcpClient
 
                     await ProcessPacketAsync(packetId, encryptedData, rawPacket);
                 }
-                catch (IOException ex) when (ex.InnerException is SocketException socketEx &&
-                                             (socketEx.SocketErrorCode == SocketError.ConnectionReset ||
-                                              socketEx.SocketErrorCode == SocketError.ConnectionAborted ||
-                                              socketEx.SocketErrorCode == SocketError.OperationAborted))
+                catch (IOException ex)
+                    when (ex.InnerException is SocketException socketEx
+                        && (
+                            socketEx.SocketErrorCode == SocketError.ConnectionReset
+                            || socketEx.SocketErrorCode == SocketError.ConnectionAborted
+                            || socketEx.SocketErrorCode == SocketError.OperationAborted
+                        )
+                    )
                 {
                     // Connection was closed by the remote end
                     break;
@@ -250,7 +262,11 @@ public abstract class TankiTcpClient
         // Handle ActivateProtection packet
         if (ActivateProtection.IdStatic == packetId) // ActivateProtection packet ID
         {
-            var keys = (List<object>)fittedPacket.ObjectByAttributeName["keys"];
+            var keys = (List<object>?)fittedPacket.ObjectByAttributeName["keys"];
+            if (keys is null)
+            {
+                throw new Exception("Failed to activate protection, because keys are null.");
+            }
             var intKeys = keys.Select(k => (byte)k).ToArray();
             _protection.Activate(intKeys);
         }
@@ -272,7 +288,11 @@ public abstract class TankiTcpClient
             return packet;
         }
 
-        var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
+        var currentPacket = (AbstractPacket?)Activator.CreateInstance(packetType);
+        if (currentPacket is null)
+        {
+            throw new Exception("currentPacket cannot be null");
+        }
         try
         {
             currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
@@ -291,3 +311,4 @@ public abstract class TankiTcpClient
         return currentPacket;
     }
 }
+

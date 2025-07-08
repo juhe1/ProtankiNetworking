@@ -1,7 +1,7 @@
+using System.Net.Sockets;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
-using System.Net.Sockets;
 
 namespace ProtankiNetworking.Networking;
 
@@ -13,9 +13,13 @@ public abstract class TankiTcpClientHandler
     protected readonly CancellationToken _cancellationToken;
     protected readonly TcpClient _client;
     protected readonly Protection _protection;
-    private NetworkStream _stream;
+    private NetworkStream? _stream;
 
-    protected TankiTcpClientHandler(TcpClient client, Protection protection, CancellationToken cancellationToken)
+    protected TankiTcpClientHandler(
+        TcpClient client,
+        Protection protection,
+        CancellationToken cancellationToken
+    )
     {
         _client = client;
         _protection = protection;
@@ -66,7 +70,8 @@ public abstract class TankiTcpClientHandler
                         throw new InvalidOperationException($"Invalid packet length: {packetLen}");
 
                     // Resize raw packet to full length if needed
-                    if (packetLen > 8) Array.Resize(ref rawPacket, packetLen);
+                    if (packetLen > 8)
+                        Array.Resize(ref rawPacket, packetLen);
 
                     // Read packet data if any
                     if (packetDataLen > 0)
@@ -88,10 +93,14 @@ public abstract class TankiTcpClientHandler
 
                     await ProcessPacketAsync(packetId, encryptedData, rawPacket);
                 }
-                catch (IOException ex) when (ex.InnerException is SocketException socketEx &&
-                                             (socketEx.SocketErrorCode == SocketError.ConnectionReset ||
-                                              socketEx.SocketErrorCode == SocketError.ConnectionAborted ||
-                                              socketEx.SocketErrorCode == SocketError.OperationAborted))
+                catch (IOException ex)
+                    when (ex.InnerException is SocketException socketEx
+                        && (
+                            socketEx.SocketErrorCode == SocketError.ConnectionReset
+                            || socketEx.SocketErrorCode == SocketError.ConnectionAborted
+                            || socketEx.SocketErrorCode == SocketError.OperationAborted
+                        )
+                    )
                 {
                     // Connection was closed by the remote end
                     break;
@@ -168,7 +177,9 @@ public abstract class TankiTcpClientHandler
             return packet;
         }
 
-        var currentPacket = (AbstractPacket)Activator.CreateInstance(packetType);
+        AbstractPacket? currentPacket = (AbstractPacket?)Activator.CreateInstance(packetType);
+        if (currentPacket is null)
+            throw new Exception("currentPacket cannot be null");
         try
         {
             currentPacket.Unwrap(new EByteArray(packetData.ToArray()));
@@ -178,7 +189,6 @@ public abstract class TankiTcpClientHandler
             _ = OnPacketUnwrapFailureAsync(packetType, packetId, ex);
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
-            unknownPacket.Objects[0] = packetData;
             return unknownPacket;
         }
 
@@ -220,5 +230,10 @@ public abstract class TankiTcpClientHandler
     /// <param name="packetType">The type of packet that failed</param>
     /// <param name="packetId">The ID of the packet that failed</param>
     /// <param name="exception">The exception that occurred during unwrapping</param>
-    protected abstract Task OnPacketUnwrapFailureAsync(Type packetType, int packetId, Exception exception);
+    protected abstract Task OnPacketUnwrapFailureAsync(
+        Type packetType,
+        int packetId,
+        Exception exception
+    );
 }
+

@@ -10,9 +10,7 @@ public class BoolCodec : BaseCodec
     /// <summary>
     ///     Creates a new instance of BoolCodec
     /// </summary>
-    private BoolCodec()
-    {
-    }
+    private BoolCodec() { }
 
     /// <summary>
     ///     Gets the singleton instance of BoolCodec
@@ -24,7 +22,7 @@ public class BoolCodec : BaseCodec
     /// </summary>
     /// <param name="buffer">The buffer to decode from</param>
     /// <returns>The decoded boolean value</returns>
-    public override object? Decode(EByteArray buffer)
+    public override object Decode(EByteArray buffer)
     {
         return buffer.ReadBoolean();
     }
@@ -37,9 +35,11 @@ public class BoolCodec : BaseCodec
     /// <returns>The number of bytes written</returns>
     public override int Encode(object? value, EByteArray buffer)
     {
-        if (value is not bool boolValue) throw new ArgumentException("Value must be a boolean", nameof(value));
+        if (value is not bool boolValue)
+            throw new ArgumentException("Value must be a boolean", nameof(value));
 
         buffer.WriteBoolean(boolValue);
         return 1;
     }
 }
+

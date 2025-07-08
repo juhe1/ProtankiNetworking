@@ -13,13 +13,9 @@ public class NameUnavailable : AbstractPacket
     public override string Description =>
         "Said name is unavailable for registration with a list of alternative suggested usernames";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        VectorStringCodec.Instance
-    };
+    public override BaseCodec[] CodecObjects =>
+        new BaseCodec[] { new VectorCodec(StringCodec.Instance, true) };
 
-    public override string[] Attributes => new[]
-    {
-        "usernames"
-    };
+    public override string[] Attributes => new[] { "usernames" };
 }
+

@@ -35,7 +35,7 @@ public class VectorCodec : BaseCodec
         length = (int)IntCodec.Instance.Decode(buffer);
         Console.WriteLine("Length: " + length);
 
-        var result = new List<object>();
+        var result = new List<object?>();
         for (int i = 0; i < length; i++) result.Add(_elementCodec.Decode(buffer));
 
         return result;

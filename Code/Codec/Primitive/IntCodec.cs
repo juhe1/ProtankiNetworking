@@ -24,7 +24,7 @@ public class IntCodec : BaseCodec
     /// </summary>
     /// <param name="buffer">The buffer to decode from</param>
     /// <returns>The decoded integer value</returns>
-    public override object? Decode(EByteArray buffer)
+    public override object Decode(EByteArray buffer)
     {
         return buffer.ReadInt();
     }

@@ -45,33 +45,34 @@ public class AbstractPacket
     /// <summary>
     ///     The original raw packet data
     /// </summary>
-    public byte[] RawData { get; set; }
+    public byte[] RawData { get; set; } = Array.Empty<byte>();
 
     /// <summary>
     ///     The decrypted packet data (without headers)
     /// </summary>
-    public byte[] DecryptedData { get; set; }
+    public byte[] DecryptedData { get; set; } = Array.Empty<byte>();
 
     /// <summary>
     ///     List of decoded objects
     /// </summary>
-    public List<object> Objects { get; } = new List<object>();
+    public List<object?> Objects { get; } = new();
 
     /// <summary>
     ///     Dictionary containing the packet data
     /// </summary>
-    public Dictionary<string, object> ObjectByAttributeName { get; } = new Dictionary<string, object>();
+    public Dictionary<string, object?> ObjectByAttributeName { get; } = new();
 
     /// <summary>
     ///     Decodes the binary data into individual objects
     /// </summary>
     /// <param name="packetData">The binary data to decode</param>
     /// <returns>Dictionary containing the decoded packet data</returns>
-    public Dictionary<string, object> Unwrap(EByteArray packetData)
+    public Dictionary<string, object?> Unwrap(EByteArray packetData)
     {
         Objects.Clear();
 
-        foreach (var codec in CodecObjects) Objects.Add(codec.Decode(packetData));
+        foreach (var codec in CodecObjects)
+            Objects.Add(codec.Decode(packetData));
 
         return Implement();
     }
@@ -81,24 +82,21 @@ public class AbstractPacket
     /// </summary>
     /// <param name="protection">Optional protection for encrypting the packet data</param>
     /// <returns>Encoded packet data</returns>
-    public EByteArray Wrap(Protection protection = null)
+    public EByteArray Wrap(Protection? protection = null)
     {
         EByteArray packetData;
         var dataLen = HEADER_LEN;
 
-        if (GetType().Name == nameof(AbstractPacket) && Objects.Count == 1)
+        if (this is UnknownPacket)
         {
-            // Unknown packet got its data fitted into an abstractpacket, so we just write back the data
-            var byteArray = (ByteArray)Objects[0];
-            var data = byteArray.ToArray();
-            packetData = new EByteArray(data);
-            dataLen += packetData.Length;
+            throw new Exception("Cannot wrap UnknownPacket");
         }
         else
         {
             packetData = new EByteArray();
             // Encode the objects according to the codecs
-            for (int i = 0; i < CodecObjects.Length; i++) dataLen += CodecObjects[i].Encode(Objects[i], packetData);
+            for (int i = 0; i < CodecObjects.Length; i++)
+                dataLen += CodecObjects[i].Encode(Objects[i], packetData);
         }
 
         var encryptedData = protection?.Encrypt(packetData.ToArray()) ?? packetData.ToArray();
@@ -113,25 +111,13 @@ public class AbstractPacket
     ///     Implements the packet object based on the attribute key list and the decoded object list
     /// </summary>
     /// <returns>Dictionary containing the implemented packet data</returns>
-    protected Dictionary<string, object> Implement()
+    protected Dictionary<string, object?> Implement()
     {
         ObjectByAttributeName.Clear();
-        for (int i = 0; i < Objects.Count; i++) ObjectByAttributeName[Attributes[i]] = Objects[i];
+        for (int i = 0; i < Objects.Count; i++)
+            ObjectByAttributeName[Attributes[i]] = Objects[i];
 
         return ObjectByAttributeName;
-    }
-
-    /// <summary>
-    ///     Breaks down the packet object into a list of encodable objects based on the attribute key list
-    /// </summary>
-    /// <param name="obj">Optional dictionary to deimplement</param>
-    /// <returns>List of objects ready for encoding</returns>
-    protected List<object> Deimplement(Dictionary<string, object> obj = null)
-    {
-        Objects.Clear();
-        foreach (var attribute in Attributes) Objects.Add((obj ?? ObjectByAttributeName)[attribute]);
-
-        return Objects;
     }
 
     /// <summary>
@@ -141,11 +127,11 @@ public class AbstractPacket
     /// <returns>String representation of the packet</returns>
     public string LogRepr(bool direction)
     {
-        string packetName = GetType().Name == nameof(AbstractPacket)
-            ? $"Unknown Packet - ID: {Id}"
-            : GetType().Name;
+        string packetName =
+            GetType().Name == nameof(AbstractPacket)
+                ? $"Unknown Packet - ID: {Id}"
+                : GetType().Name;
 
-        return
-            $"<{(direction ? "IN" : "OUT")}> ({packetName}){(ShouldLog ? "" : " - NoDisp")} | Data: {ObjectByAttributeName}";
+        return $"<{(direction ? "IN" : "OUT")}> ({packetName}){(ShouldLog ? "" : " - NoDisp")} | Data: {ObjectByAttributeName}";
     }
 }

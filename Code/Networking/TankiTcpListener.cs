@@ -1,6 +1,6 @@
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
-using System.Collections.Concurrent;
 
 namespace ProtankiNetworking.Networking;
 
@@ -11,16 +11,14 @@ public abstract class TankiTcpListener
 {
     private readonly ConcurrentDictionary<TcpClient, TankiTcpClientHandler> _activeClients;
     private readonly TcpListener _listener;
-    private Task _acceptClientsTask;
+    private Task? _acceptClientsTask;
     private CancellationTokenSource _cancellationTokenSource;
 
     /// <summary>
     ///     Creates a new instance of TankiTcpListener
     /// </summary>
     /// <param name="localEndPoint">The local endpoint to listen on</param>
-    protected TankiTcpListener(
-        IPEndPoint localEndPoint
-    )
+    protected TankiTcpListener(IPEndPoint localEndPoint)
     {
         _listener = new TcpListener(localEndPoint);
         _cancellationTokenSource = new CancellationTokenSource();
@@ -78,6 +76,7 @@ public abstract class TankiTcpListener
         _activeClients.Clear();
 
         if (_acceptClientsTask != null)
+		{
             try
             {
                 await _acceptClientsTask;
@@ -86,6 +85,7 @@ public abstract class TankiTcpListener
             {
                 // Expected when cancelling
             }
+		}
     }
 
     /// <summary>
@@ -149,6 +149,8 @@ public abstract class TankiTcpListener
     /// <param name="client">The TcpClient instance for the new connection.</param>
     /// <param name="cancellationToken">The cancellation token to signal the handler to stop processing.</param>
     /// <returns>A new TankiTcpClientHandler instance.</returns>
-    protected abstract TankiTcpClientHandler CreateClientHandler(TcpClient client,
-        CancellationToken cancellationToken);
+    protected abstract TankiTcpClientHandler CreateClientHandler(
+        TcpClient client,
+        CancellationToken cancellationToken
+    );
 }

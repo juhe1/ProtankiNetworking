@@ -57,9 +57,10 @@ public class Vector3D
     /// </summary>
     /// <param name="obj">The object to compare with</param>
     /// <returns>True if the objects are equal, false otherwise</returns>
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
-        if (obj is Vector3D other) return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
+        if (obj is Vector3D other)
+            return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
 
         return false;
     }
@@ -73,3 +74,4 @@ public class Vector3D
         return HashCode.Combine(X, Y, Z);
     }
 }
+

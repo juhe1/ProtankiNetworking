@@ -12,9 +12,7 @@ public abstract class CustomBaseCodec : BaseCodec
     ///     Creates a new instance of CustomBaseCodec
     /// </summary>
     /// <param name="buffer">The buffer to use for encoding/decoding</param>
-    protected CustomBaseCodec()
-    {
-    }
+    protected CustomBaseCodec() { }
 
     /// <summary>
     ///     Gets the list of attribute names for this codec
@@ -32,7 +30,7 @@ public abstract class CustomBaseCodec : BaseCodec
     /// <returns>The decoded value</returns>
     public override object? Decode(EByteArray buffer)
     {
-        var result = new Dictionary<string, object>();
+        var result = new Dictionary<string, object?>();
 
         if (BoolShorten)
             if ((bool)BoolCodec.Instance.Decode(buffer))
@@ -57,14 +55,18 @@ public abstract class CustomBaseCodec : BaseCodec
     public override int Encode(object? value, EByteArray buffer)
     {
         if (value is not Dictionary<string, object> dict)
-            throw new ArgumentException("Value must be a Dictionary<string, object>", nameof(value));
+            throw new ArgumentException(
+                "Value must be a Dictionary<string, object>",
+                nameof(value)
+            );
 
         var bytesWritten = 0;
 
         if (BoolShorten)
         {
             bytesWritten += BoolCodec.Instance.Encode(dict.Count == 0, buffer);
-            if (dict.Count == 0) return bytesWritten;
+            if (dict.Count == 0)
+                return bytesWritten;
         }
 
         for (int i = 0; i < CodecObjects.Length; i++)
@@ -77,3 +79,4 @@ public abstract class CustomBaseCodec : BaseCodec
         return bytesWritten;
     }
 }
+

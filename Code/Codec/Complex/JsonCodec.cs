@@ -1,6 +1,6 @@
-using ProtankiNetworking.Utils;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Codec.Complex;
 
@@ -12,9 +12,7 @@ public class JsonCodec : BaseCodec
     /// <summary>
     ///     Creates a new instance of JsonCodec
     /// </summary>
-    private JsonCodec()
-    {
-    }
+    private JsonCodec() { }
 
     /// <summary>
     ///     Gets the singleton instance of JsonCodec
@@ -28,9 +26,10 @@ public class JsonCodec : BaseCodec
     /// <returns>The decoded JSON value</returns>
     public override object? Decode(EByteArray buffer)
     {
-        string jsonString = (string)StringCodec.Instance.Decode(buffer);
+        string? jsonString = (string?)StringCodec.Instance.Decode(buffer);
+        if (jsonString is null)
+            throw new Exception("jsonString cannot be null");
         return JsonNode.Parse(jsonString);
-        ;
     }
 
     /// <summary>

@@ -14,25 +14,33 @@ public static class PacketManager
     {
         // Find all packet types in the ProtankiNetworking assembly
         var assembly = typeof(AbstractPacket).Assembly;
-        var packetTypes = assembly.GetTypes()
+        var packetTypes = assembly
+            .GetTypes()
             .Where(t => t.IsSubclassOf(typeof(AbstractPacket)) && !t.IsAbstract);
 
         foreach (var type in packetTypes)
             try
             {
                 // Get the static Id property
-                var idProperty = type.GetProperty("IdStatic", BindingFlags.Public | BindingFlags.Static);
+                var idProperty = type.GetProperty(
+                    "IdStatic",
+                    BindingFlags.Public | BindingFlags.Static
+                );
                 if (idProperty != null)
                 {
-                    var id = (int)idProperty.GetValue(null);
-                    _packetTypes[id] = type;
+                    int? id = (int?)idProperty.GetValue(null);
+                    if (id is null)
+                        throw new Exception("id cannot be null");
+                    _packetTypes[(int)id] = type;
                     _packetNames[type.Name] = type;
                 }
             }
             catch (Exception ex)
             {
                 // Log error but continue loading other packet types
-                System.Diagnostics.Debug.WriteLine($"Failed to load packet type {type.Name}: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine(
+                    $"Failed to load packet type {type.Name}: {ex.Message}"
+                );
             }
     }
 
@@ -41,7 +49,7 @@ public static class PacketManager
     /// </summary>
     /// <param name="id">The packet ID</param>
     /// <returns>The packet type, or null if not found</returns>
-    public static Type GetPacketById(int id)
+    public static Type? GetPacketById(int id)
     {
         return _packetTypes.TryGetValue(id, out var type) ? type : null;
     }
@@ -51,7 +59,7 @@ public static class PacketManager
     /// </summary>
     /// <param name="name">The packet name</param>
     /// <returns>The packet type, or null if not found</returns>
-    public static Type GetPacketByName(string name)
+    public static Type? GetPacketByName(string name)
     {
         return _packetNames.TryGetValue(name, out var type) ? type : null;
     }
@@ -61,10 +69,10 @@ public static class PacketManager
     /// </summary>
     /// <param name="id">The packet ID</param>
     /// <returns>A new packet instance, or null if not found</returns>
-    public static AbstractPacket CreatePacketById(int id)
+    public static AbstractPacket? CreatePacketById(int id)
     {
         var type = GetPacketById(id);
-        return type != null ? (AbstractPacket)Activator.CreateInstance(type) : null;
+        return type != null ? (AbstractPacket?)Activator.CreateInstance(type) : null;
     }
 
     /// <summary>
@@ -72,9 +80,10 @@ public static class PacketManager
     /// </summary>
     /// <param name="name">The packet name</param>
     /// <returns>A new packet instance, or null if not found</returns>
-    public static AbstractPacket CreatePacketByName(string name)
+    public static AbstractPacket? CreatePacketByName(string name)
     {
         var type = GetPacketByName(name);
-        return type != null ? (AbstractPacket)Activator.CreateInstance(type) : null;
+        return type != null ? (AbstractPacket?)Activator.CreateInstance(type) : null;
     }
 }
+
