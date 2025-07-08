@@ -3,22 +3,20 @@ using ProtankiNetworking.Codec.Primitive;
 using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
 
-namespace ProtankiNetworking.Packets.Turrets
+namespace ProtankiNetworking.Packets.BattleInfo
 {
     /// <summary>
-    /// Firebird starts shooting
+    /// Packet to indicate that the battle TDM object has been loaded (post event).
     /// </summary>
-    public class FireStartOut : AbstractPacket
+    public class BattleTDMObjectLoadedPost : AbstractPacket
     {
-        public static int Id { get; } = -1986638927;
-        public override string Description => "Firebird starts shooting";
+        public static int Id { get; } = 183561709;
+        public override string Description => "Indicates that the battle TDM object has been loaded (post event)";
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
-            IntCodec.Instance,
         };
         public override string[] Attributes => new string[]
         {
-            "clientTime",
         };
     }
-}
+} 

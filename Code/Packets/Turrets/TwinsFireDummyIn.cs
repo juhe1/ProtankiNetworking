@@ -6,19 +6,21 @@ using ProtankiNetworking.Codec;
 namespace ProtankiNetworking.Packets.Turrets
 {
     /// <summary>
-    /// Firebird stops shooting
+    /// Packet for sending Twins fire dummy event.
     /// </summary>
-    public class FireEndOut : AbstractPacket
+    public class TwinsFireDummyIn : AbstractPacket
     {
-        public static int Id { get; } = -1300958299;
-        public override string Description => "Firebird stops shooting";
+        public static int Id { get; } = -328554480;
+        public override string Description => "Send Twins fire dummy event";
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
-            IntCodec.Instance,
+            StringCodec.Instance, // shooter
+            ByteCodec.Instance, // fireType
         };
         public override string[] Attributes => new string[]
         {
-            "clientTime",
+            "shooter",
+            "fireType",
         };
     }
-}
+} 

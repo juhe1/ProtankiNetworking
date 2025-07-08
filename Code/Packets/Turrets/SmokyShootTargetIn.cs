@@ -6,9 +6,9 @@ using ProtankiNetworking.Codec;
 namespace ProtankiNetworking.Packets.Turrets
 {
     /// <summary>
-    /// Smokey Shoot in
+    /// Packet for sending Smoky shoot target information.
     /// </summary>
-    public class SmokyShotIn : AbstractPacket
+    public class SmokyShootTargetIn : AbstractPacket
     {
         public static int Id { get; } = -1334002026;
         public override string Description => "Smokey Shoot in";

@@ -16,11 +16,11 @@ namespace ProtankiNetworking.Packets.Turrets
         {
             IntCodec.Instance,
             Vector3DCodec.Instance,
-            VectorStringCodec.Instance,
-            VectorVector3DCodec.Instance,
-            VectorShortCodec.Instance,
-            VectorVector3DCodec.Instance,
-            VectorVector3DCodec.Instance,
+            new VectorCodec(StringCodec.Instance, true),
+            new VectorCodec(Vector3DCodec.Instance, true),
+            new VectorCodec(ShortCodec.Instance, true),
+            new VectorCodec(Vector3DCodec.Instance, true),
+            new VectorCodec(Vector3DCodec.Instance, true),
         };
         public override string[] Attributes => new string[]
         {

@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     /// <summary>
     /// Shot direction
     /// </summary>
-    public class ShotDirection : AbstractPacket
+    public class RicochetFireIn : AbstractPacket
     {
         public static int Id { get; } = -118119523;
         public override string Description => "Shot direction";

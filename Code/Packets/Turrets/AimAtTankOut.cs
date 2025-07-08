@@ -1,0 +1,25 @@
+using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec;
+
+namespace ProtankiNetworking.Packets.Turrets
+{
+    /// <summary>
+    /// Packet for aiming at a tank (targetTank, localSpotPosition).
+    /// </summary>
+    public class AimAtTankOut : AbstractPacket
+    {
+        public static int Id { get; } = -1517837003;
+        public override string Description => "Aim at tank out (targetTank, localSpotPosition)";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
+        {
+            StringCodec.Instance, // targetTank
+            Vector3DCodec.Instance, // localSpotPosition
+        };
+        public override string[] Attributes => new string[]
+        {
+            "targetTank",
+            "localSpotPosition",
+        };
+    }
+} 

@@ -8,17 +8,17 @@ namespace ProtankiNetworking.Packets.Turrets
     /// <summary>
     /// Firebird attack
     /// </summary>
-    public class FireDamage : AbstractPacket
+    public class FlamethrowerDamage : AbstractPacket
     {
         public static int Id { get; } = 1395251766;
         public override string Description => "Firebird attack";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
+        public override ICodec[] CodecObjects => new ICodec[]
         {
             IntCodec.Instance,
-            VectorStringCodec.Instance,
-            VectorShortCodec.Instance,
-            VectorVector3DCodec.Instance,
-            VectorVector3DCodec.Instance,
+            new VectorCodec(StringCodec.Instance, true),
+            new VectorCodec(ShortCodec.Instance, true),
+            new VectorCodec(Vector3DCodec.Instance, true),
+            new VectorCodec(Vector3DCodec.Instance, true),
         };
         public override string[] Attributes => new string[]
         {

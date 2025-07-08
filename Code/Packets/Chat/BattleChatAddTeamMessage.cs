@@ -1,0 +1,28 @@
+using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.Codec;
+
+namespace ProtankiNetworking.Packets.Chat
+{
+    /// <summary>
+    /// Packet for adding a team message to battle chat (userId, message, team).
+    /// </summary>
+    public class BattleChatAddTeamMessage : AbstractPacket
+    {
+        public static int Id { get; } = -449356094;
+        public override string Description => "Battle chat add team message (userId, message, team)";
+        public override BaseCodec[] CodecObjects => new BaseCodec[]
+        {
+            StringCodec.Instance, // userId
+            StringCodec.Instance, // message
+            BattleTeamCodec.Instance, // team
+        };
+        public override string[] Attributes => new string[]
+        {
+            "userId",
+            "message",
+            "team",
+        };
+    }
+} 
