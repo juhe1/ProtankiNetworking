@@ -1,26 +1,25 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Complex;
 
-namespace ProtankiNetworking.Packets.BattleMechanics
+namespace ProtankiNetworking.Packets.BattleMechanics;
+
+/// <summary>
+///     Shot Effect Applied
+/// </summary>
+public class ShotEffectApplied : AbstractPacket
 {
-    /// <summary>
-    /// Shot Effect Applied
-    /// </summary>
-    public class ShotEffectApplied : AbstractPacket
+    public static int Id { get; } = 546849203;
+    public override string Description => "Shot Effect Applied";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = 546849203;
-        public override string Description => "Shot Effect Applied";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            StringCodec.Instance,
-            Vector3DCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "shooter",
-            "hitPoint",
-        };
-    }
+        StringCodec.Instance,
+        Vector3DCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "shooter",
+        "hitPoint"
+    };
 }

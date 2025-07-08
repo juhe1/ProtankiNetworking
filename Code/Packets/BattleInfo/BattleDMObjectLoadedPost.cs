@@ -12,4 +12,4 @@ namespace ProtankiNetworking.Packets.BattleInfo
         public override BaseCodec[] CodecObjects => new BaseCodec[] { };
         public override string[] Attributes => new string[] { };
     }
-} 
+}

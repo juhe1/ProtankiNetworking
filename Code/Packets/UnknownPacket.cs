@@ -1,27 +1,26 @@
 using ProtankiNetworking.Utils;
 
-namespace ProtankiNetworking.Packets
+namespace ProtankiNetworking.Packets;
+
+/// <summary>
+///     Represents a packet with an unknown type
+/// </summary>
+public class UnknownPacket : AbstractPacket
 {
-    /// <summary>
-    /// Represents a packet with an unknown type
-    /// </summary>
-    public class UnknownPacket : AbstractPacket
+    public UnknownPacket()
     {
-        /// <summary>
-        /// The raw packet data
-        /// </summary>
-        public ByteArray RawData => (ByteArray)Objects[0];
-
-        /// <summary>
-        /// The ID of the unknown packet
-        /// </summary>
-        public int PacketId => Id;
-
-        public UnknownPacket()
-        {
-            // Set up the packet to store raw data
-            Objects.Add(new ByteArray());
-            ObjectByAttributeName["data"] = Objects[0];
-        }
+        // Set up the packet to store raw data
+        Objects.Add(new ByteArray());
+        ObjectByAttributeName["data"] = Objects[0];
     }
-} 
+
+    /// <summary>
+    ///     The raw packet data
+    /// </summary>
+    public ByteArray RawData => (ByteArray)Objects[0];
+
+    /// <summary>
+    ///     The ID of the unknown packet
+    /// </summary>
+    public int PacketId => Id;
+}

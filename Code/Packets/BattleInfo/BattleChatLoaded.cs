@@ -12,11 +12,13 @@ namespace ProtankiNetworking.Packets.BattleInfo
     {
         public static int Id { get; } = -643105296;
         public override string Description => "Indicates that the battle chat has loaded";
+
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
         };
+
         public override string[] Attributes => new string[]
         {
         };
     }
-} 
+}

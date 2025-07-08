@@ -12,10 +12,12 @@ namespace ProtankiNetworking.Packets.BattleInfo
     {
         public static int Id { get; } = 1149211509;
         public override string Description => "Battle fund";
+
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             IntCodec.Instance,
         };
+
         public override string[] Attributes => new string[]
         {
             "fund",

@@ -1,15 +1,14 @@
 using ProtankiNetworking.Codec;
 
-namespace ProtankiNetworking.Packets.Lobby
+namespace ProtankiNetworking.Packets.Lobby;
+
+/// <summary>
+///     Packet for requesting or sending the next tip (no attributes).
+/// </summary>
+public class NextTip : AbstractPacket
 {
-    /// <summary>
-    /// Packet for requesting or sending the next tip (no attributes).
-    /// </summary>
-    public class NextTip : AbstractPacket
-    {
-        public static int Id { get; } = -1376947245;
-        public override string Description => "Next tip (no attributes)";
-        public override BaseCodec[] CodecObjects => new BaseCodec[] { };
-        public override string[] Attributes => new string[] { };
-    }
+    public static int Id { get; } = -1376947245;
+    public override string Description => "Next tip (no attributes)";
+    public override BaseCodec[] CodecObjects => new BaseCodec[] { };
+    public override string[] Attributes => new string[] { };
 }

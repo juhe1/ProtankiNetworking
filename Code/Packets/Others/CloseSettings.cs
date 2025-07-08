@@ -1,24 +1,23 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProtankiNetworking.Packets.Others
+namespace ProtankiNetworking.Packets.Others;
+
+/// <summary>
+///     Close settings modal
+/// </summary>
+public class CloseSettings : AbstractPacket
 {
-    /// <summary>
-    /// Close settings modal
-    /// </summary>
-    public class CloseSettings : AbstractPacket
+    public static int Id { get; } = -731115522;
+    public override string Description => "Close settings modal";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = -731115522;
-        public override string Description => "Close settings modal";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            BoolCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "close_state",
-        };
-    }
+        BoolCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "close_state"
+    };
 }

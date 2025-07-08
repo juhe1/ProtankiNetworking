@@ -1,28 +1,28 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProtankiNetworking.Packets.BattleMechanics
+namespace ProtankiNetworking.Packets.BattleMechanics;
+
+/// <summary>
+///     Sends current turret rotation data to the server
+/// </summary>
+public class TurretRotation : AbstractPacket
 {
-    /// <summary>
-    /// Sends current turret rotation data to the server
-    /// </summary>
-    public class TurretRotation : AbstractPacket
+    public static int Id { get; } = -114968993;
+    public override string Description => "Sends current turret rotation data to the server";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = -114968993;
-        public override string Description => "Sends current turret rotation data to the server";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            IntCodec.Instance,
-            TurretRotateCodec.Instance,
-            ShortCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "clientTime",
-            "turretRotation",
-            "incarnationID",
-        };
-    }
+        IntCodec.Instance,
+        TurretRotateCodec.Instance,
+        ShortCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "clientTime",
+        "turretRotation",
+        "incarnationID"
+    };
 }

@@ -1,24 +1,23 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Complex;
 
-namespace ProtankiNetworking.Packets.Turrets
+namespace ProtankiNetworking.Packets.Turrets;
+
+/// <summary>
+///     Freeze stop fire event.
+/// </summary>
+public class FreezeStopFireIn : AbstractPacket
 {
-    /// <summary>
-    /// Freeze stop fire event.
-    /// </summary>
-    public class FreezeStopFireIn : AbstractPacket
+    public static int Id { get; } = 979099084;
+    public override string Description => "Freeze stop fire event";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = 979099084;
-        public override string Description => "Freeze stop fire event";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            StringCodec.Instance, // shooterId
-        };
-        public override string[] Attributes => new string[]
-        {
-            "shooterId",
-        };
-    }
-} 
+        StringCodec.Instance // shooterId
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "shooterId"
+    };
+}

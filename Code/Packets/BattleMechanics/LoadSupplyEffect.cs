@@ -1,24 +1,23 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Complex;
 
-namespace ProtankiNetworking.Packets.BattleMechanics
+namespace ProtankiNetworking.Packets.BattleMechanics;
+
+/// <summary>
+///     Load Current Supply Effect
+/// </summary>
+public class LoadSupplyEffect : AbstractPacket
 {
-    /// <summary>
-    /// Load Current Supply Effect
-    /// </summary>
-    public class LoadSupplyEffect : AbstractPacket
+    public static int Id { get; } = 417965410;
+    public override string Description => "Load Current Supply Effect";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = 417965410;
-        public override string Description => "Load Current Supply Effect";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            StringCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "json",
-        };
-    }
+        StringCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "json"
+    };
 }

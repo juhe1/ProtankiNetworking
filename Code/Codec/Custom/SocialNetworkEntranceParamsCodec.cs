@@ -1,21 +1,19 @@
-using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
 
-namespace ProtankiNetworking.Codec.Custom
+namespace ProtankiNetworking.Codec.Custom;
+
+/// <summary>
+///     Codec for social network entrance parameters.
+/// </summary>
+public class SocialNetworkEntranceParamsCodec : CustomBaseCodec
 {
-    /// <summary>
-    /// Codec for social network entrance parameters.
-    /// </summary>
-    public class SocialNetworkEntranceParamsCodec : CustomBaseCodec
-    {
-        public static SocialNetworkEntranceParamsCodec Instance { get; } = new SocialNetworkEntranceParamsCodec();
+    public static SocialNetworkEntranceParamsCodec Instance { get; } = new();
 
-        protected override string[] Attributes => new[] { "authorizationUrl", "snId" };
-        protected override ICodec[] CodecObjects => new ICodec[]
-        {
-            StringCodec.Instance,
-            StringCodec.Instance,
-        };
-    }
-} 
+    protected override string[] Attributes => new[] { "authorizationUrl", "snId" };
+
+    protected override ICodec[] CodecObjects => new ICodec[]
+    {
+        StringCodec.Instance,
+        StringCodec.Instance
+    };
+}

@@ -1,36 +1,36 @@
+using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
 using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec;
 
-namespace ProtankiNetworking.Packets.Turrets
+namespace ProtankiNetworking.Packets.Turrets;
+
+/// <summary>
+///     Sends server details about a released Shaft scope shot
+/// </summary>
+public class ShaftScopeOut : AbstractPacket
 {
-    /// <summary>
-    /// Sends server details about a released Shaft scope shot
-    /// </summary>
-    public class ShaftScopeOut : AbstractPacket
+    public static int Id { get; } = 1632423559;
+    public override string Description => "Sends server details about a released Shaft scope shot";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = 1632423559;
-        public override string Description => "Sends server details about a released Shaft scope shot";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            IntCodec.Instance,
-            Vector3DCodec.Instance,
-            new VectorCodec(StringCodec.Instance, true),
-            new VectorCodec(Vector3DCodec.Instance, true),
-            new VectorCodec(ShortCodec.Instance, true),
-            new VectorCodec(Vector3DCodec.Instance, true),
-            new VectorCodec(Vector3DCodec.Instance, true),
-        };
-        public override string[] Attributes => new string[]
-        {
-            "clientTime",
-            "staticHitPoint",
-            "targets",
-            "targetHitPoints",
-            "incarnationIDs",
-            "targetBodyPositions",
-            "globalHitPoints",
-        };
-    }
+        IntCodec.Instance,
+        Vector3DCodec.Instance,
+        new VectorCodec(StringCodec.Instance, true),
+        new VectorCodec(Vector3DCodec.Instance, true),
+        new VectorCodec(ShortCodec.Instance, true),
+        new VectorCodec(Vector3DCodec.Instance, true),
+        new VectorCodec(Vector3DCodec.Instance, true)
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "clientTime",
+        "staticHitPoint",
+        "targets",
+        "targetHitPoints",
+        "incarnationIDs",
+        "targetBodyPositions",
+        "globalHitPoints"
+    };
 }

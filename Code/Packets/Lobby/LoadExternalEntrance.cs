@@ -1,24 +1,24 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Complex;
+using ProtankiNetworking.Codec.Custom;
 
-namespace ProtankiNetworking.Packets.Lobby
+namespace ProtankiNetworking.Packets.Lobby;
+
+/// <summary>
+///     Loads external entrance data, containing a vector of social network entrance params.
+/// </summary>
+public class LoadExternalEntrance : AbstractPacket
 {
-    /// <summary>
-    /// Loads external entrance data, containing a vector of social network entrance params.
-    /// </summary>
-    public class LoadExternalEntrance : AbstractPacket
+    public static int Id { get; } = -1715719586;
+    public override string Description => "Load external entrance data.";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = -1715719586;
-        public override string Description => "Load external entrance data.";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            new VectorCodec(SocialNetworkEntranceParamsCodec.Instance, false),
-        };
-        public override string[] Attributes => new string[]
-        {
-            "socialNetworkEntranceParams",
-        };
-    }
-} 
+        new VectorCodec(SocialNetworkEntranceParamsCodec.Instance, false)
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "socialNetworkEntranceParams"
+    };
+}

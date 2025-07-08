@@ -1,26 +1,25 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Complex;
 
-namespace ProtankiNetworking.Packets.Chat
+namespace ProtankiNetworking.Packets.Chat;
+
+/// <summary>
+///     Sends a chat message to the lobby
+/// </summary>
+public class SendLobbyChat : AbstractPacket
 {
-    /// <summary>
-    /// Sends a chat message to the lobby
-    /// </summary>
-    public class SendLobbyChat : AbstractPacket
+    public static int Id { get; } = 705454610;
+    public override string Description => "Sends a chat message to the lobby";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = 705454610;
-        public override string Description => "Sends a chat message to the lobby";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            StringCodec.Instance,
-            StringCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "username",
-            "message",
-        };
-    }
+        StringCodec.Instance,
+        StringCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "username",
+        "message"
+    };
 }

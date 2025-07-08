@@ -1,28 +1,25 @@
-using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
 
-namespace ProtankiNetworking.Codec.Custom
+namespace ProtankiNetworking.Codec.Custom;
+
+/// <summary>
+///     Codec for BonusRegionData (position, rotation, regionType).
+/// </summary>
+public class BonusRegionDataCodec : CustomBaseCodec
 {
-    /// <summary>
-    /// Codec for BonusRegionData (position, rotation, regionType).
-    /// </summary>
-    public class BonusRegionDataCodec : CustomBaseCodec
+    public static BonusRegionDataCodec Instance { get; } = new();
+
+    protected override string[] Attributes => new[]
     {
-        public static BonusRegionDataCodec Instance { get; } = new BonusRegionDataCodec();
+        "position",
+        "rotation",
+        "regionType"
+    };
 
-        protected override string[] Attributes => new[]
-        {
-            "position",
-            "rotation",
-            "regionType"
-        };
-
-        protected override ICodec[] CodecObjects => new ICodec[]
-        {
-            Vector3DCodec.Instance, // position
-            Vector3DCodec.Instance, // rotation
-            BonusesTypeCodec.Instance, // regionType
-        };
-    }
-} 
+    protected override ICodec[] CodecObjects => new ICodec[]
+    {
+        Vector3DCodec.Instance, // position
+        Vector3DCodec.Instance, // rotation
+        BonusesTypeCodec.Instance // regionType
+    };
+}

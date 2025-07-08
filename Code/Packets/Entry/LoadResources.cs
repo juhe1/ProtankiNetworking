@@ -1,26 +1,26 @@
+using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
 using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec;
 
-namespace ProtankiNetworking.Packets.Entry
+namespace ProtankiNetworking.Packets.Entry;
+
+/// <summary>
+///     Server tells us what resources to load
+/// </summary>
+public class LoadResources : AbstractPacket
 {
-    /// <summary>
-    /// Server tells us what resources to load
-    /// </summary>
-    public class LoadResources : AbstractPacket
+    public static int Id { get; } = -1797047325;
+    public override string Description => "Server tells us what resources to load";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = -1797047325;
-        public override string Description => "Server tells us what resources to load";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            JsonCodec.Instance,
-            IntCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "json",
-            "callbackID",
-        };
-    }
+        JsonCodec.Instance,
+        IntCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "json",
+        "callbackID"
+    };
 }

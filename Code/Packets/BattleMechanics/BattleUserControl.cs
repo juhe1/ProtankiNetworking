@@ -12,11 +12,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics
     {
         public static int Id { get; } = -301298508;
         public override string Description => "Battle user control packet";
+
         public override BaseCodec[] CodecObjects => new BaseCodec[]
         {
             StringCodec.Instance,
             ByteCodec.Instance,
         };
+
         public override string[] Attributes => new string[]
         {
             "tankiId",

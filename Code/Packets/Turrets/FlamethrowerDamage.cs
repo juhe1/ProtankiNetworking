@@ -1,32 +1,32 @@
+using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
 using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec;
 
-namespace ProtankiNetworking.Packets.Turrets
+namespace ProtankiNetworking.Packets.Turrets;
+
+/// <summary>
+///     Firebird attack
+/// </summary>
+public class FlamethrowerDamage : AbstractPacket
 {
-    /// <summary>
-    /// Firebird attack
-    /// </summary>
-    public class FlamethrowerDamage : AbstractPacket
+    public static int Id { get; } = 1395251766;
+    public override string Description => "Firebird attack";
+
+    public override ICodec[] CodecObjects => new ICodec[]
     {
-        public static int Id { get; } = 1395251766;
-        public override string Description => "Firebird attack";
-        public override ICodec[] CodecObjects => new ICodec[]
-        {
-            IntCodec.Instance,
-            new VectorCodec(StringCodec.Instance, true),
-            new VectorCodec(ShortCodec.Instance, true),
-            new VectorCodec(Vector3DCodec.Instance, true),
-            new VectorCodec(Vector3DCodec.Instance, true),
-        };
-        public override string[] Attributes => new string[]
-        {
-            "clientTime",
-            "targets",
-            "incarnationIDs",
-            "targetBodyPositions",
-            "targetHitPoints",
-        };
-    }
+        IntCodec.Instance,
+        new VectorCodec(StringCodec.Instance, true),
+        new VectorCodec(ShortCodec.Instance, true),
+        new VectorCodec(Vector3DCodec.Instance, true),
+        new VectorCodec(Vector3DCodec.Instance, true)
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "clientTime",
+        "targets",
+        "incarnationIDs",
+        "targetBodyPositions",
+        "targetHitPoints"
+    };
 }

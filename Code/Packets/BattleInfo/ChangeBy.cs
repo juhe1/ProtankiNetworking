@@ -1,24 +1,23 @@
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProtankiNetworking.Packets.BattleInfo
+namespace ProtankiNetworking.Packets.BattleInfo;
+
+/// <summary>
+///     Change By
+/// </summary>
+public class ChangeBy : AbstractPacket
 {
-    /// <summary>
-    /// Change By
-    /// </summary>
-    public class ChangeBy : AbstractPacket
+    public static int Id { get; } = -593513288;
+    public override string Description => "Change By";
+
+    public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        public static int Id { get; } = -593513288;
-        public override string Description => "Change By";
-        public override BaseCodec[] CodecObjects => new BaseCodec[]
-        {
-            IntCodec.Instance,
-        };
-        public override string[] Attributes => new string[]
-        {
-            "changeBy",
-        };
-    }
+        IntCodec.Instance
+    };
+
+    public override string[] Attributes => new[]
+    {
+        "changeBy"
+    };
 }

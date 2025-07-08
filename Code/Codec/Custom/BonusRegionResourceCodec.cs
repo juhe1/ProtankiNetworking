@@ -1,27 +1,23 @@
-using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Utils;
 
-namespace ProtankiNetworking.Codec.Custom
+namespace ProtankiNetworking.Codec.Custom;
+
+/// <summary>
+///     Codec for BonusRegionResource structure used in bonus regions configuration.
+/// </summary>
+public class BonusRegionResourceCodec : CustomBaseCodec
 {
-    /// <summary>
-    /// Codec for BonusRegionResource structure used in bonus regions configuration.
-    /// </summary>
-    public class BonusRegionResourceCodec : CustomBaseCodec
+    public static BonusRegionResourceCodec Instance { get; } = new();
+
+    protected override string[] Attributes => new[]
     {
-        public static BonusRegionResourceCodec Instance { get; } = new BonusRegionResourceCodec();
+        "dropZoneResource",
+        "regionType"
+    };
 
-        protected override string[] Attributes => new[]
-        {
-            "dropZoneResource",
-            "regionType"
-        };
-
-        protected override ICodec[] CodecObjects => new ICodec[]
-        {
-            IntCodec.Instance, // dropZoneResource (ResourceGetterCodec)
-            BonusesTypeCodec.Instance, // regionType
-        };
-    }
-} 
+    protected override ICodec[] CodecObjects => new ICodec[]
+    {
+        IntCodec.Instance, // dropZoneResource (ResourceGetterCodec)
+        BonusesTypeCodec.Instance // regionType
+    };
+}

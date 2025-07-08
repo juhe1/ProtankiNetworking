@@ -1,36 +1,32 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
 using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Utils;
+using ProtankiNetworking.Codec.Primitive;
 
-namespace ProtankiNetworking.Codec.Custom
+namespace ProtankiNetworking.Codec.Custom;
+
+/// <summary>
+///     Codec for UserInfo structure used in team statistics.
+/// </summary>
+public class UserInfoCodec : CustomBaseCodec
 {
-    /// <summary>
-    /// Codec for UserInfo structure used in team statistics.
-    /// </summary>
-    public class UserInfoCodec : CustomBaseCodec
+    public static UserInfoCodec Instance { get; } = new();
+
+    protected override string[] Attributes => new[]
     {
-        public static UserInfoCodec Instance { get; } = new UserInfoCodec();
+        "chatModeratorLevel",
+        "deaths",
+        "kills",
+        "rank",
+        "score",
+        "uid"
+    };
 
-        protected override string[] Attributes => new[]
-        {
-            "chatModeratorLevel",
-            "deaths",
-            "kills",
-            "rank",
-            "score",
-            "uid"
-        };
-
-        protected override ICodec[] CodecObjects => new ICodec[]
-        {
-            ChatModeratorLevelCodec.Instance, // chatModeratorLevel
-            IntCodec.Instance, // deaths
-            IntCodec.Instance, // kills
-            ByteCodec.Instance, // rank
-            IntCodec.Instance, // score
-            StringCodec.Instance, // uid
-        };
-    }
-} 
+    protected override ICodec[] CodecObjects => new ICodec[]
+    {
+        ChatModeratorLevelCodec.Instance, // chatModeratorLevel
+        IntCodec.Instance, // deaths
+        IntCodec.Instance, // kills
+        ByteCodec.Instance, // rank
+        IntCodec.Instance, // score
+        StringCodec.Instance // uid
+    };
+}
