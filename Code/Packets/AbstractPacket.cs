@@ -20,7 +20,7 @@ public class AbstractPacket
     /// <summary>
     ///     Packet identifier
     /// </summary>
-    public virtual int Id => 0;
+    public virtual int Id {get; set;} = 0;
 
     /// <summary>
     ///     Description of the packet

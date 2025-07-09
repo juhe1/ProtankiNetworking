@@ -1,3 +1,5 @@
+using System.Reflection.Emit;
+
 namespace ProtankiNetworking.Packets;
 
 /// <summary>
@@ -6,10 +8,5 @@ namespace ProtankiNetworking.Packets;
 public class UnknownPacket : AbstractPacket
 {
     public UnknownPacket() { }
-
-    /// <summary>
-    ///     The ID of the unknown packet
-    /// </summary>
-    public int PacketId => Id;
 }
 
