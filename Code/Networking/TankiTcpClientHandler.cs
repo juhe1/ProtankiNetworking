@@ -173,6 +173,7 @@ public abstract class TankiTcpClientHandler
         if (packetType == null)
         {
             var packet = new UnknownPacket();
+            packet.Id = packetId;
             return packet;
         }
 
@@ -188,6 +189,7 @@ public abstract class TankiTcpClientHandler
             _ = OnPacketUnwrapFailureAsync(packetType, packetId, ex);
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
+            unknownPacket.Id = packetId;
             return unknownPacket;
         }
 

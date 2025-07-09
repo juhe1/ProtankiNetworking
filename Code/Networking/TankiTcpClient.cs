@@ -284,6 +284,7 @@ public abstract class TankiTcpClient
         if (packetType == null)
         {
             var packet = new UnknownPacket();
+            packet.Id = packetId;
             return packet;
         }
 
@@ -303,6 +304,7 @@ public abstract class TankiTcpClient
 
             // Create an unknown packet instead
             var unknownPacket = new UnknownPacket();
+            unknownPacket.Id = packetId;
             return unknownPacket;
         }
 
