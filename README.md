@@ -21,7 +21,7 @@ The library provides three main components for TCP networking:
 ```csharp
 public class MyTankiServer : TankiTcpListener
 {
-    public MyTankiServer(IPEndPoint localEndPoint, CProtection protection) 
+    public MyTankiServer(IPEndPoint localEndPoint, Protection protection) 
         : base(localEndPoint, protection)
     {
     }
@@ -52,7 +52,7 @@ public class MyClientHandler : TankiTcpClientHandler
 {
     public MyClientHandler(
         TcpClient client, 
-        CProtection protection, 
+        Protection protection, 
         CancellationToken cancellationToken) 
         : base(client, protection, cancellationToken)
     {
@@ -80,7 +80,7 @@ public class MyClientHandler : TankiTcpClientHandler
 ```csharp
 public class MyTankiClient : TankiTcpClient
 {
-    public MyTankiClient(IPEndPoint serverEndPoint, CProtection protection) 
+    public MyTankiClient(IPEndPoint serverEndPoint, Protection protection) 
         : base(serverEndPoint, protection)
     {
     }
@@ -103,7 +103,7 @@ public class MyTankiClient : TankiTcpClient
 
 // Usage:
 var endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
-var protection = new CProtection(); // Configure protection as needed
+var protection = new Protection(); // Configure protection as needed
 var client = new MyTankiClient(endPoint, protection);
 await client.ConnectAsync();
 ```
