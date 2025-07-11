@@ -38,11 +38,6 @@ public class AbstractPacket
     public virtual string[] Attributes => Array.Empty<string>();
 
     /// <summary>
-    ///     Whether the packet should be logged
-    /// </summary>
-    public virtual bool ShouldLog => true;
-
-    /// <summary>
     ///     The original raw packet data
     /// </summary>
     public byte[] RawData { get; set; } = Array.Empty<byte>();
@@ -118,20 +113,5 @@ public class AbstractPacket
             ObjectByAttributeName[Attributes[i]] = Objects[i];
 
         return ObjectByAttributeName;
-    }
-
-    /// <summary>
-    ///     Returns a string representation of the packet for logging purposes
-    /// </summary>
-    /// <param name="direction">True for incoming packets, false for outgoing</param>
-    /// <returns>String representation of the packet</returns>
-    public string LogRepr(bool direction)
-    {
-        string packetName =
-            GetType().Name == nameof(AbstractPacket)
-                ? $"Unknown Packet - ID: {Id}"
-                : GetType().Name;
-
-        return $"<{(direction ? "IN" : "OUT")}> ({packetName}){(ShouldLog ? "" : " - NoDisp")} | Data: {ObjectByAttributeName}";
     }
 }
