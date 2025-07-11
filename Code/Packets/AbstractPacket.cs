@@ -50,7 +50,7 @@ public class AbstractPacket
     /// <summary>
     ///     List of decoded objects
     /// </summary>
-    public List<object?> Objects { get; } = new();
+    protected List<object?> Objects { get; } = new();
 
     /// <summary>
     ///     Dictionary containing the packet data
@@ -113,5 +113,33 @@ public class AbstractPacket
             ObjectByAttributeName[Attributes[i]] = Objects[i];
 
         return ObjectByAttributeName;
+    }
+
+    /// <summary>
+    ///     Gets the object by attribute name
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute</param>
+    /// <returns>The object for the specified attribute name, or null if not found</returns>
+    public object? GetObjectByAttributeName(string attributeName)
+    {
+        ObjectByAttributeName.TryGetValue(attributeName, out var value);
+        return value;
+    }
+
+    /// <summary>
+    ///     Sets the object by attribute name
+    /// </summary>
+    /// <param name="attributeName">The name of the attribute</param>
+    /// <param name="value">The value to set</param>
+    /// <returns>True if set successfully, false if attribute name is not found</returns>
+    public bool SetObjectByAttributeName(string attributeName, object? value)
+    {
+        if (!ObjectByAttributeName.ContainsKey(attributeName))
+            return false;
+        ObjectByAttributeName[attributeName] = value;
+        var index = Array.IndexOf(Attributes, attributeName);
+        if (index >= 0 && index < Objects.Count)
+            Objects[index] = value;
+        return true;
     }
 }
