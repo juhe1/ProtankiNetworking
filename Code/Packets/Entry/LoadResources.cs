@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadResources : AbstractPacket
 {
-    public const int IdStatic = -1797047325;
+    public static int IdStatic { get; } = -1797047325;
     public override int Id => IdStatic;
     public override string Description => "Server tells us what resources to load";
 

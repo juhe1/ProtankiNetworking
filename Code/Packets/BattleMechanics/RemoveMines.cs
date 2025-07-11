@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RemoveMines : AbstractPacket
 {
-    public const int IdStatic = -1200619383;
+    public static int IdStatic { get; } = -1200619383;
     public override int Id => IdStatic;
     public override string Description => "Remove mines (ownerId)";
 

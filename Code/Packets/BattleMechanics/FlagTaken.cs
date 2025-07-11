@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class FlagTaken : AbstractPacket
 {
-    public const int IdStatic = -1282406496;
+    public static int IdStatic { get; } = -1282406496;
     public override int Id => IdStatic;
     public override string Description => "Flag taken by tank";
 

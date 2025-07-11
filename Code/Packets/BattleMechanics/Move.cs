@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class Move : AbstractPacket
 {
-    public const int IdStatic = 329279865;
+    public static int IdStatic { get; } = 329279865;
     public override int Id => IdStatic;
     public override string Description => "Sends your movement data to the server";
 

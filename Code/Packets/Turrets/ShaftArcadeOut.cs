@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftArcadeOut : AbstractPacket
 {
-    public const int IdStatic = -2030760866;
+    public static int IdStatic { get; } = -2030760866;
     public override int Id => IdStatic;
     public override string Description => "Sends server details about a released Shaft arcade shot";
 

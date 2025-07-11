@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class OpenFriendsList : AbstractPacket
 {
-    public const int IdStatic = 1441234714;
+    public static int IdStatic { get; } = 1441234714;
     public override int Id => IdStatic;
     public override string Description => "Open Friends List";
 

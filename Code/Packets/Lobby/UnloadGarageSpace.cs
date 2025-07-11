@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UnloadGarageSpace : AbstractPacket
 {
-    public const int IdStatic = 1211186637;
+    public static int IdStatic { get; } = 1211186637;
     public override int Id => IdStatic;
     public override string Description => "Unload the garage space";
 

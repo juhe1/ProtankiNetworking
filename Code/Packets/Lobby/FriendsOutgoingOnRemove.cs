@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class FriendsOutgoingOnRemove : AbstractPacket
 {
-    public const int IdStatic = 614714702;
+    public static int IdStatic { get; } = 614714702;
     public override int Id => IdStatic;
     public override string Description => "Friends outgoing on remove (user)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]

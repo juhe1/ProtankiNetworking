@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class ReceiveCaptcha : AbstractPacket
 {
-    public const int IdStatic = -1670408519;
+    public static int IdStatic { get; } = -1670408519;
     public override int Id => IdStatic;
     public override string Description => "Received a captcha image with its type";
 

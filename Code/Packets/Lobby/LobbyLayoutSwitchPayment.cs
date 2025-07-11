@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LobbyLayoutSwitchPayment : AbstractPacket
 {
-    public const int IdStatic = 1153801756;
+    public static int IdStatic { get; } = 1153801756;
     public override int Id => IdStatic;
     public override string Description => "Lobby layout switch payment (no attributes)";
     public override BaseCodec[] CodecObjects => new BaseCodec[] { };

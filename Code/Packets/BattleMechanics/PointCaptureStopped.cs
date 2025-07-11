@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class PointCaptureStopped : AbstractPacket
 {
-    public const int IdStatic = -1701488017;
+    public static int IdStatic { get; } = -1701488017;
     public override int Id => IdStatic;
     public override string Description => "Point capture stopped (team)";
 

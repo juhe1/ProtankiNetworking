@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UnloadLobbyChat : AbstractPacket
 {
-    public const int IdStatic = -920985123;
+    public static int IdStatic { get; } = -920985123;
     public override int Id => IdStatic;
     public override string Description => "Unload the lobby chat";
 

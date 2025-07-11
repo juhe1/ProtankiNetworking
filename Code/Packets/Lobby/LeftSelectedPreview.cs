@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LeftSelectedPreview : AbstractPacket
 {
-    public const int IdStatic = 1924874982;
+    public static int IdStatic { get; } = 1924874982;
     public override int Id => IdStatic;
     public override string Description => "A player has left the selected battle, from the preview screen";
 

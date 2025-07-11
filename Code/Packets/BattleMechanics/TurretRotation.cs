@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TurretRotation : AbstractPacket
 {
-    public const int IdStatic = -114968993;
+    public static int IdStatic { get; } = -114968993;
     public override int Id => IdStatic;
     public override string Description => "Sends current turret rotation data to the server";
 

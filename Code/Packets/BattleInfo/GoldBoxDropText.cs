@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class GoldBoxDropText : AbstractPacket
 {
-    public const int IdStatic = -666893269;
+    public static int IdStatic { get; } = -666893269;
     public override int Id => IdStatic;
     public override string Description => "Announces that a gold box will drop soon";
 

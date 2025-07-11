@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class PlayerStartPosition : AbstractPacket
 {
-    public const int IdStatic = -157204477;
+    public static int IdStatic { get; } = -157204477;
     public override int Id => IdStatic;
     public override string Description => "Player Start Position";
 

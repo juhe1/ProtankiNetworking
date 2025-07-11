@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class ResourcesLoaded : AbstractPacket
 {
-    public const int IdStatic = -82304134;
+    public static int IdStatic { get; } = -82304134;
     public override int Id => IdStatic;
     public override string Description => "Client callsback after finishes resource loading (NOT IMPLEMENTED)";
 

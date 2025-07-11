@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class UnloadBattleObjects : AbstractPacket
 {
-    public const int IdStatic = -985579124;
+    public static int IdStatic { get; } = -985579124;
     public override int Id => IdStatic;
     public override string Description => "Unload battle objects";
     public override BaseCodec[] CodecObjects => new BaseCodec[] { };

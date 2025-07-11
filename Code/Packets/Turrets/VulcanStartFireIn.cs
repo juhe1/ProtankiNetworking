@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class VulcanStartFireIn : AbstractPacket
 {
-    public const int IdStatic = -1616602030;
+    public static int IdStatic { get; } = -1616602030;
     public override int Id => IdStatic;
     public override string Description => "Vulcan start fire event";
 

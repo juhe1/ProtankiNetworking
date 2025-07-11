@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Network;
 /// </summary>
 public class ActivateProtection : AbstractPacket
 {
-    public const int IdStatic = 2001736388;
+    public static int IdStatic { get; } = 2001736388;
     public override int Id => IdStatic;
     public override string Description => "Contains the keys required to activate packet encryption";
 

@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class CheckBattleName : AbstractPacket
 {
-    public const int IdStatic = 566652736;
+    public static int IdStatic { get; } = 566652736;
     public override int Id => IdStatic;
     public override string Description => "Censors invalid battle names";
 

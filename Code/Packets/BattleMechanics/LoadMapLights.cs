@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadMapLights : AbstractPacket
 {
-    public const int IdStatic = -152638117;
+    public static int IdStatic { get; } = -152638117;
     public override int Id => IdStatic;
     public override string Description => "Load Map Lights";
 

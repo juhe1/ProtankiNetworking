@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class BattleTDMObjectLoadedPost : AbstractPacket
 {
-    public const int IdStatic = 183561709;
+    public static int IdStatic { get; } = 183561709;
     public override int Id => IdStatic;
     public override string Description => "Indicates that the battle TDM object has been loaded (post event)";
 

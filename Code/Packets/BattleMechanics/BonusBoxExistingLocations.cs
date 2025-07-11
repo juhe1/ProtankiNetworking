@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class BonusBoxExistingLocations : AbstractPacket
 {
-    public const int IdStatic = 870278784;
+    public static int IdStatic { get; } = 870278784;
     public override int Id => IdStatic;
     public override string Description => "Locations of existing bonus boxes";
 

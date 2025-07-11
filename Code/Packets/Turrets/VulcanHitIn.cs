@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class VulcanHitIn : AbstractPacket
 {
-    public const int IdStatic = -891286317;
+    public static int IdStatic { get; } = -891286317;
     public override int Id => IdStatic;
     public override string Description => "Send Vulcan hit information";
 

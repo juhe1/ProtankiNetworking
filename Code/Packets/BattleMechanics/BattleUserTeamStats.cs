@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class BattleUserTeamStats : AbstractPacket
 {
-    public const int IdStatic = -497293992;
+    public static int IdStatic { get; } = -497293992;
     public override int Id => IdStatic;
     public override string Description => "Battle user stats";
 

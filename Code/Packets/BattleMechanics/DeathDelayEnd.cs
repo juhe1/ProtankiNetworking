@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class DeathDelayEnd : AbstractPacket
 {
-    public const int IdStatic = 268832557;
+    public static int IdStatic { get; } = 268832557;
     public override int Id => IdStatic;
     public override string Description => "Respawn delay ends and player can start respawning";
 

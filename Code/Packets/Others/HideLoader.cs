@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class HideLoader : AbstractPacket
 {
-    public const int IdStatic = -1282173466;
+    public static int IdStatic { get; } = -1282173466;
     public override int Id => IdStatic;
     public override string Description => "Hide the loader UI element";
 

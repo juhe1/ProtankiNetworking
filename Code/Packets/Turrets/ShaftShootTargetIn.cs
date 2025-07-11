@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftShootTargetIn : AbstractPacket
 {
-    public const int IdStatic = 1184835319;
+    public static int IdStatic { get; } = 1184835319;
 
     public override string Description =>
         "Shaft shoot at targets (shooter, staticHitPoint, targets, targetHitPoints, impactForce)";

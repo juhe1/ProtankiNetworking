@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ShotEffect : AbstractPacket
 {
-    public const int IdStatic = -1994318624;
+    public static int IdStatic { get; } = -1994318624;
     public override int Id => IdStatic;
     public override string Description => "Shot effect packet";
 

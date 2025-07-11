@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class BattleKickReason : AbstractPacket
 {
-    public const int IdStatic = -322235316;
+    public static int IdStatic { get; } = -322235316;
     public override int Id => IdStatic;
     public override string Description => "Reason why player was kicked from battle";
 

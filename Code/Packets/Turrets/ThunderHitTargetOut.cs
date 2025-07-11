@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ThunderHitTargetOut : AbstractPacket
 {
-    public const int IdStatic = 259979915;
+    public static int IdStatic { get; } = 259979915;
 
     public override string Description =>
         "Thunder hit target out (time, relativeHitPoint, target, incarnation, targetPosition, hitPointWorld)";

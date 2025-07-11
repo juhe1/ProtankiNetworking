@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class DespawnAlive : AbstractPacket
 {
-    public const int IdStatic = 1719707347;
+    public static int IdStatic { get; } = 1719707347;
     public override int Id => IdStatic;
     public override string Description => "Player despawns while alive";
 

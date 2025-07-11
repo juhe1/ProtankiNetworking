@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserUpdateDirectionOut : AbstractPacket
 {
-    public const int IdStatic = 1224288585;
+    public static int IdStatic { get; } = 1224288585;
     public override int Id => IdStatic;
     public override string Description => "Shaft laser update direction out (projectionOnVerticalAxis)";
 

@@ -11,7 +11,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SetPointState : AbstractPacket
 {
-    public const int IdStatic = -1073178885;
+    public static int IdStatic { get; } = -1073178885;
     public override int Id => IdStatic;
     public override string Description => "Set point state (pointId, state)";
 

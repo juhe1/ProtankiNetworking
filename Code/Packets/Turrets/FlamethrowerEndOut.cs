@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerEndOut : AbstractPacket
 {
-    public const int IdStatic = -1300958299;
+    public static int IdStatic { get; } = -1300958299;
     public override int Id => IdStatic;
     public override string Description => "Firebird stops shooting";
 

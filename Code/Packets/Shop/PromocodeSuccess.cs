@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Shop;
 /// </summary>
 public class PromocodeSuccess : AbstractPacket
 {
-    public const int IdStatic = -1859441081;
+    public static int IdStatic { get; } = -1859441081;
     public override int Id => IdStatic;
     public override string Description => "Promocode applied successfully";
 

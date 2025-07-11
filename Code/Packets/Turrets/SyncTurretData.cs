@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SyncTurretData : AbstractPacket
 {
-    public const int IdStatic = -2124388778;
+    public static int IdStatic { get; } = -2124388778;
     public override int Id => IdStatic;
     public override string Description => "Syncs turret data to the client";
 

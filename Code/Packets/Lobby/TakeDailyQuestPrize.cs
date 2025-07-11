@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class TakeDailyQuestPrize : AbstractPacket
 {
-    public const int IdStatic = 1768449810;
+    public static int IdStatic { get; } = 1768449810;
     public override int Id => IdStatic;
     public override string Description => "Take daily quest prize (questId)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]

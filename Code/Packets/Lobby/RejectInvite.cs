@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class RejectInvite : AbstractPacket
 {
-    public const int IdStatic = 1152865919;
+    public static int IdStatic { get; } = 1152865919;
     public override int Id => IdStatic;
     public override string Description => "Reject a player's battle invite";
 

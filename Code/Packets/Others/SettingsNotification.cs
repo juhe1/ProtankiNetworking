@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class SettingsNotification : AbstractPacket
 {
-    public const int IdStatic = 1447082276;
+    public static int IdStatic { get; } = 1447082276;
     public override int Id => IdStatic;
     public override string Description => "Check if the user has notification on";
 

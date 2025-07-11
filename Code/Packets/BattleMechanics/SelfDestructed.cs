@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SelfDestructed : AbstractPacket
 {
-    public const int IdStatic = 162656882;
+    public static int IdStatic { get; } = 162656882;
     public override int Id => IdStatic;
     public override string Description => "Information about a self destructed tank";
 

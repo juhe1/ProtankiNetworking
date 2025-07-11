@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SmokyShootWallOut : AbstractPacket
 {
-    public const int IdStatic = 1470597926;
+    public static int IdStatic { get; } = 1470597926;
     public override int Id => IdStatic;
     public override string Description => "Smokey Shoot out";
 

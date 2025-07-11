@@ -10,7 +10,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class StreamWeaponHit : AbstractPacket
 {
-    public const int IdStatic = -2123941185;
+    public static int IdStatic { get; } = -2123941185;
 
     public override string Description =>
         "Stream weapon hit (time, targets, incarnations, positions, hitPoints). Freeze and Flamethrower uses this.";
