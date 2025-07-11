@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ReturnFlagToBase : AbstractPacket
 {
-    public static int IdStatic { get; } = -1026428589;
+    public const int IdStatic = -1026428589;
     public override int Id => IdStatic;
     public override string Description => "Return flag to base (team and tank)";
 

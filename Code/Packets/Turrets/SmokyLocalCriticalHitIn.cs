@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SmokyLocalCriticalHitIn : AbstractPacket
 {
-    public static int IdStatic { get; } = -671618989;
+    public const int IdStatic = -671618989;
     public override int Id => IdStatic;
     public override string Description => "Smoky local critical hit in (target)";
 

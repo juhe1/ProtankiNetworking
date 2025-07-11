@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TankLeftPointZone : AbstractPacket
 {
-    public static int IdStatic { get; } = -1410197917;
+    public const int IdStatic = -1410197917;
     public override int Id => IdStatic;
     public override string Description => "Tank left point zone (pointId, tankId)";
 

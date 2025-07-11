@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class ChangeBy : AbstractPacket
 {
-    public static int IdStatic { get; } = -593513288;
+    public const int IdStatic = -593513288;
     public override int Id => IdStatic;
     public override string Description => "Change By";
 

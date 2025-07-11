@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class CreateAccount : AbstractPacket
 {
-    public static int IdStatic { get; } = 427083290;
+    public const int IdStatic = 427083290;
     public override int Id => IdStatic;
     public override string Description => "Create new account";
 

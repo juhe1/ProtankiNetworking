@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class SubscribeStatus : AbstractPacket
 {
-    public static int IdStatic { get; } = 1774907609;
+    public const int IdStatic = 1774907609;
     public override int Id => IdStatic;
     public override string Description => "Subscribe to status updates of a player.";
 

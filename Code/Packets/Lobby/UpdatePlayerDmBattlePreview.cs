@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UpdatePlayerDmBattlePreview : AbstractPacket
 {
-    public static int IdStatic { get; } = -1263036614;
+    public const int IdStatic = -1263036614;
     public override int Id => IdStatic;
     public override string Description => "Updates a player's kills in a DM battle preview";
 

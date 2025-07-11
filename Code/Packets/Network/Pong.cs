@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Network;
 /// </summary>
 public class Pong : AbstractPacket
 {
-    public static int IdStatic { get; } = 1484572481;
+    public const int IdStatic = 1484572481;
     public override int Id => IdStatic;
     public override string Description => "Pong Packet from client";
 

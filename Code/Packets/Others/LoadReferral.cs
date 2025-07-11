@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class LoadReferral : AbstractPacket
 {
-    public static int IdStatic { get; } = -169921234;
+    public const int IdStatic = -169921234;
     public override int Id => IdStatic;
     public override string Description => "Load garage";
 

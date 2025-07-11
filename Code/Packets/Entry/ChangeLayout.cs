@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class ChangeLayout : AbstractPacket
 {
-    public static int IdStatic { get; } = 1118835050;
+    public const int IdStatic = 1118835050;
     public override int Id => IdStatic;
     public override string Description => "Changes client layout/mode";
 

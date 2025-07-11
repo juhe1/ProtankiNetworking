@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadFriendsList : AbstractPacket
 {
-    public static int IdStatic { get; } = 1422563374;
+    public const int IdStatic = 1422563374;
     public override int Id => IdStatic;
     public override string Description => "Loads the player's friend lists";
 

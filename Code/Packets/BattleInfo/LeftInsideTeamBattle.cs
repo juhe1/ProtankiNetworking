@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LeftInsideTeamBattle : AbstractPacket
 {
-    public static int IdStatic { get; } = 1411656080;
+    public const int IdStatic = 1411656080;
     public override int Id => IdStatic;
     public override string Description => "A player has left a team battle, the observer being within the battle";
 

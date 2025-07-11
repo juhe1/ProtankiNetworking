@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Garage;
 /// </summary>
 public class BuyMultipleItems : AbstractPacket
 {
-    public static int IdStatic { get; } = -1961983005;
+    public const int IdStatic = -1961983005;
     public override int Id => IdStatic;
     public override string Description => "Buy multiple items from garage, like supplies, xp boosts";
 

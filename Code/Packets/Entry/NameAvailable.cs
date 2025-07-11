@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class NameAvailable : AbstractPacket
 {
-    public static int IdStatic { get; } = -706679202;
+    public const int IdStatic = -706679202;
     public override int Id => IdStatic;
     public override string Description => "Said name is available for registration";
 

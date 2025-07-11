@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftActivateManualTargetingIn : AbstractPacket
 {
-    public static int IdStatic { get; } = -1222085753;
+    public const int IdStatic = -1222085753;
     public override int Id => IdStatic;
     public override string Description => "Shaft activate manual targeting (shooter)";
 

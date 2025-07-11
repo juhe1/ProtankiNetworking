@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class NameUnavailable : AbstractPacket
 {
-    public static int IdStatic { get; } = 442888643;
+    public const int IdStatic = 442888643;
 
     public override string Description =>
         "Said name is unavailable for registration with a list of alternative suggested usernames";

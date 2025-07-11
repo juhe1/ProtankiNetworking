@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadSupplyEffect : AbstractPacket
 {
-    public static int IdStatic { get; } = 417965410;
+    public const int IdStatic = 417965410;
     public override int Id => IdStatic;
     public override string Description => "Load Current Supply Effect";
 

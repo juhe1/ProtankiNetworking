@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SetTankTemperature : AbstractPacket
 {
-    public static int IdStatic { get; } = 581377054;
+    public const int IdStatic = 581377054;
     public override int Id => IdStatic;
     public override string Description => "Set tank temperature (tankId, temperature)";
 

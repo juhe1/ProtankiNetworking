@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SuicideDelay : AbstractPacket
 {
-    public static int IdStatic { get; } = -911983090;
+    public const int IdStatic = -911983090;
     public override int Id => IdStatic;
     public override string Description => "Suicide delay packet";
 

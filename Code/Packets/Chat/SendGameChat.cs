@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Chat;
 /// </summary>
 public class SendGameChat : AbstractPacket
 {
-    public static int IdStatic { get; } = 945463181;
+    public const int IdStatic = 945463181;
     public override int Id => IdStatic;
     public override string Description => "Sends a message to the game chat";
 

@@ -10,7 +10,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class InitBattleStats : AbstractPacket
 {
-    public static int IdStatic { get; } = 522993449;
+    public const int IdStatic = 522993449;
     public override int Id => IdStatic;
     public override string Description => "Loads current battle statistics";
 

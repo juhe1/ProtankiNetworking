@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadBattleInfo : AbstractPacket
 {
-    public static int IdStatic { get; } = 546722394;
+    public const int IdStatic = 546722394;
     public override int Id => IdStatic;
     public override string Description => "Loads detailed battle information";
 

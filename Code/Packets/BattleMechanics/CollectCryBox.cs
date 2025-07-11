@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class CollectCryBox : AbstractPacket
 {
-    public static int IdStatic { get; } = -1047185003;
+    public const int IdStatic = -1047185003;
     public override int Id => IdStatic;
     public override string Description => "Collect a crystal box";
 

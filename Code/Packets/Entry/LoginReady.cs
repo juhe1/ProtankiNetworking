@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoginReady : AbstractPacket
 {
-    public static int IdStatic { get; } = -1277343167;
+    public const int IdStatic = -1277343167;
     public override int Id => IdStatic;
     public override string Description => "Server sends options for Login";
 

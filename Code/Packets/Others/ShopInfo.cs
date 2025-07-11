@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ShopInfo : AbstractPacket
 {
-    public static int IdStatic { get; } = 1863710730;
+    public const int IdStatic = 1863710730;
     public override int Id => IdStatic;
     public override string Description => "Get shop info";
 

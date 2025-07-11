@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class KillConfirm : AbstractPacket
 {
-    public static int IdStatic { get; } = -42520728;
+    public const int IdStatic = -42520728;
     public override int Id => IdStatic;
     public override string Description => "A tank has been killed";
 

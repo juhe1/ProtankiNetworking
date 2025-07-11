@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class TwinsFireOut : AbstractPacket
 {
-    public static int IdStatic { get; } = -159686980;
+    public const int IdStatic = -159686980;
     public override int Id => IdStatic;
     public override string Description => "Fire command (time, barrel, shotId, shotDirection).";
 

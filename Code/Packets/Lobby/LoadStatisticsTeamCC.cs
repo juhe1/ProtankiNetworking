@@ -10,7 +10,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadStatisticsTeamCC : AbstractPacket
 {
-    public static int IdStatic { get; } = -1233891872;
+    public const int IdStatic = -1233891872;
     public override int Id => IdStatic;
     public override string Description => "Load team statistics (StatisticsTeamCC)";
 

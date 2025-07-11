@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ExplodeMine : AbstractPacket
 {
-    public static int IdStatic { get; } = 1387974401;
+    public const int IdStatic = 1387974401;
     public override int Id => IdStatic;
     public override string Description => "Explode mine (mineId, targetId)";
 

@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunShootTargetIn : AbstractPacket
 {
-    public static int IdStatic { get; } = -369590613;
+    public const int IdStatic = -369590613;
     public override int Id => IdStatic;
     public override string Description => "Send Railgun shoot target event";
 
