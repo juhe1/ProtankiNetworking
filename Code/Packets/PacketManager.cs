@@ -21,19 +21,16 @@ public static class PacketManager
         foreach (var type in packetTypes)
             try
             {
-                // Get the static Id property
-                var idProperty = type.GetProperty(
-                    "IdStatic",
-                    BindingFlags.Public | BindingFlags.Static
-                );
-                if (idProperty != null)
-                {
-                    int? id = (int?)idProperty.GetValue(null);
-                    if (id is null)
-                        throw new Exception("id cannot be null");
-                    _packetTypes[(int)id] = type;
-                    _packetNames[type.Name] = type;
-                }
+                // Create an instance of the packet (requires parameterless constructor)
+                var instance = Activator.CreateInstance(type) as AbstractPacket;
+
+                if (instance == null)
+                    throw new Exception("Could not instantiate packet");
+
+                int id = instance.Id; // Uses the overridden property in each packet type
+
+                _packetTypes[id] = type;
+                _packetNames[type.Name] = type;
             }
             catch (Exception ex)
             {

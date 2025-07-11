@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Garage;
 /// </summary>
 public class MountItem : AbstractPacket
 {
-    public static int IdStatic { get; } = -1505530736;
+    public const int IdStatic = -1505530736;
     public override int Id => IdStatic;
     public override string Description => "Mount an item in garage";
 

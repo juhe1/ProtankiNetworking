@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class CheckNameAvailability : AbstractPacket
 {
-    public static int IdStatic { get; } = 1083705823;
+    public const int IdStatic = 1083705823;
     public override int Id => IdStatic;
     public override string Description => "Check if a name is up for registration";
 

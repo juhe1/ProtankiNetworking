@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class InitPremium : AbstractPacket
 {
-    public static int IdStatic { get; } = 1405859779;
+    public const int IdStatic = 1405859779;
     public override int Id => IdStatic;
     public override string Description => "Initialize premium status and notifications";
 

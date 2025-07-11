@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunStartChargingIn : AbstractPacket
 {
-    public static int IdStatic { get; } = 346830254;
+    public const int IdStatic = 346830254;
     public override int Id => IdStatic;
     public override string Description => "Send Railgun start charging event";
 

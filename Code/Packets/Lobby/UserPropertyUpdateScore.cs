@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UserPropertyUpdateScore : AbstractPacket
 {
-    public static int IdStatic { get; } = 2116086491;
+    public const int IdStatic = 2116086491;
     public override int Id => IdStatic;
     public override string Description => "Update user score property";
 

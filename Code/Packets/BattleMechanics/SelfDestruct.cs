@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SelfDestruct : AbstractPacket
 {
-    public static int IdStatic { get; } = 988664577;
+    public const int IdStatic = 988664577;
     public override int Id => IdStatic;
     public override string Description => "Sends a self destruct request to the server";
 

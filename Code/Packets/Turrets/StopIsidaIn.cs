@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class StopIsidaIn : AbstractPacket
 {
-    public static int IdStatic { get; } = 981035905;
+    public const int IdStatic = 981035905;
     public override int Id => IdStatic;
     public override string Description => "Stop Isida action event";
 

@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class FriendsUidNotExist : AbstractPacket
 {
-    public static int IdStatic { get; } = -1490761936;
+    public const int IdStatic = -1490761936;
     public override int Id => IdStatic;
     public override string Description => "Friends UID not exist (no attributes)";
     public override BaseCodec[] CodecObjects => new BaseCodec[] { };

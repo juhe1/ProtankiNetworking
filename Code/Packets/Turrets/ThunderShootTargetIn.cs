@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ThunderShootTargetIn : AbstractPacket
 {
-    public static int IdStatic { get; } = -190359403;
+    public const int IdStatic = -190359403;
     public override int Id => IdStatic;
     public override string Description => "Thunder shoot at target with relative hit point";
 

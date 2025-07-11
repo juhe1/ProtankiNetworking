@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Garage;
 /// </summary>
 public class CheckItemMounted : AbstractPacket
 {
-    public static int IdStatic { get; } = 2062201643;
+    public const int IdStatic = 2062201643;
     public override int Id => IdStatic;
     public override string Description => "If the mount was successful or not";
 

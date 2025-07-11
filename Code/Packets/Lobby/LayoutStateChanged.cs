@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LayoutStateChanged : AbstractPacket
 {
-    public static int IdStatic { get; } = -593368100;
+    public const int IdStatic = -593368100;
     public override int Id => IdStatic;
     public override string Description => "Notifies about a layout state change";
 

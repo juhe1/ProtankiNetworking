@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SetIsidaTargetIn : AbstractPacket
 {
-    public static int IdStatic { get; } = 2001632000;
+    public const int IdStatic = 2001632000;
     public override int Id => IdStatic;
     public override string Description => "Set Isida target event";
 

@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class BattleCreateCreateFailedTooManyBattlesFromYou : AbstractPacket
 {
-    public static int IdStatic { get; } = -614313838;
+    public const int IdStatic = -614313838;
     public override int Id => IdStatic;
     public override string Description => "Battle create failed: too many battles from you (no attributes)";
     public override BaseCodec[] CodecObjects => new BaseCodec[] { };

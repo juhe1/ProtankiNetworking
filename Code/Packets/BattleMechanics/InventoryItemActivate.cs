@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class InventoryItemActivate : AbstractPacket
 {
-    public static int IdStatic { get; } = -2102525054;
+    public const int IdStatic = -2102525054;
     public override int Id => IdStatic;
     public override string Description => "Inventory item activate (itemId)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class HitTargetCommand : AbstractPacket
 {
-    public static int IdStatic { get; } = -1723353904;
+    public const int IdStatic = -1723353904;
 
     public override string Description =>
         "Hit target command (time, shotId, target, targetPosition, hitPointWorld). Used in Twins and Ricochet.";

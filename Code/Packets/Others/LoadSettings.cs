@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class LoadSettings : AbstractPacket
 {
-    public static int IdStatic { get; } = 850220815;
+    public const int IdStatic = 850220815;
     public override int Id => IdStatic;
     public override string Description => "Load settings";
 

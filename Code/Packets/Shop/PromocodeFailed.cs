@@ -7,7 +7,7 @@ namespace ProtankiNetworking.Packets.Shop;
 /// </summary>
 public class PromocodeFailed : AbstractPacket
 {
-    public static int IdStatic { get; } = -1850050333;
+    public const int IdStatic = -1850050333;
     public override int Id => IdStatic;
     public override string Description => "Incorrect or expired promocode";
 

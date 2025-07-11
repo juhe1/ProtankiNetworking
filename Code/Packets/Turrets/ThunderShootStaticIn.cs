@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ThunderShootStaticIn : AbstractPacket
 {
-    public static int IdStatic { get; } = 1690491826;
+    public const int IdStatic = 1690491826;
     public override int Id => IdStatic;
     public override string Description => "Send Thunder shoot static event";
 
