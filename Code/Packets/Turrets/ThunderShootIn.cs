@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ThunderShootIn : AbstractPacket
 {
-    public const int IdStatic = 958509220;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 958509220;
+    public override int Id => ID_CONST;
     public override string Description => "Thunder shoot in (shooter)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

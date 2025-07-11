@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class CompletedMission : AbstractPacket
 {
-    public const int IdStatic = 1579425801;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1579425801;
+    public override int Id => ID_CONST;
     public override string Description => "A mission was completed and is available to claim";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

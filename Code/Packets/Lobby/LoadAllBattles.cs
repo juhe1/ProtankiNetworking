@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadAllBattles : AbstractPacket
 {
-    public const int IdStatic = 552006706;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 552006706;
+    public override int Id => ID_CONST;
     public override string Description => "Loads all current battles";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

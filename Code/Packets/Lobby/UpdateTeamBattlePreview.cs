@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UpdateTeamBattlePreview : AbstractPacket
 {
-    public const int IdStatic = 1428217189;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1428217189;
+    public override int Id => ID_CONST;
     public override string Description => "Updates a team's score in the battle preview";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

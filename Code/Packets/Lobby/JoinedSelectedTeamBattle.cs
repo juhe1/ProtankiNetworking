@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class JoinedSelectedTeamBattle : AbstractPacket
 {
-    public const int IdStatic = 118447426;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 118447426;
+    public override int Id => ID_CONST;
     public override string Description => "Sent when a player joins the currently-selected Team battle.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

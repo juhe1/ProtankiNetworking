@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ShowMissions : AbstractPacket
 {
-    public const int IdStatic = 809822533;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 809822533;
+    public override int Id => ID_CONST;
     public override string Description => "Show the list of missions currently available to the player";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

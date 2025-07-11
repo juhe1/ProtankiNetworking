@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LeftInsideDmBattle : AbstractPacket
 {
-    public const int IdStatic = -1689876764;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1689876764;
+    public override int Id => ID_CONST;
     public override string Description => "A player has left a DM battle, the observer being within the battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

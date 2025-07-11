@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class HitStaticCommandOut : AbstractPacket
 {
-    public const int IdStatic = -482023661;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -482023661;
+    public override int Id => ID_CONST;
     public override string Description => "Hit static command out (time, shotId, hitPointWorld)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

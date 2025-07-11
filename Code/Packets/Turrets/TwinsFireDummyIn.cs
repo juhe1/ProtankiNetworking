@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class TwinsFireDummyIn : AbstractPacket
 {
-    public const int IdStatic = -328554480;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -328554480;
+    public override int Id => ID_CONST;
     public override string Description => "Send Twins fire dummy event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

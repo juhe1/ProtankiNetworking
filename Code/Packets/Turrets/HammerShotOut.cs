@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class HammerShotOut : AbstractPacket
 {
-    public const int IdStatic = -541655881;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -541655881;
+    public override int Id => ID_CONST;
     public override string Description => "Player fires a hammer shot";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

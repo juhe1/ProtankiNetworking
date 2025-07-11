@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadBattleMineCC : AbstractPacket
 {
-    public const int IdStatic = -226978906;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -226978906;
+    public override int Id => ID_CONST;
     public override string Description => "Load battle mine configuration (BattleMineCC)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

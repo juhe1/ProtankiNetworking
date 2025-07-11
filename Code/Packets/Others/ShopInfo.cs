@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ShopInfo : AbstractPacket
 {
-    public const int IdStatic = 1863710730;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1863710730;
+    public override int Id => ID_CONST;
     public override string Description => "Get shop info";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

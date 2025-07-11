@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UserPropertyUpdateScore : AbstractPacket
 {
-    public const int IdStatic = 2116086491;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 2116086491;
+    public override int Id => ID_CONST;
     public override string Description => "Update user score property";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class ChangeMission : AbstractPacket
 {
-    public const int IdStatic = 1642608662;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1642608662;
+    public override int Id => ID_CONST;
     public override string Description => "Change mission";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

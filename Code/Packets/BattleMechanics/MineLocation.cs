@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class MineLocation : AbstractPacket
 {
-    public const int IdStatic = 272183855;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 272183855;
+    public override int Id => ID_CONST;
     public override string Description => "Sent when a mine is placed or removed.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

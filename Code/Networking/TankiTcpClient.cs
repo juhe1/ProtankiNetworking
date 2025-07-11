@@ -260,7 +260,7 @@ public abstract class TankiTcpClient
         fittedPacket.DecryptedData = packetData;
 
         // Handle ActivateProtection packet
-        if (ActivateProtection.IdStatic == packetId) // ActivateProtection packet ID
+        if (ActivateProtection.ID_CONST == packetId) // ActivateProtection packet ID
         {
             var keys = (List<object>?)fittedPacket.GetObjectByAttributeName("keys");
             if (keys is null)

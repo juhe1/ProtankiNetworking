@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerDamage : AbstractPacket
 {
-    public const int IdStatic = 1395251766;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1395251766;
+    public override int Id => ID_CONST;
     public override string Description => "Firebird attack";
 
     public override ICodec[] CodecObjects => new ICodec[]

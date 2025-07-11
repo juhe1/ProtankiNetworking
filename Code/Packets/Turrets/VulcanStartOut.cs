@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class VulcanStartOut : AbstractPacket
 {
-    public const int IdStatic = -520655432;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -520655432;
+    public override int Id => ID_CONST;
     public override string Description => "Vulcan starts shooting";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

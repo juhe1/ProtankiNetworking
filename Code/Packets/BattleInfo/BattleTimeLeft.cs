@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class BattleTimeLeft : AbstractPacket
 {
-    public const int IdStatic = 732434644;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 732434644;
+    public override int Id => ID_CONST;
     public override string Description => "Battle time left in seconds";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

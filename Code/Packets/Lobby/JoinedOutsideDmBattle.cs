@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class JoinedOutsideDmBattle : AbstractPacket
 {
-    public const int IdStatic = -2133657895;
+    public const int ID_CONST = -2133657895;
 
     public override string Description =>
         "Sent when a player joins a global DM battle, outside from the observer's perspective.";

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class RankStatus : AbstractPacket
 {
-    public const int IdStatic = -962759489;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -962759489;
+    public override int Id => ID_CONST;
     public override string Description => "Loads the rank of a player";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class InviteCodeStatus : AbstractPacket
 {
-    public const int IdStatic = 444933603;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 444933603;
+    public override int Id => ID_CONST;
     public override string Description => "Do we need an invite code to access the server?";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class FriendsCheck : AbstractPacket
 {
-    public const int IdStatic = 126880779;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 126880779;
+    public override int Id => ID_CONST;
     public override string Description => "Friends check (userId)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {

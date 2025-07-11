@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class Email : AbstractPacket
 {
-    public const int IdStatic = 613462801;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 613462801;
+    public override int Id => ID_CONST;
     public override string Description => "email";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

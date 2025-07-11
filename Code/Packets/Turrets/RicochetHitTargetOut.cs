@@ -9,7 +9,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RicochetHitTargetOut : AbstractPacket
 {
-    public const int IdStatic = 1229701582;
+    public const int ID_CONST = 1229701582;
 
     public override string Description =>
         "Ricochet hit target (time, target, shotId, targetPosition, impactPoints)";

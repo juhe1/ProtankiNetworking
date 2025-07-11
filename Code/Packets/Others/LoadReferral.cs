@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class LoadReferral : AbstractPacket
 {
-    public const int IdStatic = -169921234;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -169921234;
+    public override int Id => ID_CONST;
     public override string Description => "Load garage";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

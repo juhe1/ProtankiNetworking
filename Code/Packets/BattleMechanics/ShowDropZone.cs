@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ShowDropZone : AbstractPacket
 {
-    public const int IdStatic = -915079427;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -915079427;
+    public override int Id => ID_CONST;
     public override string Description => "Show drop zone (bonusRegion: BonusRegionData)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

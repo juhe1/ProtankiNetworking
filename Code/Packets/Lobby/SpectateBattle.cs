@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class SpectateBattle : AbstractPacket
 {
-    public const int IdStatic = -1315002220;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1315002220;
+    public override int Id => ID_CONST;
     public override string Description => "Client requests to spectate the selected battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

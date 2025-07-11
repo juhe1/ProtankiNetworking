@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FreezeHitOut : AbstractPacket
 {
-    public const int IdStatic = 1395251766;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1395251766;
+    public override int Id => ID_CONST;
     public override string Description => "Freeze hit out (time, targets, incarnations, positions, hitPoints)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

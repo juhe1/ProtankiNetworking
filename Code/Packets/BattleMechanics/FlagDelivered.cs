@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class FlagDelivered : AbstractPacket
 {
-    public const int IdStatic = -1870108387;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1870108387;
+    public override int Id => ID_CONST;
     public override string Description => "Flag delivered event (winning team and deliverer tank ID)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

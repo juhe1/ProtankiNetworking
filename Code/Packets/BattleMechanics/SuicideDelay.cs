@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SuicideDelay : AbstractPacket
 {
-    public const int IdStatic = -911983090;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -911983090;
+    public override int Id => ID_CONST;
     public override string Description => "Suicide delay packet";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

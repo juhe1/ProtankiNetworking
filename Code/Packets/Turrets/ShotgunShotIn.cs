@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShotgunShotIn : AbstractPacket
 {
-    public const int IdStatic = 471157826;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 471157826;
+    public override int Id => ID_CONST;
     public override string Description => "Send shotgun shot information";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

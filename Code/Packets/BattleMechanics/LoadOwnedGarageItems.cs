@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadOwnedGarageItems : AbstractPacket
 {
-    public const int IdStatic = -255516505;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -255516505;
+    public override int Id => ID_CONST;
     public override string Description => "Load Owned Garage Items";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class StopIsidaIn : AbstractPacket
 {
-    public const int IdStatic = 981035905;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 981035905;
+    public override int Id => ID_CONST;
     public override string Description => "Stop Isida action event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

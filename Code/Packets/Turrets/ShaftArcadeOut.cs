@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftArcadeOut : AbstractPacket
 {
-    public const int IdStatic = -2030760866;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -2030760866;
+    public override int Id => ID_CONST;
     public override string Description => "Sends server details about a released Shaft arcade shot";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

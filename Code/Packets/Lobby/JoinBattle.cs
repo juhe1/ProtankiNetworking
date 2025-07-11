@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class JoinBattle : AbstractPacket
 {
-    public const int IdStatic = -1284211503;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1284211503;
+    public override int Id => ID_CONST;
     public override string Description => "Client requests to join the selected battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

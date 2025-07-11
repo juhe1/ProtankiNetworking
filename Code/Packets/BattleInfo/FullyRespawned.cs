@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class FullyRespawned : AbstractPacket
 {
-    public const int IdStatic = 1868573511;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1868573511;
+    public override int Id => ID_CONST;
     public override string Description => "Packet sent when the player has fully respawned";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

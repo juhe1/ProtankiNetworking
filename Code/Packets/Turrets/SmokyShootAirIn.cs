@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SmokyShootAirIn : AbstractPacket
 {
-    public const int IdStatic = -1032328347;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1032328347;
+    public override int Id => ID_CONST;
     public override string Description => "Send Smoky shoot air event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

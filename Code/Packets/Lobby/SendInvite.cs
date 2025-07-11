@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class SendInvite : AbstractPacket
 {
-    public const int IdStatic = -864265623;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -864265623;
+    public override int Id => ID_CONST;
     public override string Description => "Send a battle invite to a player";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadCaptureTheFlagCC : AbstractPacket
 {
-    public const int IdStatic = 789790814;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 789790814;
+    public override int Id => ID_CONST;
     public override string Description => "Load Capture The Flag control center";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

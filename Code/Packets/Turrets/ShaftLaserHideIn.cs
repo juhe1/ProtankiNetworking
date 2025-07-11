@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserHideIn : AbstractPacket
 {
-    public const int IdStatic = -380595194;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -380595194;
+    public override int Id => ID_CONST;
     public override string Description => "Shaft laser hide (shooterId)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

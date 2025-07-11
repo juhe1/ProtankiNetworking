@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TankLeftPointZone : AbstractPacket
 {
-    public const int IdStatic = -1410197917;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1410197917;
+    public override int Id => ID_CONST;
     public override string Description => "Tank left point zone (pointId, tankId)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

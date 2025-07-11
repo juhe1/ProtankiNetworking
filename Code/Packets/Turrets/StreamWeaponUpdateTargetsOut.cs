@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class StreamWeaponUpdateTargetsOut : AbstractPacket
 {
-    public const int IdStatic = -1889502569;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1889502569;
+    public override int Id => ID_CONST;
     public override string Description => "Stream weapon update targets (time, direction, targets)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

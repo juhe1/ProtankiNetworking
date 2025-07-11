@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadBonusBoxResources : AbstractPacket
 {
-    public const int IdStatic = 228171466;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 228171466;
+    public override int Id => ID_CONST;
     public override string Description => "Load Bonus Box Resources";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class EffectAftermath : AbstractPacket
 {
-    public const int IdStatic = -1639713644;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1639713644;
+    public override int Id => ID_CONST;
     public override string Description => "Effect Aftermath";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

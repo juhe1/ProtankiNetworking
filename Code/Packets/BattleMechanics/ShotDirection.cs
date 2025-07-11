@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RicochetFireIn : AbstractPacket
 {
-    public const int IdStatic = -118119523;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -118119523;
+    public override int Id => ID_CONST;
     public override string Description => "Shot direction";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

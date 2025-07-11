@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LeftOutsideTeamBattle : AbstractPacket
 {
-    public const int IdStatic = 1447204641;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1447204641;
+    public override int Id => ID_CONST;
     public override string Description => "Remove this player from the friends count in team status";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class AimAtTankOut : AbstractPacket
 {
-    public const int IdStatic = -1517837003;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1517837003;
+    public override int Id => ID_CONST;
     public override string Description => "Aim at tank out (targetTank, localSpotPosition)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

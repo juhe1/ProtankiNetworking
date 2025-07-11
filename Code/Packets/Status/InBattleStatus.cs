@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class InBattleStatus : AbstractPacket
 {
-    public const int IdStatic = -1895446889;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1895446889;
+    public override int Id => ID_CONST;
     public override string Description => "Sets the battle status of the player to the battle ID";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

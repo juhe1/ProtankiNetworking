@@ -10,7 +10,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunFireOut : AbstractPacket
 {
-    public const int IdStatic = -484994657;
+    public const int ID_CONST = -484994657;
 
     public override string Description =>
         "Railgun fire out (time, staticHitPoint, targets, targetHitPoints, targetIncarnations, targetPositions, hitPointsWorld)";

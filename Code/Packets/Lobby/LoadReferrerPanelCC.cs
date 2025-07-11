@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadReferrerPanelCC : AbstractPacket
 {
-    public const int IdStatic = 832270655;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 832270655;
+    public override int Id => ID_CONST;
     public override string Description => "Load referrer panel configuration (ReferrerPanelCC)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

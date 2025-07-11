@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UnloadGarageSpace : AbstractPacket
 {
-    public const int IdStatic = 1211186637;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1211186637;
+    public override int Id => ID_CONST;
     public override string Description => "Unload the garage space";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

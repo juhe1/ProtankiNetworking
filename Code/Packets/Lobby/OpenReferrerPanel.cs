@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class OpenReferrerPanel : AbstractPacket
 {
-    public const int IdStatic = 1587315905;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1587315905;
+    public override int Id => ID_CONST;
     public override string Description => "Open referrer panel (data, inviteLink, banner, inviteMessage)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {

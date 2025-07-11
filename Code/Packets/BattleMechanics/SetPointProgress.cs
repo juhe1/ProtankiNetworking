@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SetPointProgress : AbstractPacket
 {
-    public const int IdStatic = -2141998253;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -2141998253;
+    public override int Id => ID_CONST;
     public override string Description => "Set point progress (pointId, progress, progressSpeed)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

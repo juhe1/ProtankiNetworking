@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class EquipmentNotMatchConstraints : AbstractPacket
 {
-    public const int IdStatic = 1229594925;
+    public const int ID_CONST = 1229594925;
 
     public override string Description =>
         "Warns that the player is trying to join with wrong equipment into DM battle.";

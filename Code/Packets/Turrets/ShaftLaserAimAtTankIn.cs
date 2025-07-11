@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserAimAtTankIn : AbstractPacket
 {
-    public const int IdStatic = 11992250;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 11992250;
+    public override int Id => ID_CONST;
     public override string Description => "Shaft laser aim at tank (shooterId, targetTank, localSpotPosition)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

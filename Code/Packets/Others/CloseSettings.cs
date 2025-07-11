@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class CloseSettings : AbstractPacket
 {
-    public const int IdStatic = -731115522;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -731115522;
+    public override int Id => ID_CONST;
     public override string Description => "Close settings modal";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

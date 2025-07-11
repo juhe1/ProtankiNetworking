@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class FriendsRevoke : AbstractPacket
 {
-    public const int IdStatic = 84050355;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 84050355;
+    public override int Id => ID_CONST;
     public override string Description => "Friends revoke (userId)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadResources : AbstractPacket
 {
-    public const int IdStatic = -1797047325;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1797047325;
+    public override int Id => ID_CONST;
     public override string Description => "Server tells us what resources to load";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

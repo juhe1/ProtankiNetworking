@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Network;
 /// </summary>
 public class Ping : AbstractPacket
 {
-    public const int IdStatic = -555602629;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -555602629;
+    public override int Id => ID_CONST;
     public override string Description => "Ping Packet from server";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

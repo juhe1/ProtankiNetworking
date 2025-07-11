@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class BattleUserRewards : AbstractPacket
 {
-    public const int IdStatic = 560336625;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 560336625;
+    public override int Id => ID_CONST;
     public override string Description => "Battle User Rewards";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

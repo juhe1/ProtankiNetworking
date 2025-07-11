@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftQuickShotOut : AbstractPacket
 {
-    public const int IdStatic = -2030760866;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -2030760866;
+    public override int Id => ID_CONST;
     public override string Description =>
         "Shaft quick shot out (time, staticHitPoint, targets, targetHitPoints, targetIncarnation, targetPosition, hitPointWorld)";
 

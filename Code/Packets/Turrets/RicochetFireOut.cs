@@ -8,7 +8,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RicochetFireOut : AbstractPacket
 {
-    public const int IdStatic = -1907971330;
+    public const int ID_CONST = -1907971330;
 
     public override string Description =>
         "Ricochet fire out (time, shotId, shotDirectionX, shotDirectionY, shotDirectionZ)";

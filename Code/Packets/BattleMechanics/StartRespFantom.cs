@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class StartRespFantom : AbstractPacket
 {
-    public const int IdStatic = 875259457;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 875259457;
+    public override int Id => ID_CONST;
     public override string Description => "Information about fantom status of a player";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

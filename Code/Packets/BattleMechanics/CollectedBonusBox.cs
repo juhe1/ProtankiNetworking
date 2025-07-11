@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class CollectedBonusBox : AbstractPacket
 {
-    public const int IdStatic = -1291499147;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1291499147;
+    public override int Id => ID_CONST;
     public override string Description => "A bonus box was picked up";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

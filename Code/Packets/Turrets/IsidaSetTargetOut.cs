@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class IsidaSetTargetOut : AbstractPacket
 {
-    public const int IdStatic = 381067984;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 381067984;
+    public override int Id => ID_CONST;
     public override string Description => "Send Isida set target out event";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

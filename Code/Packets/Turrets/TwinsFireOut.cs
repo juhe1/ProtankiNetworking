@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class TwinsFireOut : AbstractPacket
 {
-    public const int IdStatic = -159686980;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -159686980;
+    public override int Id => ID_CONST;
     public override string Description => "Fire command (time, barrel, shotId, shotDirection).";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

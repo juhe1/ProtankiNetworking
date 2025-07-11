@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RespawnDelay : AbstractPacket
 {
-    public const int IdStatic = -173682854;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -173682854;
+    public override int Id => ID_CONST;
     public override string Description => "Respawn Delay Packet";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

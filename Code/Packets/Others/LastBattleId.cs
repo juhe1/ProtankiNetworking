@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Others;
 /// </summary>
 public class LastBattleId : AbstractPacket
 {
-    public const int IdStatic = -602527073;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -602527073;
+    public override int Id => ID_CONST;
     public override string Description => "Get the id of the last battle you selected";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

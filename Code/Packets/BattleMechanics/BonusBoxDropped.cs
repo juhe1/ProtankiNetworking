@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class BonusBoxDropped : AbstractPacket
 {
-    public const int IdStatic = 1831462385;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1831462385;
+    public override int Id => ID_CONST;
     public override string Description => "A bonus box has dropped";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

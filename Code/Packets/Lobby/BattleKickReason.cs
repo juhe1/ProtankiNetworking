@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class BattleKickReason : AbstractPacket
 {
-    public const int IdStatic = -322235316;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -322235316;
+    public override int Id => ID_CONST;
     public override string Description => "Reason why player was kicked from battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

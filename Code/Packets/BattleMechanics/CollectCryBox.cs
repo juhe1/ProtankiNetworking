@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class CollectCryBox : AbstractPacket
 {
-    public const int IdStatic = -1047185003;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1047185003;
+    public override int Id => ID_CONST;
     public override string Description => "Collect a crystal box";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

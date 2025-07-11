@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class TankStatSynced : AbstractPacket
 {
-    public const int IdStatic = -1672577397;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1672577397;
+    public override int Id => ID_CONST;
     public override string Description => "Server syncs tank movement stats with client";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

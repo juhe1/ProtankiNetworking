@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class UpdateBattlePlayerStatistics : AbstractPacket
 {
-    public const int IdStatic = 696140460;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 696140460;
+    public override int Id => ID_CONST;
     public override string Description => "Updates the in-battle statistics of a player.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

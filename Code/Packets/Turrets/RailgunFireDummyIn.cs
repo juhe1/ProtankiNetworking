@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunFireDummyIn : AbstractPacket
 {
-    public const int IdStatic = 1459211021;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1459211021;
+    public override int Id => ID_CONST;
     public override string Description => "Railgun fire dummy in (shooter)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

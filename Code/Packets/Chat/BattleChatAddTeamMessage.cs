@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Chat;
 /// </summary>
 public class BattleChatAddTeamMessage : AbstractPacket
 {
-    public const int IdStatic = -449356094;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -449356094;
+    public override int Id => ID_CONST;
     public override string Description => "Battle chat add team message (userId, message, team)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

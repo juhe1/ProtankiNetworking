@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LayoutStateChanged : AbstractPacket
 {
-    public const int IdStatic = -593368100;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -593368100;
+    public override int Id => ID_CONST;
     public override string Description => "Notifies about a layout state change";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

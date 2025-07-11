@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class SetClientLang : AbstractPacket
 {
-    public const int IdStatic = -1864333717;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1864333717;
+    public override int Id => ID_CONST;
     public override string Description => "Sets client language";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

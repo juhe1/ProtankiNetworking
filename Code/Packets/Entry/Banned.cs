@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class Banned : AbstractPacket
 {
-    public const int IdStatic = -600078553;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -600078553;
+    public override int Id => ID_CONST;
     public override string Description => "Account banned";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

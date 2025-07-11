@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class LoadAccountStats : AbstractPacket
 {
-    public const int IdStatic = 907073245;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 907073245;
+    public override int Id => ID_CONST;
     public override string Description => "Loads the player's own account stats";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

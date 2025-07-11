@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadBonusRegionsCC : AbstractPacket
 {
-    public const int IdStatic = -959048700;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -959048700;
+    public override int Id => ID_CONST;
     public override string Description => "Load bonus regions configuration (BonusRegionsCC)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

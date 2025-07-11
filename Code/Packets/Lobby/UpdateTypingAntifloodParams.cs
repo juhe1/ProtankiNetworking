@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UpdateTypingAntifloodParams : AbstractPacket
 {
-    public const int IdStatic = 744948472;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 744948472;
+    public override int Id => ID_CONST;
     public override string Description => "Update typing antiflood parameters";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

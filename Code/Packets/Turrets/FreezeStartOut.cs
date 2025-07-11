@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FreezeStartOut : AbstractPacket
 {
-    public const int IdStatic = -75406982;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -75406982;
+    public override int Id => ID_CONST;
     public override string Description => "When we start using Freeze";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftScopeOut : AbstractPacket
 {
-    public const int IdStatic = 1632423559;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1632423559;
+    public override int Id => ID_CONST;
     public override string Description => "Sends server details about a released Shaft scope shot";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

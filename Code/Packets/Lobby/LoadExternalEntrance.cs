@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadExternalEntrance : AbstractPacket
 {
-    public const int IdStatic = -1715719586;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1715719586;
+    public override int Id => ID_CONST;
     public override string Description => "Load external entrance data.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

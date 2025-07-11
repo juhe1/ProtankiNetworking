@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class ReturnFlagToBase : AbstractPacket
 {
-    public const int IdStatic = -1026428589;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1026428589;
+    public override int Id => ID_CONST;
     public override string Description => "Return flag to base (team and tank)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

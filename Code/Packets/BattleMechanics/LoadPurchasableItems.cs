@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadPurchasableItems : AbstractPacket
 {
-    public const int IdStatic = -300370823;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -300370823;
+    public override int Id => ID_CONST;
     public override string Description => "Load Purchasable Items";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

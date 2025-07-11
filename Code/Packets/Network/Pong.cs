@@ -7,8 +7,8 @@ namespace ProtankiNetworking.Packets.Network;
 /// </summary>
 public class Pong : AbstractPacket
 {
-    public const int IdStatic = 1484572481;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1484572481;
+    public override int Id => ID_CONST;
     public override string Description => "Pong Packet from client";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

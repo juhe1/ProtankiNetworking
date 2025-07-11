@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerStopFireIn : AbstractPacket
 {
-    public const int IdStatic = 1333088437;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1333088437;
+    public override int Id => ID_CONST;
     public override string Description => "Flamethrower stop fire (shooter)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

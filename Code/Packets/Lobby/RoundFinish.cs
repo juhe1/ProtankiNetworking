@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class RoundFinish : AbstractPacket
 {
-    public const int IdStatic = 1534651002;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1534651002;
+    public override int Id => ID_CONST;
     public override string Description => "The existing battle round has finished";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

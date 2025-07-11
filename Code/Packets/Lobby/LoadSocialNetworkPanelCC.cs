@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadSocialNetworkPanelCC : AbstractPacket
 {
-    public const int IdStatic = -583564465;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -583564465;
+    public override int Id => ID_CONST;
     public override string Description => "Load social network panel (passwordCreated, socialNetworkParams)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {

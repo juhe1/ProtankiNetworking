@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class NotificationBonusContainsUid : AbstractPacket
 {
-    public const int IdStatic = 1382076950;
-    public override int Id => IdStatic;
+    public const int ID_CONST = 1382076950;
+    public override int Id => ID_CONST;
     public override string Description => "Notification bonus contains UID (text, uid)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

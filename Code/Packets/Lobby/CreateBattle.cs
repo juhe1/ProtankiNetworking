@@ -10,8 +10,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class CreateBattle : AbstractPacket
 {
-    public const int IdStatic = -2135234426;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -2135234426;
+    public override int Id => ID_CONST;
     public override string Description => "Creates a new battle";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

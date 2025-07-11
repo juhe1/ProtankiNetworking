@@ -10,7 +10,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftAimedShotCommandOut : AbstractPacket
 {
-    public const int IdStatic = 1632423559;
+    public const int ID_CONST = 1632423559;
 
     public override string Description =>
         "Shaft aimed shot command out (time, staticHitPoint, targets, targetHitPoints, targetIncarnation, targetPosition, hitPointWorld)";

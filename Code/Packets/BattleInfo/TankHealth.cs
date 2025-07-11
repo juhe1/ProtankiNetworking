@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class TankHealth : AbstractPacket
 {
-    public const int IdStatic = -611961116;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -611961116;
+    public override int Id => ID_CONST;
     public override string Description => "Updates the health of a tank";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadMapLights : AbstractPacket
 {
-    public const int IdStatic = -152638117;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -152638117;
+    public override int Id => ID_CONST;
     public override string Description => "Load Map Lights";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

@@ -9,8 +9,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadControlPointsCC : AbstractPacket
 {
-    public const int IdStatic = -1337059439;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1337059439;
+    public override int Id => ID_CONST;
     public override string Description => "Load control points configuration (ControlPointsCC)";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]

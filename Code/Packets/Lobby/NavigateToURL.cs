@@ -8,8 +8,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class NavigateToURL : AbstractPacket
 {
-    public const int IdStatic = -1455955413;
-    public override int Id => IdStatic;
+    public const int ID_CONST = -1455955413;
+    public override int Id => ID_CONST;
     public override string Description => "Navigate to URL (url)";
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
