@@ -33,10 +33,9 @@ public class VectorCodec : BaseCodec
         if (_shorten && (bool)BoolCodec.Instance.Decode(buffer)) return null;
 
         length = (int)IntCodec.Instance.Decode(buffer);
-        Console.WriteLine("Length: " + length);
 
-        var result = new List<object?>();
-        for (int i = 0; i < length; i++) result.Add(_elementCodec.Decode(buffer));
+        var result = new object?[length];
+        for (int i = 0; i < length; i++) result[i] = _elementCodec.Decode(buffer);
 
         return result;
     }
@@ -53,9 +52,10 @@ public class VectorCodec : BaseCodec
         if (_shorten && value is null) return BoolCodec.Instance.Encode(true, buffer);
 
         if (value is null) throw new ArgumentNullException(nameof(value));
+        if (value is not object?[] array) throw new ArgumentException("Value must be an object?[]", nameof(value));
 
-        bytesWritten += IntCodec.Instance.Encode(((List<object>)value).Count, buffer);
-        foreach (var item in (List<object>)value) bytesWritten += _elementCodec.Encode(item, buffer);
+        bytesWritten += IntCodec.Instance.Encode(array.Length, buffer);
+        foreach (var item in array) bytesWritten += _elementCodec.Encode(item, buffer);
 
         return bytesWritten;
     }

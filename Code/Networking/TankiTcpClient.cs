@@ -262,7 +262,7 @@ public abstract class TankiTcpClient
         // Handle ActivateProtection packet
         if (ActivateProtection.ID_CONST == packetId) // ActivateProtection packet ID
         {
-            var keys = (List<object>?)fittedPacket.GetObjectByAttributeName("keys");
+            var keys = (object?[]?)fittedPacket.GetObjectByAttributeName("keys");
             if (keys is null)
             {
                 throw new Exception("Failed to activate protection, because keys are null.");
