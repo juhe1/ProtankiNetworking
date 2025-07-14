@@ -67,7 +67,7 @@ public abstract class TankiTcpClientHandler
 
                     // Validate packet length
                     if (packetLen < AbstractPacket.HEADER_LEN || packetLen > 1024 * 1024) // Max 1MB packet size
-                        throw new InvalidOperationException($"Invalid packet length: {packetLen}");
+                        throw new InvalidOperationException($"Invalid packet length: {packetLen} Packet id {packetId}");
 
                     // Resize raw packet to full length if needed
                     if (packetLen > 8)
@@ -129,8 +129,8 @@ public abstract class TankiTcpClientHandler
 
         try
         {
-            var packetData = packet.Wrap(_protection);
-            await _stream.WriteAsync(packetData.ToArray(), 0, packetData.Length);
+            byte[] packetData = packet.Wrap(_protection).ToTrimmedArray();
+            await _stream.WriteAsync(packetData, 0, packetData.Length);
             await _stream.FlushAsync();
         }
         catch (Exception e)

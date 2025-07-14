@@ -51,6 +51,17 @@ public class ByteArray
     }
 
     /// <summary>
+    ///     Returns only the written portion of the buffer (from 0 to _position)
+    /// </summary>
+    /// <returns>The trimmed byte array</returns>
+    public byte[] ToTrimmedArray()
+    {
+        var result = new byte[_position];
+        Array.Copy(_buffer, result, _position);
+        return result;
+    }
+
+    /// <summary>
     ///     Reads a byte from the current position
     /// </summary>
     /// <returns>The byte read</returns>

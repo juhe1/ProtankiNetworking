@@ -94,11 +94,11 @@ public class AbstractPacket
                 dataLen += CodecObjects[i].Encode(Objects[i], packetData);
         }
 
-        var encryptedData = protection?.Encrypt(packetData.ToArray()) ?? packetData.ToArray();
+        var encryptedData = protection?.Encrypt(packetData.ToTrimmedArray()) ?? packetData.ToTrimmedArray();
         var result = new EByteArray();
         result.WriteInt(dataLen);
         result.WriteInt(Id);
-        result.Write(new EByteArray(encryptedData));
+        result.Write(encryptedData);
         return result;
     }
 
@@ -134,12 +134,14 @@ public class AbstractPacket
     /// <returns>True if set successfully, false if attribute name is not found</returns>
     public bool SetObjectByAttributeName(string attributeName, object? value)
     {
-        if (!ObjectByAttributeName.ContainsKey(attributeName))
-            return false;
         ObjectByAttributeName[attributeName] = value;
         var index = Array.IndexOf(Attributes, attributeName);
-        if (index >= 0 && index < Objects.Count)
+        if (index >= 0)
+        {
+            while (Objects.Count <= index)
+                Objects.Add(null);
             Objects[index] = value;
+        }
         return true;
     }
 }

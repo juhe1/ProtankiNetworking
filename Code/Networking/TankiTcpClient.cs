@@ -83,8 +83,8 @@ public abstract class TankiTcpClient
 
         try
         {
-            var packetData = packet.Wrap(_protection);
-            await _stream.WriteAsync(packetData.ToArray(), 0, packetData.Length);
+            byte[] packetData = packet.Wrap(_protection).ToTrimmedArray();
+            await _stream.WriteAsync(packetData, 0, packetData.Length);
             await _stream.FlushAsync();
         }
         catch (Exception e)
