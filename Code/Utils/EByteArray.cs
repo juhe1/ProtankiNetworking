@@ -161,12 +161,12 @@ public class EByteArray : ByteArray
     ///     Writes a string to the current position
     /// </summary>
     /// <param name="value">The string to write</param>
-    /// <returns>This EByteArray instance for method chaining</returns>
-    public EByteArray WriteString(string value)
+    /// <returns>The length of the data that was just written</returns>
+    public int WriteString(string value)
     {
         var bytes = Encoding.UTF8.GetBytes(value);
         Write(bytes);
-        return this;
+        return bytes.Length;
     }
 
     /// <summary>

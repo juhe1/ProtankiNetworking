@@ -54,7 +54,7 @@ public class StringCodec : BaseCodec
         string str = (string)value;
         buffer.WriteBoolean(false);
         buffer.WriteInt(str.Length);
-        buffer.WriteString(str);
-        return 1 + 4 + str.Length;
+        int stringEncodedLen = buffer.WriteString(str);
+        return 1 + 4 + stringEncodedLen;
     }
 }
