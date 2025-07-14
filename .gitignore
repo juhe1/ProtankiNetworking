@@ -3,6 +3,7 @@ probotanki_python/
 
 # Visual Studio files
 .vs/
+.vscode/
 *.user
 *.userosscache
 *.suo
@@ -22,9 +23,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-
-# Visual Studio cache/options directory
-.vs/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
