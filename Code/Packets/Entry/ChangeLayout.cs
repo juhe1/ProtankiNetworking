@@ -1,5 +1,5 @@
 using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Codec.Custom;
 
 namespace ProtankiNetworking.Packets.Entry;
 
@@ -14,7 +14,7 @@ public class ChangeLayout : AbstractPacket
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        IntCodec.Instance
+        LayoutStateCodec.Instance
     };
 
     public override string[] Attributes => new[]
