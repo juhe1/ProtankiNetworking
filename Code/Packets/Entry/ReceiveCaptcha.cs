@@ -1,6 +1,7 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
 using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Codec.Custom;
 
 namespace ProtankiNetworking.Packets.Entry;
 
@@ -15,13 +16,13 @@ public class ReceiveCaptcha : AbstractPacket
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
-        IntCodec.Instance,
+        CaptchaLocationCodec.Instance,
         new VectorCodec(ByteCodec.Instance, false)
     };
 
     public override string[] Attributes => new[]
     {
-        "type",
+        "location",
         "imagedata"
     };
 }
