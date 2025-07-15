@@ -5,12 +5,11 @@ namespace ProtankiNetworking.Codec.Custom;
 
 public enum LayoutState
 {
-    MATCHMAKING = 0,
-    BATTLE_SELECT = 1,
-    GARAGE = 2,
+    BATTLE_SELECT = 0,
+    GARAGE = 1,
+    PAYMENT = 2,
     BATTLE = 3,
-    RELOAD_SPACE = 4,
-    CLAN = 5
+    RELOAD_SPACE = 4
 }
 
 /// <summary>
@@ -25,12 +24,11 @@ public class LayoutStateCodec : BaseCodec
         int value = (int)IntCodec.Instance.Decode(buffer);
         return value switch
         {
-            0 => LayoutState.MATCHMAKING,
-            1 => LayoutState.BATTLE_SELECT,
-            2 => LayoutState.GARAGE,
+            0 => LayoutState.BATTLE_SELECT,
+            1 => LayoutState.GARAGE,
+            2 => LayoutState.PAYMENT,
             3 => LayoutState.BATTLE,
             4 => LayoutState.RELOAD_SPACE,
-            5 => LayoutState.CLAN,
             _ => throw new System.Exception($"Unknown LayoutState value: {value}")
         };
     }
