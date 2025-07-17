@@ -229,6 +229,7 @@ public abstract class TankiTcpClient
                     )
                 {
                     // Connection was closed by the remote end
+                    await DisconnectAsync();
                     break;
                 }
         }
@@ -239,10 +240,6 @@ public abstract class TankiTcpClient
         catch (Exception e)
         {
             await OnErrorAsync(e, "TankiTcpClient.ProcessPackets");
-        }
-        finally
-        {
-            await DisconnectAsync();
         }
     }
 
