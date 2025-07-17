@@ -7,12 +7,13 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// <summary>
 ///     Packet for hitting a target: time, shotId, target, targetPosition, hitPointWorld. Used in Twins and Ricochet.
 /// </summary>
-public class HitTargetCommand : AbstractPacket
+public class TwinsHitTargetOut : AbstractPacket
 {
     public const int ID_CONST = -1723353904;
+    public override int Id => ID_CONST;
 
     public override string Description =>
-        "Hit target command (time, shotId, target, targetPosition, hitPointWorld). Used in Twins and Ricochet.";
+        "Hit target command (time, shotId, target, targetPosition, hitPointWorld). Used in Twin and Ricochets.";
 
     public override BaseCodec[] CodecObjects => new BaseCodec[]
     {
