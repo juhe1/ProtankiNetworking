@@ -18,6 +18,8 @@ public abstract class TankiTcpClient
     private TcpClient? _client;
     private Task? _processingTask;
     private NetworkStream? _stream;
+    private bool _isDisconnected = false;
+    private readonly object _disconnectLock = new();
 
     /// <summary>
     ///     Creates a new instance of TankiTcpClient
@@ -137,6 +139,13 @@ public abstract class TankiTcpClient
     /// </summary>
     public async Task DisconnectAsync()
     {
+        lock (_disconnectLock)
+        {
+            if (_isDisconnected)
+                return;
+            _isDisconnected = true;
+        }
+
         _cancellationTokenSource.Cancel();
 
         if (_stream != null)
@@ -152,6 +161,7 @@ public abstract class TankiTcpClient
         }
 
         if (_processingTask != null)
+        {
             try
             {
                 await _processingTask;
@@ -160,6 +170,7 @@ public abstract class TankiTcpClient
             {
                 // Expected when cancelling
             }
+        }
 
         await OnDisconnectedAsync();
     }
@@ -229,7 +240,7 @@ public abstract class TankiTcpClient
                     )
                 {
                     // Connection was closed by the remote end
-                    await DisconnectAsync();
+                    DisconnectAsync();
                     break;
                 }
         }
@@ -240,6 +251,10 @@ public abstract class TankiTcpClient
         catch (Exception e)
         {
             await OnErrorAsync(e, "TankiTcpClient.ProcessPackets");
+        }
+        finally
+        {
+            DisconnectAsync();
         }
     }
 
