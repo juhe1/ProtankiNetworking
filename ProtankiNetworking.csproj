@@ -16,6 +16,12 @@
         <PackageTags>protanki;networking;packets;codecs;game</PackageTags>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>full</DebugType> <!-- or portable -->
+      <Optimize>false</Optimize>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="System.Text.Json" Version="9.0.6" />
     </ItemGroup>
