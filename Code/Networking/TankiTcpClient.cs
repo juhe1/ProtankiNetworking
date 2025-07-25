@@ -135,7 +135,8 @@ public abstract class TankiTcpClient
 	}
 
 	/// <summary>
-	///     Disconnects from the server
+	/// When called, will disconnect from the server.
+	/// When server closes the connection this is called.
 	/// </summary>
 	public async Task DisconnectAsync()
 	{
