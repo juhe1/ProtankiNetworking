@@ -1,27 +1,21 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
 ///     Packet for loading bonus regions configuration (BonusRegionsCC).
 /// </summary>
-public class LoadBonusRegionsCC : AbstractPacket
+public class LoadBonusRegionsCC : Packet
 {
+    [Encode(0)]
+    public BonusRegionResource?[]? BonusRegionResources { get; set; }
+
+    [Encode(1)]
+    public BonusRegionData?[]? BonusRegions { get; set; }
+
     public const int ID_CONST = -959048700;
     public override int Id => ID_CONST;
     public override string Description => "Load bonus regions configuration (BonusRegionsCC)";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        new VectorCodec(BonusRegionResourceCodec.Instance, false), // bonusRegionResources
-        new VectorCodec(BonusRegionDataCodec.Instance, false) // bonusRegions
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "bonusRegionResources",
-        "bonusRegions"
-    };
 }

@@ -1,29 +1,25 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
 ///     Packet for sending shotgun shot information.
 /// </summary>
-public class ShotgunShotIn : AbstractPacket
+public class ShotgunShotIn : Packet
 {
+    [Encode(0)]
+    public string? WeaponId { get; set; }
+
+    [Encode(1)]
+    public Vector3D? HitPosition { get; set; }
+
+    [Encode(2)]
+    public TargetHit?[]? Hits { get; set; }
+
     public const int ID_CONST = 471157826;
     public override int Id => ID_CONST;
     public override string Description => "Send shotgun shot information";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        StringCodec.Instance, // weapon id
-        Vector3DCodec.Instance, // hit position
-        new VectorCodec(TargetHitCodec.Instance, false) // hits
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "weaponId",
-        "hitPosition",
-        "hits"
-    };
 }

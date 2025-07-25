@@ -1,37 +1,36 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
 ///     Sends server details about a released Shaft scope shot
 /// </summary>
-public class ShaftScopeOut : AbstractPacket
+public class ShaftScopeOut : Packet
 {
+    [Encode(0)]
+    public int ClientTime { get; set; }
+
+    [Encode(1)]
+    public Vector3D? StaticHitPoint { get; set; }
+
+    [Encode(2)]
+    public string?[]? Targets { get; set; }
+
+    [Encode(3)]
+    public Vector3D?[]? TargetHitPoints { get; set; }
+
+    [Encode(4)]
+    public short[]? IncarnationIDs { get; set; }
+
+    [Encode(5)]
+    public Vector3D?[]? TargetBodyPositions { get; set; }
+
+    [Encode(6)]
+    public Vector3D?[]? GlobalHitPoints { get; set; }
+
     public const int ID_CONST = 1632423559;
     public override int Id => ID_CONST;
     public override string Description => "Sends server details about a released Shaft scope shot";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        IntCodec.Instance,
-        Vector3DCodec.Instance,
-        new VectorCodec(StringCodec.Instance, true),
-        new VectorCodec(Vector3DCodec.Instance, true),
-        new VectorCodec(ShortCodec.Instance, true),
-        new VectorCodec(Vector3DCodec.Instance, true),
-        new VectorCodec(Vector3DCodec.Instance, true)
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "clientTime",
-        "staticHitPoint",
-        "targets",
-        "targetHitPoints",
-        "incarnationIDs",
-        "targetBodyPositions",
-        "globalHitPoints"
-    };
 }

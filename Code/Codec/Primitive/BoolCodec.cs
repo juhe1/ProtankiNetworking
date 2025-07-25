@@ -7,39 +7,40 @@ namespace ProtankiNetworking.Codec.Primitive;
 /// </summary>
 public class BoolCodec : BaseCodec
 {
-    /// <summary>
-    ///     Creates a new instance of BoolCodec
-    /// </summary>
-    private BoolCodec() { }
+	public override Type TargetType { get; } = typeof(bool);
 
-    /// <summary>
-    ///     Gets the singleton instance of BoolCodec
-    /// </summary>
-    public static BoolCodec Instance { get; } = new();
+	/// <summary>
+	///     Creates a new instance of BoolCodec
+	/// </summary>
+	private BoolCodec() { }
 
-    /// <summary>
-    ///     Decodes a boolean value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded boolean value</returns>
-    public override object Decode(EByteArray buffer)
-    {
-        return buffer.ReadBoolean();
-    }
+	/// <summary>
+	///     Gets the singleton instance of BoolCodec
+	/// </summary>
+	public static BoolCodec Instance { get; } = new();
 
-    /// <summary>
-    ///     Encodes a boolean value to the buffer
-    /// </summary>
-    /// <param name="value">The boolean value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    public override int Encode(object? value, EByteArray buffer)
-    {
-        if (value is not bool boolValue)
-            throw new ArgumentException("Value must be a boolean", nameof(value));
+	/// <summary>
+	///     Decodes a boolean value from the buffer
+	/// </summary>
+	/// <param name="buffer">The buffer to decode from</param>
+	/// <returns>The decoded boolean value</returns>
+	public override object Decode(EByteArray buffer)
+	{
+		return buffer.ReadBoolean();
+	}
 
-        buffer.WriteBoolean(boolValue);
-        return 1;
-    }
+	/// <summary>
+	///     Encodes a boolean value to the buffer
+	/// </summary>
+	/// <param name="value">The boolean value to encode</param>
+	/// <param name="buffer">The buffer to encode to</param>
+	/// <returns>The number of bytes written</returns>
+	public override int Encode(object? value, EByteArray buffer)
+	{
+		if (value is not bool boolValue)
+			throw new ArgumentException("Value must be a boolean", nameof(value));
+
+		buffer.WriteBoolean(boolValue);
+		return 1;
+	}
 }
-

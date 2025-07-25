@@ -1,37 +1,36 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
 ///     Packet for loading Capture The Flag control center.
 /// </summary>
-public class LoadCaptureTheFlagCC : AbstractPacket
+public class LoadCaptureTheFlagCC : Packet
 {
+    [Encode(0)]
+    public ClientFlag? BlueFlag { get; set; }
+
+    [Encode(1)]
+    public int BlueFlagSprite { get; set; }
+
+    [Encode(2)]
+    public int BluePedestalModel { get; set; }
+
+    [Encode(3)]
+    public ClientFlag? RedFlag { get; set; }
+
+    [Encode(4)]
+    public int RedFlagSprite { get; set; }
+
+    [Encode(5)]
+    public int RedPedestalModel { get; set; }
+
+    [Encode(6)]
+    public CaptureTheFlagSoundFX? Sounds { get; set; }
+
     public const int ID_CONST = 789790814;
     public override int Id => ID_CONST;
     public override string Description => "Load Capture The Flag control center";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        ClientFlagCodec.Instance, // blueFlag
-        IntCodec.Instance, // blueFlagSprite (ResourceGetterCodec)
-        IntCodec.Instance, // bluePedestalModel (ResourceGetterCodec)
-        ClientFlagCodec.Instance, // redFlag
-        IntCodec.Instance, // redFlagSprite (ResourceGetterCodec)
-        IntCodec.Instance, // redPedestalModel (ResourceGetterCodec)
-        CaptureTheFlagSoundFXCodec.Instance // sounds
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "blueFlag",
-        "blueFlagSprite",
-        "bluePedestalModel",
-        "redFlag",
-        "redFlagSprite",
-        "redPedestalModel",
-        "sounds"
-    };
 }

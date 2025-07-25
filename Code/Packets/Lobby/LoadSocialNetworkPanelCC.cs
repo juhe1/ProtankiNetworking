@@ -1,26 +1,19 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
 ///     Packet for loading the social network panel (passwordCreated, socialNetworkParams)
 /// </summary>
-public class LoadSocialNetworkPanelCC : AbstractPacket
+public class LoadSocialNetworkPanelCC : Packet
 {
+    [Encode(0)]
+    public bool PasswordCreated { get; set; }
+
+    [Encode(1)]
+    public SocialNetworkPanelParams?[]? SocialNetworkParams { get; set; }
+
     public const int ID_CONST = -583564465;
     public override int Id => ID_CONST;
     public override string Description => "Load social network panel (passwordCreated, socialNetworkParams)";
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        BoolCodec.Instance, // passwordCreated
-        new VectorCodec(SocialNetworkPanelParamsCodec.Instance) // socialNetworkParams
-    };
-    public override string[] Attributes => new[]
-    {
-        "passwordCreated",
-        "socialNetworkParams"
-    };
 } 

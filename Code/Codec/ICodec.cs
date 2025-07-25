@@ -7,23 +7,29 @@ namespace ProtankiNetworking.Codec;
 /// </summary>
 public interface ICodec
 {
-    /// <summary>
-    ///     Gets or sets whether to use shortened boolean encoding
-    /// </summary>
-    bool BoolShorten { get; set; }
+	/// <summary>
+	/// If this is true, then the array that uses this as element code will
+	/// get boolean at the begining that tells is the array null.
+	/// </summary>
+	bool IsArrayOptional { get; }
 
-    /// <summary>
-    ///     Decodes a value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded value</returns>
-    object? Decode(EByteArray buffer);
+	/// <summary>
+	/// The type that the codec will encode/decode.
+	/// </summary>
+	Type TargetType { get; }
 
-    /// <summary>
-    ///     Encodes a value to the buffer
-    /// </summary>
-    /// <param name="value">The value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    int Encode(object? value, EByteArray buffer);
+	/// <summary>
+	///     Decodes a value from the buffer
+	/// </summary>
+	/// <param name="buffer">The buffer to decode from</param>
+	/// <returns>The decoded value</returns>
+	object? Decode(EByteArray buffer);
+
+	/// <summary>
+	///     Encodes a value to the buffer
+	/// </summary>
+	/// <param name="value">The value to encode</param>
+	/// <param name="buffer">The buffer to encode to</param>
+	/// <returns>The number of bytes written</returns>
+	int Encode(object? value, EByteArray buffer);
 }

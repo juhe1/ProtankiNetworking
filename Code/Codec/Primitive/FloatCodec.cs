@@ -7,39 +7,41 @@ namespace ProtankiNetworking.Codec.Primitive;
 /// </summary>
 public class FloatCodec : BaseCodec
 {
-    /// <summary>
-    ///     Creates a new instance of FloatCodec
-    /// </summary>
-    private FloatCodec()
-    {
-    }
+	public override Type TargetType { get; } = typeof(float);
 
-    /// <summary>
-    ///     Gets the singleton instance of FloatCodec
-    /// </summary>
-    public static FloatCodec Instance { get; } = new();
+	/// <summary>
+	///     Creates a new instance of FloatCodec
+	/// </summary>
+	private FloatCodec() { }
 
-    /// <summary>
-    ///     Decodes a float value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded float value</returns>
-    public override object? Decode(EByteArray buffer)
-    {
-        return buffer.ReadFloat();
-    }
+	/// <summary>
+	///     Gets the singleton instance of FloatCodec
+	/// </summary>
+	public static FloatCodec Instance { get; } = new();
 
-    /// <summary>
-    ///     Encodes a float value to the buffer
-    /// </summary>
-    /// <param name="value">The float value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    public override int Encode(object? value, EByteArray buffer)
-    {
-        if (value is not float floatValue) throw new ArgumentException("Value must be a float", nameof(value));
+	/// <summary>
+	///     Decodes a float value from the buffer
+	/// </summary>
+	/// <param name="buffer">The buffer to decode from</param>
+	/// <returns>The decoded float value</returns>
+	public override object? Decode(EByteArray buffer)
+	{
+		return buffer.ReadFloat();
+	}
 
-        buffer.WriteFloat(floatValue);
-        return 4;
-    }
+	/// <summary>
+	///     Encodes a float value to the buffer
+	/// </summary>
+	/// <param name="value">The float value to encode</param>
+	/// <param name="buffer">The buffer to encode to</param>
+	/// <returns>The number of bytes written</returns>
+	public override int Encode(object? value, EByteArray buffer)
+	{
+		if (value is not float floatValue)
+			throw new ArgumentException("Value must be a float", nameof(value));
+
+		buffer.WriteFloat(floatValue);
+		return 4;
+	}
 }
+

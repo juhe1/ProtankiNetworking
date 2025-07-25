@@ -1,28 +1,21 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
 ///     Received a captcha image with its type
 /// </summary>
-public class ReceiveCaptcha : AbstractPacket
+public class ReceiveCaptcha : Packet
 {
+    [Encode(0)]
+    public CaptchaLocation? Location { get; set; }
+
+    [Encode(1)]
+    public byte[]? Imagedata { get; set; }
+
     public const int ID_CONST = -1670408519;
     public override int Id => ID_CONST;
     public override string Description => "Received a captcha image with its type";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        CaptchaLocationCodec.Instance,
-        new VectorCodec(ByteCodec.Instance, false)
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "location",
-        "imagedata"
-    };
 }

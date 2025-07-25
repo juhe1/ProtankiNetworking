@@ -7,39 +7,40 @@ namespace ProtankiNetworking.Codec.Primitive;
 /// </summary>
 public class IntCodec : BaseCodec
 {
-    /// <summary>
-    ///     Creates a new instance of IntCodec
-    /// </summary>
-    private IntCodec()
-    {
-    }
+	public override Type TargetType { get; } = typeof(int);
 
-    /// <summary>
-    ///     Gets the singleton instance of IntCodec
-    /// </summary>
-    public static IntCodec Instance { get; } = new();
+	/// <summary>
+	///     Creates a new instance of IntCodec
+	/// </summary>
+	private IntCodec() { }
 
-    /// <summary>
-    ///     Decodes an integer value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded integer value</returns>
-    public override object Decode(EByteArray buffer)
-    {
-        return buffer.ReadInt();
-    }
+	/// <summary>
+	///     Gets the singleton instance of IntCodec
+	/// </summary>
+	public static IntCodec Instance { get; } = new();
 
-    /// <summary>
-    ///     Encodes an integer value to the buffer
-    /// </summary>
-    /// <param name="value">The integer value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    public override int Encode(object? value, EByteArray buffer)
-    {
-        if (value is not int intValue) throw new ArgumentException("Value must be an integer", nameof(value));
+	/// <summary>
+	///     Decodes an integer value from the buffer
+	/// </summary>
+	/// <param name="buffer">The buffer to decode from</param>
+	/// <returns>The decoded integer value</returns>
+	public override object Decode(EByteArray buffer)
+	{
+		return buffer.ReadInt();
+	}
 
-        buffer.WriteInt(intValue);
-        return 4;
-    }
+	/// <summary>
+	///     Encodes an integer value to the buffer
+	/// </summary>
+	/// <param name="value">The integer value to encode</param>
+	/// <param name="buffer">The buffer to encode to</param>
+	/// <returns>The number of bytes written</returns>
+	public override int Encode(object? value, EByteArray buffer)
+	{
+		if (value is not int intValue)
+			throw new ArgumentException("Value must be an integer", nameof(value));
+
+		buffer.WriteInt(intValue);
+		return 4;
+	}
 }

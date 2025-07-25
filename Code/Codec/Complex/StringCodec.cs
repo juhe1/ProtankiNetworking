@@ -7,54 +7,55 @@ namespace ProtankiNetworking.Codec.Complex;
 /// </summary>
 public class StringCodec : BaseCodec
 {
-    /// <summary>
-    ///     Creates a new instance of StringCodec
-    /// </summary>
-    private StringCodec()
-    {
-    }
+	public override Type TargetType { get; } = typeof(System.String);
+	public override bool IsArrayOptional { get; } = true;
 
-    /// <summary>
-    ///     Gets the singleton instance of StringCodec
-    /// </summary>
-    public static StringCodec Instance { get; } = new();
+	/// <summary>
+	///     Creates a new instance of StringCodec
+	/// </summary>
+	private StringCodec() { }
 
-    /// <summary>
-    ///     Decodes a string value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded string value</returns>
-    public override object? Decode(EByteArray buffer)
-    {
-        bool isEmpty = buffer.ReadBoolean();
-        if (isEmpty)
-            return null;
+	/// <summary>
+	///     Gets the singleton instance of StringCodec
+	/// </summary>
+	public static StringCodec Instance { get; } = new();
 
-        var length = buffer.ReadInt();
-        if (length == 0)
-            return string.Empty;
+	/// <summary>
+	///     Decodes a string value from the buffer
+	/// </summary>
+	/// <param name="buffer">The buffer to decode from</param>
+	/// <returns>The decoded string value</returns>
+	public override object? Decode(EByteArray buffer)
+	{
+		bool isEmpty = buffer.ReadBoolean();
+		if (isEmpty)
+			return null;
 
-        return buffer.ReadString(length);
-    }
+		var length = buffer.ReadInt();
+		if (length == 0)
+			return string.Empty;
 
-    /// <summary>
-    ///     Encodes a string value to the buffer
-    /// </summary>
-    /// <param name="value">The string value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    public override int Encode(object? value, EByteArray buffer)
-    {
-        if (value is null)
-        {
-            buffer.WriteBoolean(true);
-            return 1;
-        }
+		return buffer.ReadString(length);
+	}
 
-        string str = (string)value;
-        buffer.WriteBoolean(false);
-        buffer.WriteInt(str.Length);
-        int stringEncodedLen = buffer.WriteString(str);
-        return 1 + 4 + stringEncodedLen;
-    }
+	/// <summary>
+	///     Encodes a string value to the buffer
+	/// </summary>
+	/// <param name="value">The string value to encode</param>
+	/// <param name="buffer">The buffer to encode to</param>
+	/// <returns>The number of bytes written</returns>
+	public override int Encode(object? value, EByteArray buffer)
+	{
+		if (value is null)
+		{
+			buffer.WriteBoolean(true);
+			return 1;
+		}
+
+		string str = (string)value;
+		buffer.WriteBoolean(false);
+		buffer.WriteInt(str.Length);
+		int stringEncodedLen = buffer.WriteString(str);
+		return 1 + 4 + stringEncodedLen;
+	}
 }

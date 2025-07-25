@@ -1,29 +1,24 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
 ///     A bonus box has dropped
 /// </summary>
-public class BonusBoxDropped : AbstractPacket
+public class BonusBoxDropped : Packet
 {
+    [Encode(0)]
+    public string? BonusId { get; set; }
+
+    [Encode(1)]
+    public Vector3D? Position { get; set; }
+
+    [Encode(2)]
+    public int FallTimeThreshold { get; set; }
+
     public const int ID_CONST = 1831462385;
     public override int Id => ID_CONST;
     public override string Description => "A bonus box has dropped";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        StringCodec.Instance,
-        Vector3DCodec.Instance,
-        IntCodec.Instance
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "bonusId",
-        "position",
-        "fallTimeThreshold"
-    };
 }

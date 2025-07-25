@@ -1,30 +1,24 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
 ///     Receives movement data of a player from the server.
 /// </summary>
-public class MoveCommand : AbstractPacket
+public class MoveCommand : Packet
 {
+    [Encode(0)]
+    public string? Username { get; set; }
+
+    [Encode(1)]
+    public MoveData? Movement { get; set; }
+
+    [Encode(2)]
+    public float TurretDirection { get; set; }
+
     public const int ID_CONST = 1516578027;
     public override int Id => ID_CONST;
     public override string Description => "Receives movement data of a player from the server.";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        StringCodec.Instance,
-        MoveCodec.Instance,
-        FloatCodec.Instance
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "username",
-        "movement",
-        "turretDirection"
-    };
 }

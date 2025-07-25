@@ -1,6 +1,4 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.Turrets;
 
@@ -8,32 +6,33 @@ namespace ProtankiNetworking.Packets.Turrets;
 ///     Packet for Shaft quick shot out (time, staticHitPoint, targets, targetHitPoints, targetIncarnation, targetPosition,
 ///     hitPointWorld).
 /// </summary>
-public class ShaftQuickShotOut : AbstractPacket
+public class ShaftQuickShotOut : Packet
 {
+    [Encode(0)]
+    public int Time { get; set; }
+
+    [Encode(1)]
+    public Vector3D? StaticHitPoint { get; set; }
+
+    [Encode(2)]
+    public string?[]? Targets { get; set; }
+
+    [Encode(3)]
+    public Vector3D?[]? TargetHitPoints { get; set; }
+
+    [Encode(4)]
+    public short[]? TargetIncarnation { get; set; }
+
+    [Encode(5)]
+    public Vector3D?[]? TargetPosition { get; set; }
+
+    [Encode(6)]
+    public Vector3D?[]? HitPointWorld { get; set; }
+
     public const int ID_CONST = -2030760866;
     public override int Id => ID_CONST;
     public override string Description =>
         "Shaft quick shot out (time, staticHitPoint, targets, targetHitPoints, targetIncarnation, targetPosition, hitPointWorld)";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        IntCodec.Instance, // time
-        Vector3DCodec.Instance, // staticHitPoint
-        new VectorCodec(StringCodec.Instance, true), // targets
-        new VectorCodec(Vector3DCodec.Instance, true), // targetHitPoints
-        new VectorCodec(ShortCodec.Instance, true), // targetIncarnation (name_61)
-        new VectorCodec(Vector3DCodec.Instance, true), // targetPosition (var_2788)
-        new VectorCodec(Vector3DCodec.Instance, true) // hitPointWorld (var_778)
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "time",
-        "staticHitPoint",
-        "targets",
-        "targetHitPoints",
-        "targetIncarnation",
-        "targetPosition",
-        "hitPointWorld"
-    };
 }

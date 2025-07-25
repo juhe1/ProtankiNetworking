@@ -1,27 +1,21 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
 ///     Packet for when a flag is taken by a tank.
 /// </summary>
-public class FlagTaken : AbstractPacket
+public class FlagTaken : Packet
 {
+    [Encode(0)]
+    public string? TankId { get; set; }
+
+    [Encode(1)]
+    public BattleTeam? FlagTeam { get; set; }
+
     public const int ID_CONST = -1282406496;
     public override int Id => ID_CONST;
     public override string Description => "Flag taken by tank";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        StringCodec.Instance, // tankId
-        BattleTeamCodec.Instance // flagTeam
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "tankId",
-        "flagTeam"
-    };
 }

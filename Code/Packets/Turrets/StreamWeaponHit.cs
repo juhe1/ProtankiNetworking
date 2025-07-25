@@ -1,6 +1,4 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.Turrets;
 
@@ -8,28 +6,27 @@ namespace ProtankiNetworking.Packets.Turrets;
 ///     Packet for stream weapon hit (time, targets, incarnations, positions, hitPoints). Freeze and Flamethrower uses
 ///     this.
 /// </summary>
-public class StreamWeaponHit : AbstractPacket
+public class StreamWeaponHit : Packet
 {
+    [Encode(0)]
+    public int Time { get; set; }
+
+    [Encode(1)]
+    public string?[]? Targets { get; set; }
+
+    [Encode(2)]
+    public short[]? Incarnations { get; set; }
+
+    [Encode(3)]
+    public Vector3D?[]? Positions { get; set; }
+
+    [Encode(4)]
+    public Vector3D?[]? HitPoints { get; set; }
+
     public const int ID_CONST = -2123941185;
 
     public override string Description =>
         "Stream weapon hit (time, targets, incarnations, positions, hitPoints). Freeze and Flamethrower uses this.";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        IntCodec.Instance, // time
-        new VectorCodec(StringCodec.Instance, true), // targets
-        new VectorCodec(ShortCodec.Instance, true), // incarnations
-        new VectorCodec(Vector3DCodec.Instance, true), // positions
-        new VectorCodec(Vector3DCodec.Instance, true) // hitPoints
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "time",
-        "targets",
-        "incarnations",
-        "positions",
-        "hitPoints"
-    };
 }

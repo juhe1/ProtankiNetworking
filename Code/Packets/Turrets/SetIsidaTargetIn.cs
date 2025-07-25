@@ -1,29 +1,24 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Complex;
-using ProtankiNetworking.Codec.Custom;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
 ///     Packet for setting Isida target.
 /// </summary>
-public class SetIsidaTargetIn : AbstractPacket
+public class SetIsidaTargetIn : Packet
 {
+    [Encode(0)]
+    public string? UserId { get; set; }
+
+    [Encode(1)]
+    public IsisState? IsisState { get; set; }
+
+    [Encode(2)]
+    public TargetHit? Target { get; set; }
+
     public const int ID_CONST = 2001632000;
     public override int Id => ID_CONST;
     public override string Description => "Set Isida target event";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        StringCodec.Instance, // userId
-        IsisStateCodec.Instance, // isisState
-        TargetHitCodec.Instance // target
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "userId",
-        "isisState",
-        "target"
-    };
 }

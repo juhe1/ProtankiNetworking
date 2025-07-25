@@ -7,30 +7,13 @@ namespace ProtankiNetworking.Codec;
 /// </summary>
 public abstract class BaseCodec : ICodec
 {
-    /// <summary>
-    ///     Creates a new instance of BaseCodec
-    /// </summary>
-    protected BaseCodec()
-    {
-    }
+	public abstract Type TargetType { get; }
 
-    /// <summary>
-    ///     Gets or sets whether to use shortened boolean encoding
-    /// </summary>
-    public virtual bool BoolShorten { get; set; } = false;
+	public virtual bool IsArrayOptional { get; } = false;
 
-    /// <summary>
-    ///     Decodes a value from the buffer
-    /// </summary>
-    /// <param name="buffer">The buffer to decode from</param>
-    /// <returns>The decoded value</returns>
-    public abstract object? Decode(EByteArray buffer);
+	protected BaseCodec() { }
 
-    /// <summary>
-    ///     Encodes a value to the buffer
-    /// </summary>
-    /// <param name="value">The value to encode</param>
-    /// <param name="buffer">The buffer to encode to</param>
-    /// <returns>The number of bytes written</returns>
-    public abstract int Encode(object? value, EByteArray buffer);
+	public abstract object? Decode(EByteArray buffer);
+
+	public abstract int Encode(object? value, EByteArray buffer);
 }

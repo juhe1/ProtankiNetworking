@@ -1,29 +1,24 @@
-using ProtankiNetworking.Codec;
-using ProtankiNetworking.Codec.Custom;
-using ProtankiNetworking.Codec.Primitive;
+using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
 ///     Sends your movement data to the server
 /// </summary>
-public class Move : AbstractPacket
+public class Move : Packet
 {
+    [Encode(0)]
+    public int ClientTime { get; set; }
+
+    [Encode(1)]
+    public short SpecificationID { get; set; }
+
+    [Encode(2)]
+    public MoveData? Movement { get; set; }
+
     public const int ID_CONST = 329279865;
     public override int Id => ID_CONST;
     public override string Description => "Sends your movement data to the server";
 
-    public override BaseCodec[] CodecObjects => new BaseCodec[]
-    {
-        IntCodec.Instance,
-        ShortCodec.Instance,
-        MoveCodec.Instance
-    };
 
-    public override string[] Attributes => new[]
-    {
-        "clientTime",
-        "specificationID",
-        "movement"
-    };
 }
