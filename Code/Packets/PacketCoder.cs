@@ -75,6 +75,7 @@ public static class PacketCoder
 
 		byte[] encryptedData =
 			protection?.Encrypt(packetData.ToTrimmedArray()) ?? packetData.ToTrimmedArray();
+		dataLen += encryptedData.Length;
 		EByteArray result = new();
 		result.WriteInt(dataLen);
 		result.WriteInt(packet.Id);
