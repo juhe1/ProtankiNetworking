@@ -278,9 +278,8 @@ public abstract class TankiTcpClient
 		// Handle ActivateProtection packet
 		if (ActivateProtection.ID_CONST == packetId) // ActivateProtection packet ID
 		{
-			byte[] keys = ((ActivateProtection)fittedPacket).Keys;
-			var intKeys = keys.Select(k => (byte)k).ToArray();
-			_protection.Activate(intKeys);
+			byte[] keys = ((ActivateProtection)fittedPacket).Keys!;
+			_protection.Activate(keys);
 		}
 
 		await OnPacketReceivedAsync(fittedPacket);
