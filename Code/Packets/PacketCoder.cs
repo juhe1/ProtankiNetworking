@@ -227,11 +227,6 @@ public static class PacketCoder
 	{
 		Type type = target.GetType();
 
-		if (target is ChangeLayout)
-		{
-			System.Diagnostics.Debugger.Break();
-		}
-
 		var fields = type.GetFields(
 				BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
 			)
