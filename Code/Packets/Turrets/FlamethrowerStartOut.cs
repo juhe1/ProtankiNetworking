@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class FlamethrowerStartOut : Packet
 {
-    [Encode(0)]
-    public int ClientTime { get; set; }
+	[Encode(0)]
+	public int ClientTime { get; set; }
 
-    public const int ID_CONST = -1986638927;
-    public override int Id => ID_CONST;
-    public override string Description => "Firebird starts shooting";
-
-
+	public const int ID_CONST = -1986638927;
+	public override int Id => ID_CONST;
+	public override string Description => "Firebird starts shooting";
 }

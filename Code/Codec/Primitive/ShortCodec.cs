@@ -45,4 +45,3 @@ public class ShortCodec : BaseCodec
 		return 2;
 	}
 }
-

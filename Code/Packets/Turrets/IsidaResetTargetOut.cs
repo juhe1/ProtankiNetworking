@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class IsidaResetTargetOut : Packet
 {
-    [Encode(0)]
-    public int Time { get; set; }
+	[Encode(0)]
+	public int Time { get; set; }
 
-    public const int ID_CONST = -248693565;
-    public override int Id => ID_CONST;
-    public override string Description => "Send Isida reset target out event";
-
-
+	public const int ID_CONST = -248693565;
+	public override int Id => ID_CONST;
+	public override string Description => "Send Isida reset target out event";
 }

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadBonusBoxResources : Packet
 {
-    [Encode(0)]
-    public string? Json { get; set; }
+	[Encode(0)]
+	public string? Json { get; set; }
 
-    public const int ID_CONST = 228171466;
-    public override int Id => ID_CONST;
-    public override string Description => "Load Bonus Box Resources";
-
-
+	public const int ID_CONST = 228171466;
+	public override int Id => ID_CONST;
+	public override string Description => "Load Bonus Box Resources";
 }

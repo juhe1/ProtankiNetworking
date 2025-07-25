@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UnloadLobbyChat : Packet
 {
-    public const int ID_CONST = -920985123;
-    public override int Id => ID_CONST;
-    public override string Description => "Unload the lobby chat";
-
-
+	public const int ID_CONST = -920985123;
+	public override int Id => ID_CONST;
+	public override string Description => "Unload the lobby chat";
 }

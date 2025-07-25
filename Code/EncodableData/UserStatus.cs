@@ -20,4 +20,3 @@ public class UserStatus : IEncodable
 	[Encode(3)]
 	public string? Username { get; set; }
 }
-

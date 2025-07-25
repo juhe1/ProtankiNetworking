@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,10 +5,10 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class TakeDailyQuestPrize : Packet
 {
-    [Encode(0)]
-    public int QuestId { get; set; }
+	[Encode(0)]
+	public int QuestId { get; set; }
 
-    public const int ID_CONST = 1768449810;
-    public override int Id => ID_CONST;
-    public override string Description => "Take daily quest prize (questId)";
-} 
+	public const int ID_CONST = 1768449810;
+	public override int Id => ID_CONST;
+	public override string Description => "Take daily quest prize (questId)";
+}

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,7 +5,7 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserHideOut : Packet
 {
-    public const int ID_CONST = 843751647;
-    public override int Id => ID_CONST;
-    public override string Description => "Shaft laser hide out (no attributes)";
+	public const int ID_CONST = 843751647;
+	public override int Id => ID_CONST;
+	public override string Description => "Shaft laser hide out (no attributes)";
 }

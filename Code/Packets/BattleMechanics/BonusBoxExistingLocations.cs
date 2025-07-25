@@ -7,12 +7,10 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class BonusBoxExistingLocations : Packet
 {
-    [Encode(0)]
-    public JsonNode? Json { get; set; }
+	[Encode(0)]
+	public JsonNode? Json { get; set; }
 
-    public const int ID_CONST = 870278784;
-    public override int Id => ID_CONST;
-    public override string Description => "Locations of existing bonus boxes";
-
-
+	public const int ID_CONST = 870278784;
+	public override int Id => ID_CONST;
+	public override string Description => "Locations of existing bonus boxes";
 }

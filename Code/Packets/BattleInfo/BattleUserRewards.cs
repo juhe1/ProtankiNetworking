@@ -7,15 +7,13 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class BattleUserRewards : Packet
 {
-    [Encode(0)]
-    public BattleUserRewardsData?[]? Reward { get; set; }
+	[Encode(0)]
+	public BattleUserRewardsData?[]? Reward { get; set; }
 
-    [Encode(1)]
-    public int TimeToRestart { get; set; }
+	[Encode(1)]
+	public int TimeToRestart { get; set; }
 
-    public const int ID_CONST = 560336625;
-    public override int Id => ID_CONST;
-    public override string Description => "Battle User Rewards";
-
-
+	public const int ID_CONST = 560336625;
+	public override int Id => ID_CONST;
+	public override string Description => "Battle User Rewards";
 }

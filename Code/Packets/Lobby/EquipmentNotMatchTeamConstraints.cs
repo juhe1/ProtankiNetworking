@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,13 +5,11 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class EquipmentNotMatchTeamConstraints : Packet
 {
-    [Encode(0)]
-    public string? BattleTeamInfoObjectId { get; set; }
+	[Encode(0)]
+	public string? BattleTeamInfoObjectId { get; set; }
 
-    public const int ID_CONST = -10847382;
+	public const int ID_CONST = -10847382;
 
-    public override string Description =>
-        "Warns that the player is trying to join a team battle with wrong equipment.";
-
-
+	public override string Description =>
+		"Warns that the player is trying to join a team battle with wrong equipment.";
 }

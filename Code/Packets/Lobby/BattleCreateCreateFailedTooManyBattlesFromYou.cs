@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,7 +5,8 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class BattleCreateCreateFailedTooManyBattlesFromYou : Packet
 {
-    public const int ID_CONST = -614313838;
-    public override int Id => ID_CONST;
-    public override string Description => "Battle create failed: too many battles from you (no attributes)";
-} 
+	public const int ID_CONST = -614313838;
+	public override int Id => ID_CONST;
+	public override string Description =>
+		"Battle create failed: too many battles from you (no attributes)";
+}

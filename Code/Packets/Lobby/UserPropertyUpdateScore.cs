@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UserPropertyUpdateScore : Packet
 {
-    [Encode(0)]
-    public int Score { get; set; }
+	[Encode(0)]
+	public int Score { get; set; }
 
-    public const int ID_CONST = 2116086491;
-    public override int Id => ID_CONST;
-    public override string Description => "Update user score property";
-
-
+	public const int ID_CONST = 2116086491;
+	public override int Id => ID_CONST;
+	public override string Description => "Update user score property";
 }

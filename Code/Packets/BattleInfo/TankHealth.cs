@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -7,15 +5,13 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class TankHealth : Packet
 {
-    [Encode(0)]
-    public string? Username { get; set; }
+	[Encode(0)]
+	public string? Username { get; set; }
 
-    [Encode(1)]
-    public float Health { get; set; }
+	[Encode(1)]
+	public float Health { get; set; }
 
-    public const int ID_CONST = -611961116;
-    public override int Id => ID_CONST;
-    public override string Description => "Updates the health of a tank";
-
-
+	public const int ID_CONST = -611961116;
+	public override int Id => ID_CONST;
+	public override string Description => "Updates the health of a tank";
 }

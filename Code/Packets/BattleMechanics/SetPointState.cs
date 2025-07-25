@@ -9,15 +9,13 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class SetPointState : Packet
 {
-    [Encode(0)]
-    public int PointId { get; set; }
+	[Encode(0)]
+	public int PointId { get; set; }
 
-    [Encode(1)]
-    public ControlPointState? State { get; set; }
+	[Encode(1)]
+	public ControlPointState? State { get; set; }
 
-    public const int ID_CONST = -1073178885;
-    public override int Id => ID_CONST;
-    public override string Description => "Set point state (pointId, state)";
-
-
+	public const int ID_CONST = -1073178885;
+	public override int Id => ID_CONST;
+	public override string Description => "Set point state (pointId, state)";
 }

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -7,9 +5,8 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class StatisticsObjectLoadedPost : Packet
 {
-    public const int ID_CONST = 1953272681;
-    public override int Id => ID_CONST;
-    public override string Description => "Indicates that the statistics object has been loaded (post event)";
-
-
+	public const int ID_CONST = 1953272681;
+	public override int Id => ID_CONST;
+	public override string Description =>
+		"Indicates that the statistics object has been loaded (post event)";
 }

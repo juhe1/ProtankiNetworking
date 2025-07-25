@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class SmokyLocalCriticalHitIn : Packet
 {
-    [Encode(0)]
-    public string? Target { get; set; }
+	[Encode(0)]
+	public string? Target { get; set; }
 
-    public const int ID_CONST = -671618989;
-    public override int Id => ID_CONST;
-    public override string Description => "Smoky local critical hit in (target)";
-
-
+	public const int ID_CONST = -671618989;
+	public override int Id => ID_CONST;
+	public override string Description => "Smoky local critical hit in (target)";
 }

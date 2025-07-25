@@ -7,12 +7,10 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class LoadOwnedGarageItems : Packet
 {
-    [Encode(0)]
-    public JsonNode? Json { get; set; }
+	[Encode(0)]
+	public JsonNode? Json { get; set; }
 
-    public const int ID_CONST = -255516505;
-    public override int Id => ID_CONST;
-    public override string Description => "Load Owned Garage Items";
-
-
+	public const int ID_CONST = -255516505;
+	public override int Id => ID_CONST;
+	public override string Description => "Load Owned Garage Items";
 }

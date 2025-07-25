@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class UnloadGarageSpace : Packet
 {
-    public const int ID_CONST = 1211186637;
-    public override int Id => ID_CONST;
-    public override string Description => "Unload the garage space";
-
-
+	public const int ID_CONST = 1211186637;
+	public override int Id => ID_CONST;
+	public override string Description => "Unload the garage space";
 }

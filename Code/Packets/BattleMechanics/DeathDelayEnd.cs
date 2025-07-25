@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class DeathDelayEnd : Packet
 {
-    public const int ID_CONST = 268832557;
-    public override int Id => ID_CONST;
-    public override string Description => "Respawn delay ends and player can start respawning";
-
-
+	public const int ID_CONST = 268832557;
+	public override int Id => ID_CONST;
+	public override string Description => "Respawn delay ends and player can start respawning";
 }

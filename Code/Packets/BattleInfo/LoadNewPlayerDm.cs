@@ -7,15 +7,13 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadNewPlayerDm : Packet
 {
-    [Encode(0)]
-    public string? Username { get; set; }
+	[Encode(0)]
+	public string? Username { get; set; }
 
-    [Encode(1)]
-    public BattleUser?[]? Userinfos { get; set; }
+	[Encode(1)]
+	public BattleUser?[]? Userinfos { get; set; }
 
-    public const int ID_CONST = 862913394;
-    public override int Id => ID_CONST;
-    public override string Description => "A new player has joined the battle";
-
-
+	public const int ID_CONST = 862913394;
+	public override int Id => ID_CONST;
+	public override string Description => "A new player has joined the battle";
 }

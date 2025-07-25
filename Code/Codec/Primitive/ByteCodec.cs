@@ -44,4 +44,3 @@ public class ByteCodec : BaseCodec
 		return 1;
 	}
 }
-

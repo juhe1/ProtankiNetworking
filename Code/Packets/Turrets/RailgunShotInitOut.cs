@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,13 +5,11 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RailgunShotInitOut : Packet
 {
-    [Encode(0)]
-    public int ClientTime { get; set; }
+	[Encode(0)]
+	public int ClientTime { get; set; }
 
-    public const int ID_CONST = -1759063234;
+	public const int ID_CONST = -1759063234;
 
-    public override string Description =>
-        "Sends server details about a railgun shot that has just started to release";
-
-
+	public override string Description =>
+		"Sends server details about a railgun shot that has just started to release";
 }

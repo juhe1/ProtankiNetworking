@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,11 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserUpdateDirectionOut : Packet
 {
-    [Encode(0)]
-    public float ProjectionOnVerticalAxis { get; set; }
+	[Encode(0)]
+	public float ProjectionOnVerticalAxis { get; set; }
 
-    public const int ID_CONST = 1224288585;
-    public override int Id => ID_CONST;
-    public override string Description => "Shaft laser update direction out (projectionOnVerticalAxis)";
-
-
+	public const int ID_CONST = 1224288585;
+	public override int Id => ID_CONST;
+	public override string Description =>
+		"Shaft laser update direction out (projectionOnVerticalAxis)";
 }

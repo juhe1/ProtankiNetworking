@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class ChangeCrystalCount : Packet
 {
-    [Encode(0)]
-    public int CrystalCount { get; set; }
+	[Encode(0)]
+	public int CrystalCount { get; set; }
 
-    public const int ID_CONST = -593513288;
-    public override int Id => ID_CONST;
-    public override string Description => "Change crystal count.";
-
-
+	public const int ID_CONST = -593513288;
+	public override int Id => ID_CONST;
+	public override string Description => "Change crystal count.";
 }

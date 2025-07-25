@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
@@ -7,7 +5,8 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class UserEmailAndPasswordCheckPasswordIsSet : Packet
 {
-    public const int ID_CONST = -1507635228;
-    public override int Id => ID_CONST;
-    public override string Description => "User email and password check password is set (no attributes)";
-} 
+	public const int ID_CONST = -1507635228;
+	public override int Id => ID_CONST;
+	public override string Description =>
+		"User email and password check password is set (no attributes)";
+}

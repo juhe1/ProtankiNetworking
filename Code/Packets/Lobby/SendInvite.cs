@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,15 +5,13 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class SendInvite : Packet
 {
-    [Encode(0)]
-    public string? Username { get; set; }
+	[Encode(0)]
+	public string? Username { get; set; }
 
-    [Encode(1)]
-    public string? BattleID { get; set; }
+	[Encode(1)]
+	public string? BattleID { get; set; }
 
-    public const int ID_CONST = -864265623;
-    public override int Id => ID_CONST;
-    public override string Description => "Send a battle invite to a player";
-
-
+	public const int ID_CONST = -864265623;
+	public override int Id => ID_CONST;
+	public override string Description => "Send a battle invite to a player";
 }

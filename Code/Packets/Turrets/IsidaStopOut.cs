@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class IsidaStopOut : Packet
 {
-    [Encode(0)]
-    public int Time { get; set; }
+	[Encode(0)]
+	public int Time { get; set; }
 
-    public const int ID_CONST = -1051248475;
-    public override int Id => ID_CONST;
-    public override string Description => "Send Isida stop out event";
-
-
+	public const int ID_CONST = -1051248475;
+	public override int Id => ID_CONST;
+	public override string Description => "Send Isida stop out event";
 }

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Shop;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.Shop;
 /// </summary>
 public class PromocodeFailed : Packet
 {
-    public const int ID_CONST = -1850050333;
-    public override int Id => ID_CONST;
-    public override string Description => "Incorrect or expired promocode";
-
-
+	public const int ID_CONST = -1850050333;
+	public override int Id => ID_CONST;
+	public override string Description => "Incorrect or expired promocode";
 }

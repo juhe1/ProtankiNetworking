@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class NameAvailable : Packet
 {
-    public const int ID_CONST = -706679202;
-    public override int Id => ID_CONST;
-    public override string Description => "Said name is available for registration";
-
-
+	public const int ID_CONST = -706679202;
+	public override int Id => ID_CONST;
+	public override string Description => "Said name is available for registration";
 }

@@ -7,30 +7,28 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class LoadCaptureTheFlagCC : Packet
 {
-    [Encode(0)]
-    public ClientFlag? BlueFlag { get; set; }
+	[Encode(0)]
+	public ClientFlag? BlueFlag { get; set; }
 
-    [Encode(1)]
-    public int BlueFlagSprite { get; set; }
+	[Encode(1)]
+	public int BlueFlagSprite { get; set; }
 
-    [Encode(2)]
-    public int BluePedestalModel { get; set; }
+	[Encode(2)]
+	public int BluePedestalModel { get; set; }
 
-    [Encode(3)]
-    public ClientFlag? RedFlag { get; set; }
+	[Encode(3)]
+	public ClientFlag? RedFlag { get; set; }
 
-    [Encode(4)]
-    public int RedFlagSprite { get; set; }
+	[Encode(4)]
+	public int RedFlagSprite { get; set; }
 
-    [Encode(5)]
-    public int RedPedestalModel { get; set; }
+	[Encode(5)]
+	public int RedPedestalModel { get; set; }
 
-    [Encode(6)]
-    public CaptureTheFlagSoundFX? Sounds { get; set; }
+	[Encode(6)]
+	public CaptureTheFlagSoundFX? Sounds { get; set; }
 
-    public const int ID_CONST = 789790814;
-    public override int Id => ID_CONST;
-    public override string Description => "Load Capture The Flag control center";
-
-
+	public const int ID_CONST = 789790814;
+	public override int Id => ID_CONST;
+	public override string Description => "Load Capture The Flag control center";
 }

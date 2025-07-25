@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class ShaftLaserHideIn : Packet
 {
-    [Encode(0)]
-    public string? ShooterId { get; set; }
+	[Encode(0)]
+	public string? ShooterId { get; set; }
 
-    public const int ID_CONST = -380595194;
-    public override int Id => ID_CONST;
-    public override string Description => "Shaft laser hide (shooterId)";
-
-
+	public const int ID_CONST = -380595194;
+	public override int Id => ID_CONST;
+	public override string Description => "Shaft laser hide (shooterId)";
 }

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Status;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Status;
 /// </summary>
 public class NotInBattleStatus : Packet
 {
-    [Encode(0)]
-    public string? Username { get; set; }
+	[Encode(0)]
+	public string? Username { get; set; }
 
-    public const int ID_CONST = 1941694508;
-    public override int Id => ID_CONST;
-    public override string Description => "Sets the player's battle status to not in battle";
-
-
+	public const int ID_CONST = 1941694508;
+	public override int Id => ID_CONST;
+	public override string Description => "Sets the player's battle status to not in battle";
 }

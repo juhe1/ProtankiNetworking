@@ -14,8 +14,6 @@ public class JsonCodec : BaseCodec
 	/// <summary>
 	///     Creates a new instance of JsonCodec
 	/// </summary>
-
-
 	/// <summary>
 	///     Creates a new instance of JsonCodec
 	/// </summary>

@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
@@ -7,7 +5,7 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class UserCountryShowPaymentWindow : Packet
 {
-    public const int ID_CONST = 1870342869;
-    public override int Id => ID_CONST;
-    public override string Description => "User country show payment window (no attributes)";
-} 
+	public const int ID_CONST = 1870342869;
+	public override int Id => ID_CONST;
+	public override string Description => "User country show payment window (no attributes)";
+}

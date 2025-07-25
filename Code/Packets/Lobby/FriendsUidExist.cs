@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -7,7 +5,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class FriendsUidExist : Packet
 {
-    public const int ID_CONST = -707501253;
-    public override int Id => ID_CONST;
-    public override string Description => "Friends UID exist (no attributes)";
-} 
+	public const int ID_CONST = -707501253;
+	public override int Id => ID_CONST;
+	public override string Description => "Friends UID exist (no attributes)";
+}

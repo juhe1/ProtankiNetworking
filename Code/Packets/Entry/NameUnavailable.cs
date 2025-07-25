@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
@@ -7,13 +5,11 @@ namespace ProtankiNetworking.Packets.Entry;
 /// </summary>
 public class NameUnavailable : Packet
 {
-    [Encode(0)]
-    public string?[]? Usernames { get; set; }
+	[Encode(0)]
+	public string?[]? Usernames { get; set; }
 
-    public const int ID_CONST = 442888643;
+	public const int ID_CONST = 442888643;
 
-    public override string Description =>
-        "Said name is unavailable for registration with a list of alternative suggested usernames";
-
-
+	public override string Description =>
+		"Said name is unavailable for registration with a list of alternative suggested usernames";
 }

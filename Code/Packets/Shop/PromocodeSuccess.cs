@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Shop;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.Shop;
 /// </summary>
 public class PromocodeSuccess : Packet
 {
-    public const int ID_CONST = -1859441081;
-    public override int Id => ID_CONST;
-    public override string Description => "Promocode applied successfully";
-
-
+	public const int ID_CONST = -1859441081;
+	public override int Id => ID_CONST;
+	public override string Description => "Promocode applied successfully";
 }

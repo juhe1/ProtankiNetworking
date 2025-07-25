@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -7,9 +5,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class SendRespawn : Packet
 {
-    public const int ID_CONST = -1378839846;
-    public override int Id => ID_CONST;
-    public override string Description => "Send Respawn(fantom) Packet";
-
-
+	public const int ID_CONST = -1378839846;
+	public override int Id => ID_CONST;
+	public override string Description => "Send Respawn(fantom) Packet";
 }

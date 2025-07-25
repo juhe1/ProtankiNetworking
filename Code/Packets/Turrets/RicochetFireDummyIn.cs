@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 /// </summary>
 public class RicochetFireDummyIn : Packet
 {
-    [Encode(0)]
-    public string? Shooter { get; set; }
+	[Encode(0)]
+	public string? Shooter { get; set; }
 
-    public const int ID_CONST = -1670466290;
-    public override int Id => ID_CONST;
-    public override string Description => "Ricochet fire dummy event (shooter)";
-
-
+	public const int ID_CONST = -1670466290;
+	public override int Id => ID_CONST;
+	public override string Description => "Ricochet fire dummy event (shooter)";
 }

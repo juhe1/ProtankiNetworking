@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
@@ -7,12 +5,10 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// </summary>
 public class RemoveMines : Packet
 {
-    [Encode(0)]
-    public string? OwnerId { get; set; }
+	[Encode(0)]
+	public string? OwnerId { get; set; }
 
-    public const int ID_CONST = -1200619383;
-    public override int Id => ID_CONST;
-    public override string Description => "Remove mines (ownerId)";
-
-
+	public const int ID_CONST = -1200619383;
+	public override int Id => ID_CONST;
+	public override string Description => "Remove mines (ownerId)";
 }

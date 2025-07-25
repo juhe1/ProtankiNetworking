@@ -7,13 +7,14 @@ namespace ProtankiNetworking.Packets.Lobby;
 /// </summary>
 public class LoadSocialNetworkPanelCC : Packet
 {
-    [Encode(0)]
-    public bool PasswordCreated { get; set; }
+	[Encode(0)]
+	public bool PasswordCreated { get; set; }
 
-    [Encode(1)]
-    public SocialNetworkPanelParams?[]? SocialNetworkParams { get; set; }
+	[Encode(1)]
+	public SocialNetworkPanelParams?[]? SocialNetworkParams { get; set; }
 
-    public const int ID_CONST = -583564465;
-    public override int Id => ID_CONST;
-    public override string Description => "Load social network panel (passwordCreated, socialNetworkParams)";
-} 
+	public const int ID_CONST = -583564465;
+	public override int Id => ID_CONST;
+	public override string Description =>
+		"Load social network panel (passwordCreated, socialNetworkParams)";
+}

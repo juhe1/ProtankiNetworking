@@ -1,5 +1,3 @@
-
-
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -7,7 +5,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// </summary>
 public class UnloadBattleObjects : Packet
 {
-    public const int ID_CONST = -985579124;
-    public override int Id => ID_CONST;
-    public override string Description => "Unload battle objects";
+	public const int ID_CONST = -985579124;
+	public override int Id => ID_CONST;
+	public override string Description => "Unload battle objects";
 }
