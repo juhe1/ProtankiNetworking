@@ -101,6 +101,9 @@ public abstract class TankiTcpClientHandler
 							socketEx.SocketErrorCode == SocketError.ConnectionReset
 							|| socketEx.SocketErrorCode == SocketError.ConnectionAborted
 							|| socketEx.SocketErrorCode == SocketError.OperationAborted
+							|| socketEx.SocketErrorCode == SocketError.Shutdown
+							|| socketEx.SocketErrorCode == SocketError.NetworkReset
+							|| socketEx.SocketErrorCode == SocketError.NotConnected
 						)
 					)
 				{
