@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -18,70 +20,70 @@ public class LoadControlPointsCC : Packet
 	public int[]? Points { get; set; }
 
 	[Encode(4)]
-	public int BigLetters { get; set; }
+	public Resource? BigLetters { get; set; }
 
 	[Encode(5)]
-	public int BlueCircle { get; set; }
+	public Resource? BlueCircle { get; set; }
 
 	[Encode(6)]
-	public int BluePedestalTexture { get; set; }
+	public Resource? BluePedestalTexture { get; set; }
 
 	[Encode(7)]
-	public int BlueRay { get; set; }
+	public Resource? BlueRay { get; set; }
 
 	[Encode(8)]
-	public int BlueRayTip { get; set; }
+	public Resource? BlueRayTip { get; set; }
 
 	[Encode(9)]
-	public int NeutralCircle { get; set; }
+	public Resource? NeutralCircle { get; set; }
 
 	[Encode(10)]
-	public int NeutralPedestalTexture { get; set; }
+	public Resource? NeutralPedestalTexture { get; set; }
 
 	[Encode(11)]
-	public int Pedestal { get; set; }
+	public Resource? Pedestal { get; set; }
 
 	[Encode(12)]
-	public int RedCircle { get; set; }
+	public Resource? RedCircle { get; set; }
 
 	[Encode(13)]
-	public int RedPedestalTexture { get; set; }
+	public Resource? RedPedestalTexture { get; set; }
 
 	[Encode(14)]
-	public int RedRay { get; set; }
+	public Resource? RedRay { get; set; }
 
 	[Encode(15)]
-	public int RedRayTip { get; set; }
+	public Resource? RedRayTip { get; set; }
 
 	[Encode(16)]
-	public int PointCaptureStartNegativeSound { get; set; }
+	public Resource? PointCaptureStartNegativeSound { get; set; }
 
 	[Encode(17)]
-	public int PointCaptureStartPositiveSound { get; set; }
+	public Resource? PointCaptureStartPositiveSound { get; set; }
 
 	[Encode(18)]
-	public int PointCaptureStopNegativeSound { get; set; }
+	public Resource? PointCaptureStopNegativeSound { get; set; }
 
 	[Encode(19)]
-	public int PointCaptureStopPositiveSound { get; set; }
+	public Resource? PointCaptureStopPositiveSound { get; set; }
 
 	[Encode(20)]
-	public int PointCapturedNegativeSound { get; set; }
+	public Resource? PointCapturedNegativeSound { get; set; }
 
 	[Encode(21)]
-	public int PointCapturedPositiveSound { get; set; }
+	public Resource? PointCapturedPositiveSound { get; set; }
 
 	[Encode(22)]
-	public int PointNeutralizedNegativeSound { get; set; }
+	public Resource? PointNeutralizedNegativeSound { get; set; }
 
 	[Encode(23)]
-	public int PointNeutralizedPositiveSound { get; set; }
+	public Resource? PointNeutralizedPositiveSound { get; set; }
 
 	[Encode(24)]
-	public int PointScoreDecreasingSound { get; set; }
+	public Resource? PointScoreDecreasingSound { get; set; }
 
 	[Encode(25)]
-	public int PointScoreIncreasingSound { get; set; }
+	public Resource? PointScoreIncreasingSound { get; set; }
 
 	public const int ID_CONST = -1337059439;
 	public override int Id => ID_CONST;

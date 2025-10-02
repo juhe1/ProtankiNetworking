@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Entry;
 
 /// <summary>
@@ -6,7 +8,7 @@ namespace ProtankiNetworking.Packets.Entry;
 public class LoginReady : Packet
 {
 	[Encode(0)]
-	public int BgResourceID { get; set; }
+	public Resource? BgResourceID { get; set; }
 
 	[Encode(1)]
 	public bool RequireEmail { get; set; }

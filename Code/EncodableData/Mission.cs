@@ -18,7 +18,7 @@ public class Mission : IEncodable
 	public int Threshold { get; set; }
 
 	[Encode(3)]
-	public int Image { get; set; }
+	public Resource? Image { get; set; }
 
 	[Encode(4)]
 	public MissionReward?[]? Rewards { get; set; }

@@ -11,19 +11,19 @@ public class LoadCaptureTheFlagCC : Packet
 	public ClientFlag? BlueFlag { get; set; }
 
 	[Encode(1)]
-	public int BlueFlagSprite { get; set; }
+	public Resource? BlueFlagSprite { get; set; }
 
 	[Encode(2)]
-	public int BluePedestalModel { get; set; }
+	public Resource? BluePedestalModel { get; set; }
 
 	[Encode(3)]
 	public ClientFlag? RedFlag { get; set; }
 
 	[Encode(4)]
-	public int RedFlagSprite { get; set; }
+	public Resource? RedFlagSprite { get; set; }
 
 	[Encode(5)]
-	public int RedPedestalModel { get; set; }
+	public Resource? RedPedestalModel { get; set; }
 
 	[Encode(6)]
 	public CaptureTheFlagSoundFX? Sounds { get; set; }

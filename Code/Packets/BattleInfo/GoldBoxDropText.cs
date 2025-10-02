@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
@@ -9,7 +11,7 @@ public class GoldBoxDropText : Packet
 	public string? Text { get; set; }
 
 	[Encode(1)]
-	public int SoundID { get; set; }
+	public Resource? SoundID { get; set; }
 
 	public const int ID_CONST = -666893269;
 	public override int Id => ID_CONST;

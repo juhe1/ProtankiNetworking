@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -6,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 public class LoadBattleInvite : Packet
 {
 	[Encode(0)]
-	public int SoundNotification { get; set; }
+	public Resource? SoundNotification { get; set; }
 
 	public const int ID_CONST = 834877801;
 	public override int Id => ID_CONST;

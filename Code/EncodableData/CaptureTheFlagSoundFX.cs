@@ -9,14 +9,14 @@ public class CaptureTheFlagSoundFX : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public int FlagDropSound { get; set; }
+	public Resource? FlagDropSound { get; set; }
 
 	[Encode(1)]
-	public int FlagReturnSound { get; set; }
+	public Resource? FlagReturnSound { get; set; }
 
 	[Encode(2)]
-	public int FlagTakeSound { get; set; }
+	public Resource? FlagTakeSound { get; set; }
 
 	[Encode(3)]
-	public int WinSound { get; set; }
+	public Resource? WinSound { get; set; }
 }
