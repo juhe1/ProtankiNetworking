@@ -11,7 +11,7 @@ public class LoadNewPlayerDm : Packet
 	public string? Username { get; set; }
 
 	[Encode(1)]
-	public BattleUser?[]? Userinfos { get; set; }
+	public UserInfo?[]? Userinfos { get; set; }
 
 	public const int ID_CONST = 862913394;
 	public override int Id => ID_CONST;

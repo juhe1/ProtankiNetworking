@@ -11,10 +11,10 @@ public class LoadNewPlayerTeam : Packet
 	public string? Username { get; set; }
 
 	[Encode(1)]
-	public BattleUser?[]? Userinfos { get; set; }
+	public UserInfo?[]? Userinfos { get; set; }
 
 	[Encode(2)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	public const int ID_CONST = 2040021062;
 	public override int Id => ID_CONST;
