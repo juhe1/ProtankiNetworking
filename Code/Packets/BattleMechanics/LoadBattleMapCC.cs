@@ -1,9 +1,9 @@
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
-///     Load Map Lights
+///     Load BattleMapCC
 /// </summary>
-public class LoadMapLights : Packet
+public class LoadBattleMapCC : Packet
 {
 	[Encode(0)]
 	public string? Json { get; set; }
