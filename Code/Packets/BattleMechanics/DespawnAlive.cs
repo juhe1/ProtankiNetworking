@@ -1,7 +1,7 @@
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
-///     Player despawns while alive
+/// Tank model is unloaded.
 /// </summary>
 public class DespawnAlive : Packet
 {
@@ -10,5 +10,5 @@ public class DespawnAlive : Packet
 
 	public const int ID_CONST = 1719707347;
 	public override int Id => ID_CONST;
-	public override string Description => "Player despawns while alive";
+	public override string Description => "Tank model is unloaded.";
 }
