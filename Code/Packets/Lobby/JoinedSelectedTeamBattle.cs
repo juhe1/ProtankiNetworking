@@ -14,7 +14,7 @@ public class JoinedSelectedTeamBattle : Packet
 	public BattleInfoUser? UserInfo { get; set; }
 
 	[Encode(2)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	public const int ID_CONST = 118447426;
 	public override int Id => ID_CONST;

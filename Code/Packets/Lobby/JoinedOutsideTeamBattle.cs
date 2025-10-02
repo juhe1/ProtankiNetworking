@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -12,9 +14,10 @@ public class JoinedOutsideTeamBattle : Packet
 	public string? Username { get; set; }
 
 	[Encode(2)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	public const int ID_CONST = -169305322;
+	public override int Id => ID_CONST;
 
 	public override string Description =>
 		"Sent when a player joins a global Team battle, outside from the observer's perspective.";

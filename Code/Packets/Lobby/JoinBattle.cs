@@ -1,3 +1,5 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
@@ -6,7 +8,7 @@ namespace ProtankiNetworking.Packets.Lobby;
 public class JoinBattle : Packet
 {
 	[Encode(0)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	public const int ID_CONST = -1284211503;
 	public override int Id => ID_CONST;

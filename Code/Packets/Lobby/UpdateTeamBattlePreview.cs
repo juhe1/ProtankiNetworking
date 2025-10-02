@@ -1,15 +1,17 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Lobby;
 
 /// <summary>
 ///     Updates a team's score in the battle preview
 /// </summary>
-public class UpdateTeamBattlePreview : Packet
+public class UpdateSelectedTeamBattleScore : Packet
 {
 	[Encode(0)]
 	public string? BattleID { get; set; }
 
 	[Encode(1)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	[Encode(2)]
 	public int Score { get; set; }
