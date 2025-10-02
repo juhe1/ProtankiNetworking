@@ -63,7 +63,7 @@ public class MyClientHandler : TankiTcpClientHandler
         Console.WriteLine($"Received raw packet of length {rawPacket.Length}");
     }
 
-    protected override async Task OnPacketReceivedAsync(AbstractPacket packet)
+    protected override async Task OnPacketReceivedAsync(Packet packet)
     {
         Console.WriteLine($"Received packet of type {packet.GetType().Name}");
     }
@@ -90,7 +90,7 @@ public class MyTankiClient : TankiTcpClient
         Console.WriteLine($"Received raw packet of length {rawPacket.Length}");
     }
 
-    protected override async Task OnPacketReceivedAsync(AbstractPacket packet)
+    protected override async Task OnPacketReceivedAsync(Packet packet)
     {
         Console.WriteLine($"Received packet of type {packet.GetType().Name}");
     }
