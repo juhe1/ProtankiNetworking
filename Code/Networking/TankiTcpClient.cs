@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Sockets;
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Packets.Network;
 using ProtankiNetworking.Security;
@@ -204,13 +205,20 @@ public abstract class TankiTcpClient
 					// Convert from big-endian to little-endian for BitConverter
 					Array.Reverse(packetLenBytes);
 					Array.Reverse(packetIdBytes);
-					var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
-					var packetId = BitConverter.ToInt32(packetIdBytes, 0);
+
+					int header = BitConverter.ToInt32(packetLenBytes, 0);
+					bool isCompressed = ((header >> 24) & 0x40) != 0;
+					int packetLen = header & 0xFFFFFF; // length (24 bits)
+					int packetId = BitConverter.ToInt32(packetIdBytes, 0);
 					int packetDataLen = packetLen - Packet.HEADER_LEN;
 
 					// Validate packet length
-					if (packetLen < Packet.HEADER_LEN || packetLen > 1024 * 1024) // Max 1MB packet size
-						throw new InvalidOperationException($"Invalid packet length: {packetLen}");
+					// Max 1MB packet size. This is smaller than the theoretical maximum, because protanki doesn't uses the maximum.
+					// So if the packet is more than 1MB, then we know that something went wrong.
+					if (packetLen < Packet.HEADER_LEN || packetLen > 1024 * 1024)
+						throw new InvalidOperationException(
+							$"Invalid packet length: {packetLen} packetId: {packetId}"
+						);
 
 					// Resize raw packet to full length if needed
 					if (packetLen > 8)
@@ -221,15 +229,29 @@ public abstract class TankiTcpClient
 						await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
 
 					// Then process the packet normally
-					var encryptedData = new ByteArray();
+					byte[] data = new byte[0];
 					if (packetDataLen > 0)
 					{
-						var packetData = new byte[packetDataLen];
-						Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
-						encryptedData.Write(packetData);
+						data = new byte[packetDataLen];
+						Buffer.BlockCopy(rawPacket, 8, data, 0, packetDataLen);
+
+						data = _protection.Decrypt(data.ToArray());
+
+						// Decompress if flagged
+						if (isCompressed)
+						{
+							using var ms = new MemoryStream(data);
+							using var ds = new InflaterInputStream(
+								ms,
+								new ICSharpCode.SharpZipLib.Zip.Compression.Inflater(noHeader: true)
+							);
+							using var outMs = new MemoryStream();
+							ds.CopyTo(outMs);
+							data = outMs.ToArray();
+						}
 					}
 
-					await ProcessPacketAsync(packetId, encryptedData, rawPacket);
+					await ProcessPacketAsync(packetId, data, rawPacket);
 				}
 				catch (IOException ex)
 					when (ex.InnerException is SocketException socketEx
@@ -265,9 +287,8 @@ public abstract class TankiTcpClient
 	/// <summary>
 	///     Processes received packet data
 	/// </summary>
-	private async Task ProcessPacketAsync(int packetId, ByteArray encryptedData, byte[] rawPacket)
+	private async Task ProcessPacketAsync(int packetId, byte[] packetData, byte[] rawPacket)
 	{
-		var packetData = _protection.Decrypt(encryptedData.ToArray());
 		var fittedPacket = PacketFitter(packetId, new ByteArray(packetData));
 
 		// Store the complete raw packet data including headers
