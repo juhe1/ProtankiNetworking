@@ -39,6 +39,7 @@ public static class PacketCoder
 		RegisterCodec(ByteCodec.Instance);
 		RegisterCodec(FloatCodec.Instance);
 		RegisterCodec(IntCodec.Instance);
+		RegisterCodec(LongCodec.Instance);
 		RegisterCodec(ShortCodec.Instance);
 		RegisterCodec(JsonCodec.Instance);
 		RegisterCodec(StringCodec.Instance);

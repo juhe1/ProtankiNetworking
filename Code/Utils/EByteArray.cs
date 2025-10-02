@@ -34,6 +34,20 @@ public class EByteArray : ByteArray
 	}
 
 	/// <summary>
+	///     Reads a 64-bit long from the current position
+	/// </summary>
+	/// <returns>The long read</returns>
+	public long ReadLong()
+	{
+		var bytes = ReadBytes(8);
+		// Always convert to big-endian
+		if (BitConverter.IsLittleEndian)
+			Array.Reverse(bytes);
+
+		return BitConverter.ToInt64(bytes, 0);
+	}
+
+	/// <summary>
 	///     Reads a 16-bit integer from the current position
 	/// </summary>
 	/// <returns>The short read</returns>
@@ -96,6 +110,22 @@ public class EByteArray : ByteArray
 	/// <param name="value">The integer to write</param>
 	/// <returns>This EByteArray instance for method chaining</returns>
 	public EByteArray WriteInt(int value)
+	{
+		var bytes = BitConverter.GetBytes(value);
+		// Always convert to big-endian
+		if (BitConverter.IsLittleEndian)
+			Array.Reverse(bytes);
+
+		Write(bytes);
+		return this;
+	}
+
+	/// <summary>
+	///     Writes a 64-bit long to the current position
+	/// </summary>
+	/// <param name="value">The long to write</param>
+	/// <returns>This EByteArray instance for method chaining</returns>
+	public EByteArray WriteLong(long value)
 	{
 		var bytes = BitConverter.GetBytes(value);
 		// Always convert to big-endian
