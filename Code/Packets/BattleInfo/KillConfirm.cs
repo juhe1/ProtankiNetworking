@@ -3,7 +3,7 @@ namespace ProtankiNetworking.Packets.BattleInfo;
 /// <summary>
 ///     A tank has been killed
 /// </summary>
-public class KillConfirm : Packet
+public class KillTank : Packet
 {
 	[Encode(0)]
 	public string? Target { get; set; }

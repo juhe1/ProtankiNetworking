@@ -5,7 +5,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// <summary>
 ///     Client moved passively
 /// </summary>
-public class TankMovementInfo : Packet
+public class ClientMoveTankAndTurret : Packet
 {
 	[Encode(0)]
 	public int ClientTime { get; set; }

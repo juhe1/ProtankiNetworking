@@ -3,9 +3,9 @@ using ProtankiNetworking.Utils;
 namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
-///     Firebird attack
+///     Firebird tick
 /// </summary>
-public class FlamethrowerDamage : Packet
+public class FlamethrowerDamageOut : Packet
 {
 	[Encode(0)]
 	public int ClientTime { get; set; }
@@ -24,5 +24,5 @@ public class FlamethrowerDamage : Packet
 
 	public const int ID_CONST = 1395251766;
 	public override int Id => ID_CONST;
-	public override string Description => "Firebird attack";
+	public override string Description => "Firebird tick";
 }

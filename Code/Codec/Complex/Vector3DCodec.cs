@@ -53,9 +53,10 @@ public class Vector3DCodec : BaseCodec
 		if (value is not Vector3D vector)
 			throw new ArgumentException("Value must be a Vector3D", nameof(value));
 
+		buffer.WriteBoolean(false);
 		buffer.WriteFloat(vector.X);
 		buffer.WriteFloat(vector.Y);
 		buffer.WriteFloat(vector.Z);
-		return 12;
+		return 13;
 	}
 }

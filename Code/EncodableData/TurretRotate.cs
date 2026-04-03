@@ -9,7 +9,7 @@ public class TurretRotate : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public float Angle { get; set; }
+	public float Direction { get; set; }
 
 	[Encode(1)]
 	public byte Control { get; set; }

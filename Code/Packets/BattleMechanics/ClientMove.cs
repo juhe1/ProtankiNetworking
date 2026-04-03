@@ -5,7 +5,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// <summary>
 ///     Sends your movement data to the server
 /// </summary>
-public class Move : Packet
+public class ClientMove : Packet
 {
 	[Encode(0)]
 	public int ClientTime { get; set; }

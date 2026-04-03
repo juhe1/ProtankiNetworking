@@ -6,6 +6,21 @@ namespace ProtankiNetworking.Utils;
 public class Vector3D
 {
 	/// <summary>
+	///     Gets or sets the X coordinate
+	/// </summary>
+	public float X { get; set; }
+
+	/// <summary>
+	///     Gets or sets the Y coordinate
+	/// </summary>
+	public float Y { get; set; }
+
+	/// <summary>
+	///     Gets or sets the Z coordinate
+	/// </summary>
+	public float Z { get; set; }
+
+	/// <summary>
 	///     Creates a new instance of Vector3D with all coordinates set to 0
 	/// </summary>
 	public Vector3D()
@@ -27,21 +42,6 @@ public class Vector3D
 		Y = y;
 		Z = z;
 	}
-
-	/// <summary>
-	///     Gets or sets the X coordinate
-	/// </summary>
-	public float X { get; set; }
-
-	/// <summary>
-	///     Gets or sets the Y coordinate
-	/// </summary>
-	public float Y { get; set; }
-
-	/// <summary>
-	///     Gets or sets the Z coordinate
-	/// </summary>
-	public float Z { get; set; }
 
 	/// <summary>
 	///     Returns a string representation of this Vector3D

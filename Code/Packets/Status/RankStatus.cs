@@ -6,7 +6,7 @@ namespace ProtankiNetworking.Packets.Status;
 public class RankStatus : Packet
 {
 	[Encode(0)]
-	public int Rank { get; set; }
+	public byte Rank { get; set; }
 
 	[Encode(1)]
 	public string? Username { get; set; }

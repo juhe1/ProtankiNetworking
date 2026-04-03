@@ -1,3 +1,4 @@
+using ProtankiNetworking.EncodableData;
 using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Packets.BattleMechanics;
@@ -11,7 +12,7 @@ public class StartRespFantom : Packet
 	public string? Username { get; set; }
 
 	[Encode(1)]
-	public int Team { get; set; }
+	public BattleTeam Team { get; set; }
 
 	[Encode(2)]
 	public Vector3D? Position { get; set; }

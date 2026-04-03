@@ -22,7 +22,7 @@ public class FreezeHitOut : Packet
 	[Encode(4)]
 	public Vector3D?[]? HitPoints { get; set; }
 
-	public const int ID_CONST = 1395251766;
+	public const int ID_CONST = -2123941185;
 	public override int Id => ID_CONST;
 	public override string Description =>
 		"Freeze hit out (time, targets, incarnations, positions, hitPoints)";

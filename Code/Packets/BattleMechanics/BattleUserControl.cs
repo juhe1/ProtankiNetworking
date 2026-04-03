@@ -6,7 +6,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics
 	public class BattleUserControl : Packet
 	{
 		[Encode(0)]
-		public string? TankiId { get; set; }
+		public string? Username { get; set; }
 
 		[Encode(1)]
 		public byte Control { get; set; }

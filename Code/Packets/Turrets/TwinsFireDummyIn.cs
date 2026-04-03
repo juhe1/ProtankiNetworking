@@ -9,7 +9,7 @@ public class TwinsFireDummyIn : Packet
 	public string? Shooter { get; set; }
 
 	[Encode(1)]
-	public byte FireType { get; set; }
+	public byte Barrel { get; set; }
 
 	public const int ID_CONST = -328554480;
 	public override int Id => ID_CONST;

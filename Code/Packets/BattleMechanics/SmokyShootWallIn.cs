@@ -3,9 +3,9 @@ using ProtankiNetworking.Utils;
 namespace ProtankiNetworking.Packets.BattleMechanics;
 
 /// <summary>
-///     Shot Effect Applied
+/// Some smoky user shot wall.
 /// </summary>
-public class ShotEffectApplied : Packet
+public class SmokyShootWallIn : Packet
 {
 	[Encode(0)]
 	public string? Shooter { get; set; }
@@ -15,5 +15,5 @@ public class ShotEffectApplied : Packet
 
 	public const int ID_CONST = 546849203;
 	public override int Id => ID_CONST;
-	public override string Description => "Shot Effect Applied";
+	public override string Description => "Some smoky user shot wall.";
 }

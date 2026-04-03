@@ -3,7 +3,7 @@ using ProtankiNetworking.Utils;
 namespace ProtankiNetworking.Packets.BattleInfo;
 
 /// <summary>
-///     Player Start Position
+///     Player Start Position. Sent for local tank only.
 /// </summary>
 public class PlayerStartPosition : Packet
 {
@@ -15,5 +15,5 @@ public class PlayerStartPosition : Packet
 
 	public const int ID_CONST = -157204477;
 	public override int Id => ID_CONST;
-	public override string Description => "Player Start Position";
+	public override string Description => "Player Start Position Sent for local tank only.";
 }

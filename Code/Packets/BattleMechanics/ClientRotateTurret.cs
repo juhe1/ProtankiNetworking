@@ -5,7 +5,7 @@ namespace ProtankiNetworking.Packets.BattleMechanics;
 /// <summary>
 ///     Sends current turret rotation data to the server
 /// </summary>
-public class TurretRotation : Packet
+public class ClientRotateTurret : Packet
 {
 	[Encode(0)]
 	public int ClientTime { get; set; }

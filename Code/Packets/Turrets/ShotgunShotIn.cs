@@ -9,10 +9,10 @@ namespace ProtankiNetworking.Packets.Turrets;
 public class ShotgunShotIn : Packet
 {
 	[Encode(0)]
-	public string? WeaponId { get; set; }
+	public string? ShooterId { get; set; }
 
 	[Encode(1)]
-	public Vector3D? HitPosition { get; set; }
+	public Vector3D? ShootDirection { get; set; }
 
 	[Encode(2)]
 	public TargetHit?[]? Hits { get; set; }

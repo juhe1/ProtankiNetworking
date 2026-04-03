@@ -1,7 +1,7 @@
-namespace ProtankiNetworking.Packets.BattleMechanics;
+namespace ProtankiNetworking.Packets.Turrets;
 
 /// <summary>
-///     Shot direction
+///     Packet for Ricochet fire event.
 /// </summary>
 public class RicochetFireIn : Packet
 {
@@ -19,5 +19,5 @@ public class RicochetFireIn : Packet
 
 	public const int ID_CONST = -118119523;
 	public override int Id => ID_CONST;
-	public override string Description => "Shot direction";
+	public override string Description => "Ricochet fire event";
 }
