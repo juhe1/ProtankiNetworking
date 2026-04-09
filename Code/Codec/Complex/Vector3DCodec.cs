@@ -1,3 +1,4 @@
+using ProtankiNetworking.EncodableData;
 using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.Codec.Complex;
