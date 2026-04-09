@@ -21,8 +21,8 @@ The library provides three main components for TCP networking:
 ```csharp
 public class MyTankiServer : TankiTcpListener
 {
-    public MyTankiServer(IPEndPoint localEndPoint, Protection protection) 
-        : base(localEndPoint, protection)
+    public MyTankiServer(IPEndPoint localEndPoint)
+        : base(localEndPoint)
     {
     }
 
@@ -36,6 +36,16 @@ public class MyTankiServer : TankiTcpListener
     protected override async Task OnErrorAsync(Exception exception, string context)
     {
         Console.WriteLine($"Server error in {context}: {exception.Message}");
+    }
+
+    protected override Task OnClientConnectedAsync(TcpClient client)
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnClientDisconnectedAsync(TcpClient client)
+    {
+        return Task.CompletedTask;
     }
 }
 
@@ -72,6 +82,22 @@ public class MyClientHandler : TankiTcpClientHandler
     {
         Console.WriteLine($"Handler error in {context}: {exception.Message}");
     }
+
+    protected override Task OnConnectedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnDisconnectedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnPacketUnwrapFailureAsync(Type packetType, int packetId, Exception exception)
+    {
+        Console.WriteLine($"Unwrap failed for {packetType.Name} ({packetId}): {exception.Message}");
+        return Task.CompletedTask;
+    }
 }
 ```
 
@@ -99,6 +125,22 @@ public class MyTankiClient : TankiTcpClient
     {
         Console.WriteLine($"Client error in {context}: {exception.Message}");
     }
+
+    protected override Task OnConnectedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnDisconnectedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnPacketUnwrapFailureAsync(Type packetType, int packetId, Exception exception)
+    {
+        Console.WriteLine($"Unwrap failed for {packetType.Name} ({packetId}): {exception.Message}");
+        return Task.CompletedTask;
+    }
 }
 
 // Usage:
@@ -110,10 +152,10 @@ await client.ConnectAsync();
 
 ## Project Structure
 
-- `Codec/` - Data encoding/decoding system
-- `Networking/` - Network communication utilities
-- `Packets/` - Game packet definitions
-- `Security/` - Security and protection mechanisms
+- `Code/Codec/` - Data encoding/decoding system
+- `Code/Networking/` - Network communication utilities
+- `Code/Packets/` - Game packet definitions
+- `Code/Security/` - Security and protection mechanisms
 
 ## Disclaimer
 
