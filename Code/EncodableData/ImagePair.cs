@@ -14,5 +14,4 @@ public class ImagePair : IEncodable
 
 	[Encode(1)]
 	public ByteArray? Value { get; set; }
-
 }

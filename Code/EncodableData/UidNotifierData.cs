@@ -1,6 +1,5 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
-using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
