@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using ProtankiNetworking.Packets;
+using ProtankiNetworking.Packets.Init;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
 
@@ -296,9 +297,9 @@ public abstract class TankiTcpClient
 		fittedPacket.DecryptedData = packetData;
 
 		// Handle ActivateProtection packet
-		if (ActivateProtection.ID_CONST == packetId) // ActivateProtection packet ID
+		if (ActivateProtectionInPacket.ID_CONST == packetId) // ActivateProtection packet ID
 		{
-			byte[] keys = ((ActivateProtection)fittedPacket).Keys!;
+			byte[] keys = ((ActivateProtectionInPacket)fittedPacket).Keys!;
 			_protection.Activate(keys);
 		}
 
