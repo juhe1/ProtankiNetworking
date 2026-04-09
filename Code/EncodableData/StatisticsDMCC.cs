@@ -1,0 +1,15 @@
+using ProtankiNetworking.Codec;
+using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
+
+namespace ProtankiNetworking.EncodableData;
+
+public class StatisticsDMCC : IEncodable
+{
+	public bool IsOptional { get; } = false;
+	public bool IsArrayOptional { get; } = false;
+
+	[Encode(0)]
+	public UserInfo?[]? UsersInfo { get; set; }
+
+}

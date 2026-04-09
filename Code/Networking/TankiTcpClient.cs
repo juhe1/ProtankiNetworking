@@ -2,7 +2,6 @@ using System.Net;
 using System.Net.Sockets;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using ProtankiNetworking.Packets;
-using ProtankiNetworking.Packets.Network;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
 

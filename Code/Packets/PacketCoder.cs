@@ -2,8 +2,6 @@ using System.Reflection;
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Codec.Complex;
 using ProtankiNetworking.Codec.Primitive;
-using ProtankiNetworking.EncodableData;
-using ProtankiNetworking.Packets.Entry;
 using ProtankiNetworking.Security;
 using ProtankiNetworking.Utils;
 

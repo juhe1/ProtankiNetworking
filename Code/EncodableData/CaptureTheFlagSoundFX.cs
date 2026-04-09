@@ -1,5 +1,6 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
@@ -19,4 +20,5 @@ public class CaptureTheFlagSoundFX : IEncodable
 
 	[Encode(3)]
 	public Resource? WinSound { get; set; }
+
 }

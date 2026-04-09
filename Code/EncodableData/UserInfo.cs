@@ -1,5 +1,6 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
@@ -12,17 +13,18 @@ public class UserInfo : IEncodable
 	public ChatModeratorLevel? ChatModeratorLevel { get; set; }
 
 	[Encode(1)]
-	public short Deaths { get; set; }
+	public int Deaths { get; set; }
 
 	[Encode(2)]
-	public short Kills { get; set; }
+	public int Kills { get; set; }
 
 	[Encode(3)]
-	public byte Rank { get; set; }
+	public int Rank { get; set; }
 
 	[Encode(4)]
 	public int Score { get; set; }
 
 	[Encode(5)]
 	public string? Uid { get; set; }
+
 }

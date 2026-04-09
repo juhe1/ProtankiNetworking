@@ -1,5 +1,6 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
@@ -12,5 +13,6 @@ public class BattleLimits : IEncodable
 	public int ScoreLimit { get; set; }
 
 	[Encode(1)]
-	public int TimeLimit { get; set; }
+	public int TimeLimitInSec { get; set; }
+
 }

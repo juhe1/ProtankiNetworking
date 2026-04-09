@@ -1,5 +1,6 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
@@ -16,4 +17,5 @@ public class SocialNetworkPanelParams : IEncodable
 
 	[Encode(2)]
 	public string? SnId { get; set; }
+
 }

@@ -10,14 +10,6 @@ public class TargetHit : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public Vector3D? Direction { get; set; }
+	public int NumberHits { get; set; }
 
-	[Encode(1)]
-	public Vector3D? LocalHitPoint { get; set; }
-
-	[Encode(2)]
-	public byte NumberHits { get; set; }
-
-	[Encode(3)]
-	public string? Target { get; set; }
 }

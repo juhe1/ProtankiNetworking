@@ -1,0 +1,23 @@
+using ProtankiNetworking.EncodableData;
+
+namespace ProtankiNetworking.Packets.Registration;
+
+public class InitializeRegistrationInPacket : Packet
+{
+
+	[Encode(0)]
+	public ResourceGetter? BgResourceID { get; set; }
+
+	[Encode(1)]
+	public bool RequireEmail { get; set; }
+
+	[Encode(2)]
+	public int MaxPWLen { get; set; }
+
+	[Encode(3)]
+	public int MinPWLen { get; set; }
+
+	public const int ID_CONST = -1277343167;
+	public override int Id => ID_CONST;
+	public override string Description => "No description provided";
+}

@@ -1,0 +1,24 @@
+using ProtankiNetworking.Codec;
+using ProtankiNetworking.Packets;
+using ProtankiNetworking.Utils;
+
+namespace ProtankiNetworking.EncodableData;
+
+public class UserReward : IEncodable
+{
+	public bool IsOptional { get; } = false;
+	public bool IsArrayOptional { get; } = false;
+
+	[Encode(0)]
+	public int NewbiesAbonementBonusReward { get; set; }
+
+	[Encode(1)]
+	public int PremiumBonusReward { get; set; }
+
+	[Encode(2)]
+	public int Reward { get; set; }
+
+	[Encode(3)]
+	public string? UserId { get; set; }
+
+}

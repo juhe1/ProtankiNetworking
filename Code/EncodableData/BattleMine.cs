@@ -15,6 +15,4 @@ public class BattleMine : IEncodable
 	[Encode(1)]
 	public string? OwnerId { get; set; }
 
-	[Encode(2)]
-	public Vector3D? Position { get; set; }
 }
