@@ -1,23 +1,12 @@
-namespace ProtankiNetworking.Utils;
+namespace ProtankiNetworking.EncodableData;
 
 /// <summary>
 ///     Represents a 3D vector with X, Y, and Z coordinates
 /// </summary>
 public class Vector3D
 {
-	/// <summary>
-	///     Gets or sets the X coordinate
-	/// </summary>
 	public float X { get; set; }
-
-	/// <summary>
-	///     Gets or sets the Y coordinate
-	/// </summary>
 	public float Y { get; set; }
-
-	/// <summary>
-	///     Gets or sets the Z coordinate
-	/// </summary>
 	public float Z { get; set; }
 
 	/// <summary>
