@@ -17,7 +17,7 @@ public class IsidaTickOutPacket : Packet
 	[Encode(3)]
 	public Vector3D? LocalHitPoint { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = 244072998;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

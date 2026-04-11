@@ -1,7 +1,10 @@
+using ProtankiNetworking.EncodableData;
+
 namespace ProtankiNetworking.Packets.Flamethrower;
 
 public class FlamethrowerStopOutPacket : Packet
 {
+
 	[Encode(0)]
 	public int ClientTime { get; set; }
 

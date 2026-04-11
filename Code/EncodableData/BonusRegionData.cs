@@ -9,6 +9,12 @@ public class BonusRegionData : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public BonusesType? RegionType { get; set; }
+	public Vector3D? Position { get; set; }
+
+	[Encode(1)]
+	public Vector3D? Rotation { get; set; }
+
+	[Encode(2)]
+	public BonusType? RegionType { get; set; }
 
 }

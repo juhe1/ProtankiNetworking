@@ -30,7 +30,7 @@ public class ChatCC : IEncodable
 	public int MinChar { get; set; }
 
 	[Encode(7)]
-	public int MinWord { get; set; }
+	public short MinWord { get; set; }
 
 	[Encode(8)]
 	public string? SelfName { get; set; }

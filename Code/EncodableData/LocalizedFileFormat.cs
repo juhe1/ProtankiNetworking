@@ -12,6 +12,6 @@ public class LocalizedFileFormat : IEncodable
 	public ImagePair?[]? Images { get; set; }
 
 	[Encode(1)]
-	public StringPair?[]? Strings { get; set; }
+	public string?[]? Strings { get; set; }
 
 }

@@ -12,6 +12,6 @@ public class RotateTurretCommand : IEncodable
 	public float Angle { get; set; }
 
 	[Encode(1)]
-	public int Control { get; set; }
+	public byte Control { get; set; }
 
 }

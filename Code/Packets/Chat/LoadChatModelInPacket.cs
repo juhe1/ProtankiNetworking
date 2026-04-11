@@ -4,6 +4,7 @@ namespace ProtankiNetworking.Packets.Chat;
 
 public class LoadChatModelInPacket : Packet
 {
+
 	[Encode(0)]
 	public ChatCC? Cc { get; set; }
 

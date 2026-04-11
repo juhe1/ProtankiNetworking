@@ -9,6 +9,12 @@ public class TankUsersRegistry : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public int NumberHits { get; set; }
+	public Vector3D? Direction { get; set; }
+
+	[Encode(1)]
+	public Vector3D? LocalHitPoint { get; set; }
+
+	[Encode(2)]
+	public byte NumberHits { get; set; }
 
 }

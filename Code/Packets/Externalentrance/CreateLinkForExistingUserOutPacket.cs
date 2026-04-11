@@ -11,7 +11,7 @@ public class CreateLinkForExistingUserOutPacket : Packet
 	[Encode(1)]
 	public string? Password { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = -87665118;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

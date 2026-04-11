@@ -8,7 +8,7 @@ public class RenameOutPacket : Packet
 	[Encode(0)]
 	public string? NewName { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = -161726525;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

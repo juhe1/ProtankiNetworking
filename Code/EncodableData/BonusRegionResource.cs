@@ -12,6 +12,6 @@ public class BonusRegionResource : IEncodable
 	public Resource? DropZoneResource { get; set; }
 
 	[Encode(1)]
-	public BonusesType? RegionType { get; set; }
+	public BonusType? RegionType { get; set; }
 
 }

@@ -4,6 +4,7 @@ namespace ProtankiNetworking.Packets.Battle;
 
 public class AddBonusBoxInPacket : Packet
 {
+
 	[Encode(0)]
 	public string? BonusId { get; set; }
 

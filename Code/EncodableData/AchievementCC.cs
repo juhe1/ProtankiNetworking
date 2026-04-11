@@ -10,4 +10,5 @@ public class AchievementCC : IEncodable
 
 	[Encode(0)]
 	public Achievement?[]? ActiveAchievements { get; set; }
+
 }

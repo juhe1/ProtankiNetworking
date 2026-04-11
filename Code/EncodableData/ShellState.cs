@@ -11,4 +11,10 @@ public class ShellState : IEncodable
 	[Encode(0)]
 	public int ClientTime { get; set; }
 
+	[Encode(1)]
+	public Vector3D? Direction { get; set; }
+
+	[Encode(2)]
+	public Vector3D? Position { get; set; }
+
 }

@@ -11,7 +11,7 @@ public class TwinsFireDummyOutPacket : Packet
 	[Encode(1)]
 	public byte Barrel { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = -1805942142;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

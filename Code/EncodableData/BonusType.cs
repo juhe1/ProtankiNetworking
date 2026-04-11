@@ -1,6 +1,6 @@
 namespace ProtankiNetworking.EncodableData;
 
-public enum BonusesType
+public enum BonusType
 {
 	CRYSTAL = 0,
 	NITRO = 1,

@@ -9,10 +9,10 @@ public class UserStat : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public int Deaths { get; set; }
+	public short Deaths { get; set; }
 
 	[Encode(1)]
-	public int Kills { get; set; }
+	public short Kills { get; set; }
 
 	[Encode(2)]
 	public int Score { get; set; }

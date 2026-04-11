@@ -14,4 +14,7 @@ public class BonusSpawnData : IEncodable
 	[Encode(1)]
 	public int LifeTime { get; set; }
 
+	[Encode(2)]
+	public Vector3D? SpawnPosition { get; set; }
+
 }

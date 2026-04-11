@@ -1,6 +1,5 @@
 using ProtankiNetworking.Codec;
 using ProtankiNetworking.Packets;
-using ProtankiNetworking.Utils;
 
 namespace ProtankiNetworking.EncodableData;
 
@@ -13,5 +12,6 @@ public class ImagePair : IEncodable
 	public string? Key { get; set; }
 
 	[Encode(1)]
-	public ByteArray? Value { get; set; }
+	public byte Value { get; set; }
+
 }

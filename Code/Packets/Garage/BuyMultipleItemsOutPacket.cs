@@ -14,7 +14,7 @@ public class BuyMultipleItemsOutPacket : Packet
 	[Encode(2)]
 	public int Cost { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = -1961983005;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

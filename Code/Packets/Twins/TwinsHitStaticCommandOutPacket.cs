@@ -14,7 +14,7 @@ public class TwinsHitStaticCommandOutPacket : Packet
 	[Encode(2)]
 	public Vector3D? HitPointWorld { get; set; }
 
-	public const int ID_CONST = 0;
+	public const int ID_CONST = -482023661;
 	public override int Id => ID_CONST;
 	public override string Description => "No description provided";
 }

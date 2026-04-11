@@ -21,7 +21,7 @@ public class UserPropertiesCC : IEncodable
 	public int Place { get; set; }
 
 	[Encode(4)]
-	public int Rank { get; set; }
+	public byte Rank { get; set; }
 
 	[Encode(5)]
 	public float UserRating { get; set; }

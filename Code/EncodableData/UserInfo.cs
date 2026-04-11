@@ -12,13 +12,13 @@ public class UserInfo : IEncodable
 	public ChatModeratorLevel? ChatModeratorLevel { get; set; }
 
 	[Encode(1)]
-	public int Deaths { get; set; }
+	public short Deaths { get; set; }
 
 	[Encode(2)]
-	public int Kills { get; set; }
+	public short Kills { get; set; }
 
 	[Encode(3)]
-	public int Rank { get; set; }
+	public byte Rank { get; set; }
 
 	[Encode(4)]
 	public int Score { get; set; }

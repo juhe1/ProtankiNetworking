@@ -15,15 +15,18 @@ public class ClientPointData : IEncodable
 	public string? Name { get; set; }
 
 	[Encode(2)]
-	public float Score { get; set; }
+	public Vector3D? Position { get; set; }
 
 	[Encode(3)]
-	public float ScoreChangeRate { get; set; }
+	public float Score { get; set; }
 
 	[Encode(4)]
-	public ControlPointState? State { get; set; }
+	public float ScoreChangeRate { get; set; }
 
 	[Encode(5)]
+	public int State { get; set; }
+
+	[Encode(6)]
 	public string?[]? TankIds { get; set; }
 
 }

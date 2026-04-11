@@ -18,7 +18,7 @@ public class ControlPointsCC : IEncodable
 	public float MinesRestrictionRadius { get; set; }
 
 	[Encode(3)]
-	public ClientPointData?[]? Points { get; set; }
+	public int[]? Points { get; set; }
 
 	[Encode(4)]
 	public DominationResources? Resources { get; set; }

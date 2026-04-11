@@ -9,7 +9,7 @@ public class RankNotifierData : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public int Rank { get; set; }
+	public byte Rank { get; set; }
 
 	[Encode(1)]
 	public string? UserId { get; set; }

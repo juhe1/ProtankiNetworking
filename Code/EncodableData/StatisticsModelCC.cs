@@ -12,7 +12,7 @@ public class StatisticsModelCC : IEncodable
 	public BattleMode? BattleMode { get; set; }
 
 	[Encode(1)]
-	public EquipmentConstraintsMode? EquipmentConstraintsMode { get; set; }
+	public int EquipmentConstraintsMode { get; set; }
 
 	[Encode(2)]
 	public int Fund { get; set; }

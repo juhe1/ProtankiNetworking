@@ -11,4 +11,7 @@ public class AssaultBase : IEncodable
 	[Encode(0)]
 	public int Id { get; set; }
 
+	[Encode(1)]
+	public Vector3D? Position { get; set; }
+
 }

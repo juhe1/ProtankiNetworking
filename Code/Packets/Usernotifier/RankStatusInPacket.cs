@@ -4,6 +4,7 @@ namespace ProtankiNetworking.Packets.Usernotifier;
 
 public class RankStatusInPacket : Packet
 {
+
 	[Encode(0)]
 	public RankNotifierData? UserInfo { get; set; }
 
