@@ -6,6 +6,11 @@
 
 A C# library for ProTanki game communication. This project is based on code from the [ProboTanki-Lib](https://github.com/Teinc3/ProboTanki-Lib) Python library, but it is not exact port.
 
+## Related Project
+
+- [ProtankiProxy](https://github.com/juhe1/ProtankiProxy) uses this networking library in a real-world proxy setup.
+- It can also be very useful when debugging this library, especially for inspecting packet flow and validating encode/decode behavior.
+
 ## TCP Networking Components
 
 The library provides three main components for TCP networking:
