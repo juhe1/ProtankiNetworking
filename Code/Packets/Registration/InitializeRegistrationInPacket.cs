@@ -4,9 +4,8 @@ namespace ProtankiNetworking.Packets.Registration;
 
 public class InitializeRegistrationInPacket : Packet
 {
-
 	[Encode(0)]
-	public ResourceGetter? BgResourceID { get; set; }
+	public Resource? BgResourceID { get; set; }
 
 	[Encode(1)]
 	public bool RequireEmail { get; set; }
