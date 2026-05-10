@@ -7,4 +7,6 @@ public enum LayoutState
 	PAYMENT = 2,
 	BATTLE = 3,
 	RELOAD_SPACE = 4,
+	NULL = 5,
 }
+
