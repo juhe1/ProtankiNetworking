@@ -9,9 +9,14 @@ public class BattleInfoUser : IEncodable
 	public bool IsArrayOptional { get; } = false;
 
 	[Encode(0)]
-	public bool Suspicious { get; set; }
+	public int Kills { get; set; }
 
 	[Encode(1)]
-	public string? User { get; set; }
+	public int Score { get; set; }
 
+	[Encode(2)]
+	public bool Suspicious { get; set; }
+
+	[Encode(3)]
+	public string? User { get; set; }
 }
