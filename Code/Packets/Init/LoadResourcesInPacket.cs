@@ -1,12 +1,12 @@
+using System.Text.Json.Nodes;
 using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.Init;
 
 public class LoadResourcesInPacket : Packet
 {
-
 	[Encode(0)]
-	public string? ResourcesJson { get; set; }
+	public JsonNode? ResourcesJson { get; set; }
 
 	[Encode(1)]
 	public int CallbackId { get; set; }
