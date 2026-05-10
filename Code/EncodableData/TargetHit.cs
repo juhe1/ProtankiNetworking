@@ -17,4 +17,6 @@ public class TargetHit : IEncodable
 	[Encode(2)]
 	public byte NumberHits { get; set; }
 
+	[Encode(3)]
+	public string? Target { get; set; }
 }
