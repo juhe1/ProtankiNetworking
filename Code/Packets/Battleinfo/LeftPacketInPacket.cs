@@ -2,9 +2,8 @@ using ProtankiNetworking.EncodableData;
 
 namespace ProtankiNetworking.Packets.Battleinfo;
 
-public class LeftPacketInPacket : Packet
+public class LeftInPacket : Packet
 {
-
 	[Encode(0)]
 	public string? BattleId { get; set; }
 
