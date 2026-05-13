@@ -4,7 +4,6 @@ namespace ProtankiNetworking.Packets.Shotgun;
 
 public class ShotgunShootInPacket : Packet
 {
-
 	[Encode(0)]
 	public string? Shooter { get; set; }
 

@@ -12,27 +12,35 @@ public class UserPropertiesCC : IEncodable
 	public int Crystals { get; set; }
 
 	[Encode(1)]
-	public int DurationCrystalAbonement { get; set; }
+	public int CurrentRankScore { get; set; }
 
 	[Encode(2)]
-	public bool HasDoubleCrystal { get; set; }
+	public int DurationCrystalAbonement { get; set; }
 
 	[Encode(3)]
-	public int Place { get; set; }
+	public bool HasDoubleCrystal { get; set; }
 
 	[Encode(4)]
-	public byte Rank { get; set; }
+	public int NextRankScore { get; set; }
 
 	[Encode(5)]
-	public float UserRating { get; set; }
+	public int Place { get; set; }
 
 	[Encode(6)]
-	public int Score { get; set; }
+	public byte Rank { get; set; }
 
 	[Encode(7)]
-	public int ServerNumber { get; set; }
+	public float Rating { get; set; }
 
 	[Encode(8)]
-	public string? UserProfileUrl { get; set; }
+	public int Score { get; set; }
 
+	[Encode(9)]
+	public int ServerNumber { get; set; }
+
+	[Encode(10)]
+	public string? UserId { get; set; }
+
+	[Encode(11)]
+	public string? ProfileUrl { get; set; }
 }
