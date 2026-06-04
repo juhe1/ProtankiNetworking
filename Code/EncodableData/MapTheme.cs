@@ -9,4 +9,6 @@ public enum MapTheme
 	SUMMER_NIGHT = 4,
 	WINTER_DAY = 5,
 	WINTER_NIGHT = 6,
+	MATCHMAKING = 7,
 }
+
