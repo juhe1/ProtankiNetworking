@@ -27,7 +27,7 @@ public class BattleCreateParameters : IEncodable
 	public string? MapId { get; set; }
 
 	[Encode(6)]
-	public int? MaxPeopleCount { get; set; }
+	public int MaxPeopleCount { get; set; }
 
 	[Encode(7)]
 	public string? Name { get; set; }
