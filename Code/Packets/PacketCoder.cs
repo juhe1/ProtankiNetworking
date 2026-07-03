@@ -260,7 +260,12 @@ public static class PacketCoder
 	/// <returns>The decoded object instance.</returns>
 	private static object? DecodeObject(Type type, EByteArray buffer)
 	{
-		IEncodable instance = (IEncodable)Activator.CreateInstance(type)!;
+		object? instanceOrNull = Activator.CreateInstance(type);
+		if (instanceOrNull == null)
+		{
+			throw new InvalidOperationException($"Cannot create an instance of type {type.FullName}");
+		}
+		IEncodable instance = (IEncodable)instanceOrNull;
 
 		// Handle case where the object is null.
 		if (instance.IsOptional && (bool)BoolCodec.Instance.Decode(buffer))
