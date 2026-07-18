@@ -15,6 +15,7 @@ public abstract class TankiTcpClient
 {
 	private readonly Protection _protection;
 	private readonly IPEndPoint _serverEndPoint;
+	private readonly Socks5ProxyInfo? _socks5Proxy;
 	private CancellationTokenSource _cancellationTokenSource;
 	private TcpClient? _client;
 	private Task? _processingTask;
@@ -27,10 +28,12 @@ public abstract class TankiTcpClient
 	/// </summary>
 	/// <param name="serverEndPoint">The server endpoint to connect to</param>
 	/// <param name="protection">The protection instance for packet encryption/decryption</param>
-	protected TankiTcpClient(IPEndPoint serverEndPoint, Protection protection)
+	/// <param name="socks5Proxy">Optional SOCKS5 proxy configuration. If set, all traffic is routed through the proxy.</param>
+	protected TankiTcpClient(IPEndPoint serverEndPoint, Protection protection, Socks5ProxyInfo? socks5Proxy = null)
 	{
 		_serverEndPoint = serverEndPoint;
 		_protection = protection;
+		_socks5Proxy = socks5Proxy;
 		_cancellationTokenSource = new CancellationTokenSource();
 	}
 
@@ -123,8 +126,20 @@ public abstract class TankiTcpClient
 	{
 		try
 		{
-			_client = new TcpClient();
-			await _client.ConnectAsync(_serverEndPoint.Address, _serverEndPoint.Port);
+			if (_socks5Proxy != null)
+			{
+				// Route connection through SOCKS5 proxy
+				_client = await Socks5ProxyClient.ConnectThroughProxyAsync(
+					_socks5Proxy,
+					_serverEndPoint
+				);
+			}
+			else
+			{
+				// Direct connection
+				_client = new TcpClient();
+				await _client.ConnectAsync(_serverEndPoint.Address, _serverEndPoint.Port);
+			}
 			_stream = _client.GetStream();
 			_processingTask = Task.Run(ProcessPacketsAsync);
 			await OnConnectedAsync();
