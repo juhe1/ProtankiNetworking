@@ -38,62 +38,12 @@ public abstract class TankiTcpClientHandler
 			while (!_cancellationToken.IsCancellationRequested)
 				try
 				{
-					// Read header bytes
-					var packetLenBytes = new byte[4];
-					var packetIdBytes = new byte[4];
-
-					// Check if connection is closed
-					int bytesRead = await _stream.ReadAsync(packetLenBytes, 0, 4);
-					if (bytesRead == 0)
+					var result = await PacketReader.ReadClientPacketAsync(_stream);
+					if (result == null)
 						// Connection closed by client
 						break;
 
-					bytesRead = await _stream.ReadAsync(packetIdBytes, 0, 4);
-					if (bytesRead == 0)
-						// Connection closed by client
-						break;
-
-					// Create complete raw packet buffer first with original byte order
-					var rawPacket = new byte[8];
-					Buffer.BlockCopy(packetLenBytes, 0, rawPacket, 0, 4);
-					Buffer.BlockCopy(packetIdBytes, 0, rawPacket, 4, 4);
-
-					// Convert from big-endian to little-endian for BitConverter
-					Array.Reverse(packetLenBytes);
-					Array.Reverse(packetIdBytes);
-					var packetLen = BitConverter.ToInt32(packetLenBytes, 0);
-					var packetId = BitConverter.ToInt32(packetIdBytes, 0);
-					int packetDataLen = packetLen - Packet.HEADER_LEN;
-
-					// Validate packet length
-					if (packetLen < Packet.HEADER_LEN || packetLen > 1024 * 1024) // Max 1MB packet size
-						throw new InvalidOperationException(
-							$"Invalid packet length: {packetLen} Packet id {packetId}"
-						);
-
-					// Resize raw packet to full length if needed
-					if (packetLen > 8)
-						Array.Resize(ref rawPacket, packetLen);
-
-					// Read packet data if any
-					if (packetDataLen > 0)
-					{
-						bytesRead = await _stream.ReadAsync(rawPacket, 8, packetDataLen);
-						if (bytesRead == 0)
-							// Connection closed by client
-							break;
-					}
-
-					// Then process the packet normally
-					var encryptedData = new ByteArray();
-					if (packetDataLen > 0)
-					{
-						var packetData = new byte[packetDataLen];
-						Buffer.BlockCopy(rawPacket, 8, packetData, 0, packetDataLen);
-						encryptedData.Write(packetData);
-					}
-
-					await ProcessPacketAsync(packetId, encryptedData, rawPacket);
+					await ProcessPacketAsync(result.Value.PacketId, result.Value.EncryptedData, result.Value.RawPacket);
 				}
 				catch (IOException ex)
 					when (ex.InnerException is SocketException socketEx

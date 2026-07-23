@@ -209,7 +209,7 @@ public abstract class TankiTcpClient
 						throw new Exception("_stream cannot be null");
 					}
 
-					var result = await PacketReader.ReadPacketAsync(_stream, _protection);
+					var result = await PacketReader.ReadServerPacketAsync(_stream, _protection);
 					await ProcessPacketAsync(result.PacketId, result.DecryptedData, result.RawPacket);
 				}
 				catch (IOException ex)
