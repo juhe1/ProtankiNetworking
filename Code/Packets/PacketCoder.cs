@@ -54,13 +54,14 @@ public static class PacketCoder
 	}
 
 	/// <summary>
-	/// Encodes a packet into a byte array, applying optional encryption.
+	/// Encodes a packet into a byte array using the client header format, applying optional encryption.
+	/// Client format: big-endian int32 (total packet length) + big-endian int32 (packet ID) + payload.
 	/// </summary>
 	/// <param name="packet">The packet to encode.</param>
 	/// <param name="protection">Optional protection mechanism to encrypt the packet.</param>
 	/// <returns>Encoded and optionally encrypted byte array.</returns>
 	/// <exception cref="Exception">Thrown if the packet is of type UnknownPacket.</exception>
-	public static EByteArray EncodePacket(Packet packet, Protection? protection)
+	public static EByteArray EncodeClientPacket(Packet packet, Protection? protection)
 	{
 		if (packet is UnknownPacket)
 		{
@@ -77,6 +78,39 @@ public static class PacketCoder
 		dataLen += encryptedData.Length;
 		EByteArray result = new();
 		result.WriteInt(dataLen);
+		result.WriteInt(packet.Id);
+		result.Write(encryptedData);
+		return result;
+	}
+
+	/// <summary>
+	/// Encodes a packet into a byte array using the server header format, applying optional encryption.
+	/// Server format: big-endian int32 (flags in top byte + 24-bit total packet length) + big-endian int32 (packet ID) + payload.
+	/// </summary>
+	/// <param name="packet">The packet to encode.</param>
+	/// <param name="protection">Optional protection mechanism to encrypt the packet.</param>
+	/// <returns>Encoded and optionally encrypted byte array.</returns>
+	/// <exception cref="Exception">Thrown if the packet is of type UnknownPacket.</exception>
+	public static EByteArray EncodeServerPacket(Packet packet, Protection? protection)
+	{
+		if (packet is UnknownPacket)
+		{
+			throw new Exception("Cannot wrap UnknownPacket");
+		}
+
+		EByteArray packetData = new();
+
+		EncodeObject(packet, packetData);
+
+		byte[] encryptedData =
+			protection?.Encrypt(packetData.ToTrimmedArray()) ?? packetData.ToTrimmedArray();
+		int packetLen = Packet.HEADER_LEN + encryptedData.Length;
+
+		// Server header: top byte has flags (bit 6 = compression), lower 24 bits = total packet length
+		int header = packetLen & 0xFFFFFF; // no compression flag for now
+
+		EByteArray result = new();
+		result.WriteInt(header);
 		result.WriteInt(packet.Id);
 		result.Write(encryptedData);
 		return result;

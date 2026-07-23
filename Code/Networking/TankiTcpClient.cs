@@ -91,7 +91,7 @@ public abstract class TankiTcpClient
 	{
 		try
 		{
-			byte[] packetData = PacketCoder.EncodePacket(packet, _protection).ToTrimmedArray();
+			byte[] packetData = PacketCoder.EncodeClientPacket(packet, _protection).ToTrimmedArray();
 			await SendRawPacketAsync(packetData);
 		}
 		catch (Exception e)

@@ -84,7 +84,7 @@ public abstract class TankiTcpClientHandler
 
 		try
 		{
-			byte[] packetData = PacketCoder.EncodePacket(packet, _protection).ToTrimmedArray();
+			byte[] packetData = PacketCoder.EncodeServerPacket(packet, _protection).ToTrimmedArray();
 			await _stream.WriteAsync(packetData, 0, packetData.Length);
 			await _stream.FlushAsync();
 		}
