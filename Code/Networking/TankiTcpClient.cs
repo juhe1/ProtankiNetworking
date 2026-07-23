@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Sockets;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using ProtankiNetworking.Packets;
 using ProtankiNetworking.Packets.Init;
 using ProtankiNetworking.Security;
@@ -202,71 +201,13 @@ public abstract class TankiTcpClient
 			while (!_cancellationTokenSource.Token.IsCancellationRequested)
 				try
 				{
-					// Read header bytes
-					var packetLenBytes = new byte[4];
-					var packetIdBytes = new byte[4];
 					if (_stream is null)
 					{
 						throw new Exception("_stream cannot be null");
 					}
-					await _stream.ReadExactlyAsync(packetLenBytes, 0, 4);
-					await _stream.ReadExactlyAsync(packetIdBytes, 0, 4);
 
-					// Create complete raw packet buffer first with original byte order
-					var rawPacket = new byte[8];
-					Buffer.BlockCopy(packetLenBytes, 0, rawPacket, 0, 4);
-					Buffer.BlockCopy(packetIdBytes, 0, rawPacket, 4, 4);
-
-					// Convert from big-endian to little-endian for BitConverter
-					Array.Reverse(packetLenBytes);
-					Array.Reverse(packetIdBytes);
-
-					int header = BitConverter.ToInt32(packetLenBytes, 0);
-					bool isCompressed = ((header >> 24) & 0x40) != 0;
-					int packetLen = header & 0xFFFFFF; // length (24 bits)
-					int packetId = BitConverter.ToInt32(packetIdBytes, 0);
-					int packetDataLen = packetLen - Packet.HEADER_LEN;
-
-					// Validate packet length
-					// Max 1MB packet size. This is smaller than the theoretical maximum, because protanki doesn't uses the maximum.
-					// So if the packet is more than 1MB, then we know that something went wrong.
-					if (packetLen < Packet.HEADER_LEN || packetLen > 1024 * 1024)
-						throw new InvalidOperationException(
-							$"Invalid packet length: {packetLen} packetId: {packetId}"
-						);
-
-					// Resize raw packet to full length if needed
-					if (packetLen > 8)
-						Array.Resize(ref rawPacket, packetLen);
-
-					// Read packet data if any
-					if (packetDataLen > 0)
-						await _stream.ReadExactlyAsync(rawPacket, 8, packetDataLen);
-
-					// Then process the packet normally
-					byte[] data = new byte[0];
-					if (packetDataLen > 0)
-					{
-						data = new byte[packetDataLen];
-						Buffer.BlockCopy(rawPacket, 8, data, 0, packetDataLen);
-
-						data = _protection.Decrypt(data.ToArray());
-
-						// Decompress if flagged
-						if (isCompressed)
-						{
-							using var ms = new MemoryStream(data);
-							using var ds = new InflaterInputStream(
-								ms,
-								new ICSharpCode.SharpZipLib.Zip.Compression.Inflater(noHeader: true)
-							);
-							using var outMs = new MemoryStream();
-							ds.CopyTo(outMs);
-							data = outMs.ToArray();
-						}
-					}
-
-					await ProcessPacketAsync(packetId, data, rawPacket);
+					var result = await PacketReader.ReadPacketAsync(_stream, _protection);
+					await ProcessPacketAsync(result.PacketId, result.DecryptedData, result.RawPacket);
 				}
 				catch (IOException ex)
 					when (ex.InnerException is SocketException socketEx
