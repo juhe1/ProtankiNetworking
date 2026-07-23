@@ -43,6 +43,12 @@ public abstract class TankiTcpClient
 	protected abstract Task OnRawPacketReceivedAsync(byte[] rawPacket);
 
 	/// <summary>
+	///     Called when a raw packet is sent to the server, including header bytes
+	/// </summary>
+	/// <param name="rawPacket">The complete raw packet data that was sent</param>
+	protected abstract Task OnRawPacketSentAsync(byte[] rawPacket);
+
+	/// <summary>
 	///     Called when a packet is received from the server
 	/// </summary>
 	/// <param name="packet">The received packet</param>
@@ -83,14 +89,10 @@ public abstract class TankiTcpClient
 	/// <param name="packet">The packet to send</param>
 	public async Task SendPacketAsync(Packet packet)
 	{
-		if (_stream == null || _client == null || !_client.Connected)
-			return;
-
 		try
 		{
 			byte[] packetData = PacketCoder.EncodePacket(packet, _protection).ToTrimmedArray();
-			await _stream.WriteAsync(packetData, 0, packetData.Length);
-			await _stream.FlushAsync();
+			await SendRawPacketAsync(packetData);
 		}
 		catch (Exception e)
 		{
@@ -111,6 +113,7 @@ public abstract class TankiTcpClient
 		{
 			await _stream.WriteAsync(rawData, 0, rawData.Length);
 			await _stream.FlushAsync();
+			await OnRawPacketSentAsync(rawData);
 		}
 		catch (Exception e)
 		{
