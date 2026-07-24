@@ -28,6 +28,11 @@ public abstract class TankiTcpClient
 	protected IPEndPoint? LocalEndPoint => (IPEndPoint?)_client?.Client?.LocalEndPoint;
 
 	/// <summary>
+	///     Gets the server endpoint this client is connected to.
+	/// </summary>
+	protected IPEndPoint ServerEndPoint => _serverEndPoint;
+
+	/// <summary>
 	///     Creates a new instance of TankiTcpClient
 	/// </summary>
 	/// <param name="serverEndPoint">The server endpoint to connect to</param>
@@ -267,8 +272,8 @@ public abstract class TankiTcpClient
 			_protection.Activate(keys);
 		}
 
-		await OnPacketReceivedAsync(fittedPacket);
 		await OnRawPacketReceivedAsync(rawPacket);
+		await OnPacketReceivedAsync(fittedPacket);
 	}
 
 	/// <summary>
