@@ -23,6 +23,11 @@ public abstract class TankiTcpClient
 	private readonly object _disconnectLock = new();
 
 	/// <summary>
+	///     Gets the local endpoint of the connected client socket, or null if not connected.
+	/// </summary>
+	protected IPEndPoint? LocalEndPoint => (IPEndPoint?)_client?.Client?.LocalEndPoint;
+
+	/// <summary>
 	///     Creates a new instance of TankiTcpClient
 	/// </summary>
 	/// <param name="serverEndPoint">The server endpoint to connect to</param>
