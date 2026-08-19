@@ -121,9 +121,9 @@ public abstract class TankiTcpClient
 
 		try
 		{
+			await OnRawPacketSentAsync(rawData);
 			await _stream.WriteAsync(rawData, 0, rawData.Length);
 			await _stream.FlushAsync();
-			await OnRawPacketSentAsync(rawData);
 		}
 		catch (Exception e)
 		{
