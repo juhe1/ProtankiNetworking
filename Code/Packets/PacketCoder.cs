@@ -117,6 +117,33 @@ public static class PacketCoder
 	}
 
 	/// <summary>
+	/// Encodes a server packet from an already-decrypted payload, applying optional encryption.
+	/// Server format: big-endian int32 (flags in top byte + 24-bit total packet length) + big-endian int32 (packet ID) + payload.
+	/// </summary>
+	/// <param name="packetId">The packet identifier.</param>
+	/// <param name="decryptedData">The decrypted (or plaintext) payload, without headers.</param>
+	/// <param name="protection">Optional protection mechanism to encrypt the payload.</param>
+	/// <returns>Encoded and optionally encrypted byte array.</returns>
+	public static EByteArray EncodeServerPacket(
+		int packetId,
+		byte[] decryptedData,
+		Protection? protection
+	)
+	{
+		byte[] encryptedData = protection?.Encrypt(decryptedData) ?? decryptedData;
+		int packetLen = Packet.HEADER_LEN + encryptedData.Length;
+
+		// Server header: top byte has flags (bit 6 = compression), lower 24 bits = total packet length
+		int header = packetLen & 0xFFFFFF; // no compression flag
+
+		EByteArray result = new();
+		result.WriteInt(header);
+		result.WriteInt(packetId);
+		result.Write(encryptedData);
+		return result;
+	}
+
+	/// <summary>
 	/// Encodes all fields and properties of an object marked with [Encode] into a buffer.
 	/// </summary>
 	/// <param name="obj">The object to encode.</param>
