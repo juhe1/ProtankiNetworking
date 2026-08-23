@@ -13,6 +13,14 @@ public abstract class TankiTcpListener
 	private readonly TcpListener _listener;
 	private Task? _acceptClientsTask;
 	private CancellationTokenSource _cancellationTokenSource;
+	private bool _isStopping;
+
+	/// <summary>
+	///     True while the listener is being stopped (StopAsync in progress or completed).
+	///     Derived classes can use this to distinguish client disconnects caused by
+	///     stopping the listener from natural client disconnects.
+	/// </summary>
+	protected bool IsStopping => _isStopping;
 
 	/// <summary>
 	///     Creates a new instance of TankiTcpListener
@@ -49,6 +57,7 @@ public abstract class TankiTcpListener
 	/// </summary>
 	public void Start()
 	{
+		_isStopping = false;
 		_listener.Start();
 		_acceptClientsTask = AcceptClientsAsync();
 	}
@@ -58,6 +67,7 @@ public abstract class TankiTcpListener
 	/// </summary>
 	public async Task StopAsync()
 	{
+		_isStopping = true;
 		_cancellationTokenSource.Cancel();
 		_listener.Stop();
 
