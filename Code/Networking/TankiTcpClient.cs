@@ -238,6 +238,13 @@ public abstract class TankiTcpClient
 					_ = DisconnectAsync();
 					break;
 				}
+				catch (EndOfStreamException)
+				{
+					// The server closed the connection gracefully (ReadExactlyAsync
+					// throws this when the stream ends mid-read).
+					_ = DisconnectAsync();
+					break;
+				}
 		}
 		catch (OperationCanceledException)
 		{
