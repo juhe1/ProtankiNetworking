@@ -135,6 +135,13 @@ public abstract class TankiTcpListener
 		{
 			// Expected when cancelling
 		}
+		catch (SocketException ex) when (
+			ex.SocketErrorCode == SocketError.OperationAborted
+			|| ex.SocketErrorCode == SocketError.Interrupted
+		)
+		{
+			// Expected when the listener is stopped while an accept is pending
+		}
 		catch (Exception e)
 		{
 			await OnErrorAsync(e, "TankiTcpListener.AcceptClients");
