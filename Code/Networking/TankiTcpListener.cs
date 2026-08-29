@@ -23,6 +23,12 @@ public abstract class TankiTcpListener
 	protected bool IsStopping => _isStopping;
 
 	/// <summary>
+	///     Returns the currently active client handlers.
+	/// </summary>
+	public IReadOnlyCollection<TankiTcpClientHandler> GetActiveHandlers() =>
+		_activeClients.Values.ToList();
+
+	/// <summary>
 	///     Creates a new instance of TankiTcpListener
 	/// </summary>
 	/// <param name="localEndPoint">The local endpoint to listen on</param>
